@@ -550,10 +550,10 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
         </div>
         <div class="apanel" id="tab-holdaway">
           <div class="sec-title"><span class="icon">🫦</span> Holdaway Soft Tissue Analysis</div>
-          <div class="sec-sub">Soft tissue evaluation referenced to the H-line (sPg–Ls). Requires Sn (subnasale) and Me' (soft tissue menton) — new landmarks in v2.</div>
+          <div class="sec-sub">Soft tissue evaluation referenced to the H-line (sPg–Ls). Requires Sn (subnasale) and Si (labiomental sulcus) — new landmarks in v2.</div>
           <table class="mtable" id="holdaway-table"><thead><tr><th>Measurement</th><th>Value</th><th>Norm</th><th>Dev / Needs</th></tr></thead><tbody></tbody></table>
           <div class="guide-box"><div class="guide-title">📘 H-Line (Holdaway)</div><div class="guide-text">Runs from soft tissue Pogonion (sPg) to most prominent point of upper lip (Ls). The H-angle between H-line and NB line norms 7–10°. Increasing H-angle = lip protrusion relative to chin.</div></div>
-          <div class="guide-box"><div class="guide-title">📘 New Landmarks Required (v2)</div><div class="guide-text"><strong style="color:var(--gold)">Sn</strong> — Subnasale: junction of nasal columella and upper lip in midsagittal plane.<br><strong style="color:var(--gold)">Me'</strong> — Soft tissue Menton: most inferior point of soft tissue chin.</div></div>
+          <div class="guide-box"><div class="guide-title">📘 Landmarks Required (v2)</div><div class="guide-text"><strong style="color:var(--gold)">Sn</strong> — Subnasale: junction of nasal columella and upper lip in midsagittal plane.<br><strong style="color:var(--gold)">Si</strong> — Sublabiale: deepest point of the labiomental sulcus (concavity between lower lip and chin prominence) — used for mentolabial sulcus depth.</div></div>
         </div>
         <div class="apanel" id="tab-pancherz">
           <div class="sec-title"><span class="icon">📏</span> Pancherz Analysis</div>
@@ -585,7 +585,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
    v2 New: Holdaway ST · Pancherz · 3-pt Occlusal Plane
            Landmark Skip · "Needs X" table feedback
            Report percentile bar charts
-           30 landmarks: Dc, CF, Sn, Me', Op3
+           31 landmarks: Dc, CF, Sn, Me', Op3, Si
    ══════════════════════════════════════════════════════ */
 
 if(!CanvasRenderingContext2D.prototype.roundRect){
@@ -598,7 +598,7 @@ if(!CanvasRenderingContext2D.prototype.roundRect){
   };
 }
 
-/* ── LANDMARK DEFINITIONS (30 total) ── */
+/* ── LANDMARK DEFINITIONS (31 total) ── */
 const LM_DEFS = [
   { id:'S',   name:'Sella (S)',             abbr:'S',    desc:'Centre of the sella turcica (pituitary fossa)',                                            color:'#ef4444' },
   { id:'N',   name:'Nasion (N)',            abbr:'N',    desc:'Most anterior point of frontonasal suture at the nasofrontal junction',                    color:'#f97316' },
@@ -625,6 +625,7 @@ const LM_DEFS = [
   { id:'Sn',  name:'Subnasale (Sn)',        abbr:'Sn',   desc:'Junction of the nasal columella and upper lip in the midsagittal plane — new in v2',       color:'#fcd34d' },
   { id:'Ls',  name:'Labiale Sup (Ls)',      abbr:'Ls',   desc:'Most anterior point of the upper lip vermilion border',                                     color:'#facc15' },
   { id:'Li',  name:'Labiale Inf (Li)',      abbr:'Li',   desc:'Most anterior point of the lower lip vermilion border',                                     color:'#a3e635' },
+  { id:'Si',  name:'Sublabiale (Si)',        abbr:'Si',   desc:'Deepest point of the labiomental sulcus — concavity between lower lip and chin prominence — used for mentolabial sulcus depth', color:'#86efac' },
   { id:'sPg', name:'ST Pogonion (sPg)',     abbr:'sPg',  desc:'Most anterior point of the soft tissue chin',                                               color:'#34d399' },
   { id:'MeP', name:"ST Menton (Me')",       abbr:"Me'",  desc:"Most inferior point of the soft tissue chin — soft tissue counterpart of Me — new in v2",  color:'#6ee7b7' },
   { id:'Op1', name:'Occlusal Pt 1 (Op1)',  abbr:'Op1',  desc:'Occlusal plane reference — most posterior distal cusp contact (molar)',                    color:'#38bdf8' },
@@ -941,7 +942,7 @@ const BJORK=[
 /* ── RICKETTS ── */
 const RICKETTS=[
   {name:'Facial Axis (Ba-N to Pt-Gn)',unit:'°',norm:90,sd:3.5,requires:['Ba','N','Pt','Gn'],
-    calc:()=>acuteAngleBetweenLines(L('Ba'),L('N'),L('Pt'),L('Gn'))},
+    calc:()=>angleBetweenLines(L('Ba'),L('N'),L('Pt'),L('Gn'))},
   {name:'Facial Depth (FH to N-Pg)',unit:'°',norm:87,sd:3,requires:['Po','Or','N','Pg'],
     calc:()=>angleBetweenLines(L('Po'),L('Or'),L('N'),L('Pg'))},
   {name:'Mandibular Plane to FH',unit:'°',norm:26,sd:4,requires:['Go','Me','Po','Or'],
@@ -1001,8 +1002,8 @@ const HOLDAWAY=[
     calc:()=>angleBetweenLines(L('Po'),L('Or'),L('N'),L('sPg'))},
   {name:'UL Protrusion (Ls–A, FH proj)',unit:'mm',norm:14,sd:2,requires:['A','Ls','Po','Or'],
     calc:()=>{const fhx=L('Or').x-L('Po').x,fhy=L('Or').y-L('Po').y,fl=Math.sqrt(fhx*fhx+fhy*fhy);if(fl===0)return NaN;return px2mm(((L('Ls').x-L('A').x)*fhx+(L('Ls').y-L('A').y)*fhy)/fl);}},
-  {name:"Mentolabial Sulcus Depth (Me')",unit:'mm',norm:4,sd:2,requires:['Li','sPg','MeP'],
-    calc:()=>{const dx=L('sPg').x-L('Li').x,dy=L('sPg').y-L('Li').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;return px2mm(Math.abs((L('MeP').x-L('Li').x)*dy-(L('MeP').y-L('Li').y)*dx)/len);}},
+  {name:'Mentolabial Sulcus Depth (Si)',unit:'mm',norm:4,sd:2,requires:['Li','sPg','Si'],
+    calc:()=>{const dx=L('sPg').x-L('Li').x,dy=L('sPg').y-L('Li').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;return px2mm(Math.abs((L('Si').x-L('Li').x)*dy-(L('Si').y-L('Li').y)*dx)/len);}},
   {name:'Nasolabial Angle (Prn–Sn–Ls)',unit:'°',norm:102,sd:8,requires:['Prn','Sn','Ls'],
     calc:()=>angleAtVertex(L('Prn'),L('Sn'),L('Ls'))},
 ];
@@ -1039,7 +1040,7 @@ const ANALYSES = [
   {key:'mcnamara', label:'McNamara Analysis',         sub:'Facial heights, A to N-Perp, Pg to N-Perp',     data:MCNAMARA},
   {key:'bjork',    label:'Björk-Jarabak Analysis',   sub:'Saddle, articular, gonial angles, PFH/AFH',      data:BJORK},
   {key:'ricketts', label:'Ricketts Analysis',         sub:'Facial axis, depth, convexity, A-Po distances',  data:RICKETTS},
-  {key:'holdaway', label:'Holdaway Soft Tissue',      sub:'H-angle, nose, lip, ST convexity — needs Sn, Me\'', data:HOLDAWAY},
+  {key:'holdaway', label:'Holdaway Soft Tissue',      sub:'H-angle, nose, lip, ST convexity — needs Sn, Si', data:HOLDAWAY},
   {key:'pancherz', label:'Pancherz Analysis',         sub:'OLp projections — Op1=posterior molar, Op2=anterior incisor. Absolute values are reference-only (magnification-dependent).', data:PANCHERZ},
   {key:'eline',    label:'E-Line Analysis',           sub:'Lip positions to E-line (Prn–sPg), nasolabial angle',  data:ELINE},
 ];
