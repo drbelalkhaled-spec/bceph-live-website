@@ -72,12 +72,12 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
 .free-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 18px;border-radius:20px;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.28);font-size:12px;font-weight:700;color:#4ade80;margin-bottom:32px;animation:fadeUp .6s ease .28s both;}
 
 .hero-cta{display:flex;flex-direction:column;align-items:center;gap:12px;animation:fadeUp .6s ease .32s both;}
-.btn-launch{height:54px;padding:0 44px;border-radius:10px;background:var(--gold);border:none;color:#0e1a38;font-family:var(--font);font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(200,152,42,.35);}
+.btn-launch{height:54px;padding:0 44px;border-radius:10px;background:var(--gold);border:none;color:#0e1a38;font-family:var(--font);font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(200,152,42,.35);text-decoration:none;}
 .btn-launch:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 14px 40px rgba(200,152,42,.48)}
 .btn-launch .arrow{font-size:18px;transition:transform .2s}
 .btn-launch:hover .arrow{transform:translateX(5px)}
 .cta-links{display:flex;align-items:center;gap:10px;}
-.cta-link{background:none;border:none;color:rgba(255,255,255,.3);font-family:var(--font);font-size:12px;font-weight:600;cursor:pointer;transition:color .15s;padding:0;}
+.cta-link{color:rgba(255,255,255,.3);font-family:var(--font);font-size:12px;font-weight:600;transition:color .15s;text-decoration:none;}
 .cta-link:hover{color:rgba(255,255,255,.65);}
 .cta-sep{color:rgba(255,255,255,.12);font-size:12px;}
 
@@ -158,6 +158,16 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
 .arch-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
 .arch-pill{padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;font-family:var(--font-mono);background:#dcfce7;border:1px solid #bbf7d0;color:#166534;}
 
+/* ── FAQ ── */
+.s-faq{background:#fff;padding:80px 32px;border-top:1px solid #e2e8f0;}
+.faq-inner{max-width:760px;margin:0 auto;}
+.faq-list{display:flex;flex-direction:column;gap:16px;margin-top:0;}
+.faq-item{background:#f8fafc;border:1px solid #e8edf5;border-radius:14px;padding:28px 28px 24px;transition:border-color .2s ease,box-shadow .2s ease;}
+.faq-item:hover{border-color:rgba(200,152,42,.25);box-shadow:0 8px 28px rgba(14,26,56,.07);}
+.faq-q{font-size:14px;font-weight:700;color:#0e1a38;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;}
+.faq-q::before{content:"Q";font-size:9px;font-weight:800;font-family:var(--font-mono);color:var(--gold);background:rgba(200,152,42,.1);border:1px solid rgba(200,152,42,.2);border-radius:5px;padding:3px 7px;flex-shrink:0;margin-top:1px;letter-spacing:.5px;}
+.faq-a{font-size:13px;color:#64748b;line-height:1.75;padding-left:36px;}
+
 /* ── FOOTER ── */
 .s-footer{background:#0e1a38;padding:24px 32px;text-align:center;font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.4px;}
 .s-footer strong{color:rgba(200,152,42,.5);}
@@ -188,16 +198,18 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
       <div class="trust-item"><div class="ti">&#10003;</div>HIPAA-Aligned</div>
     </div>
 
-    <p class="tagline"><strong>Professional cephalometric analysis</strong> &mdash; trace landmarks, compute skeletal classifications, and generate print-ready clinical reports, entirely in your browser.</p>
+    <p class="tagline"><strong>Professional cephalometric analysis</strong> &mdash; trace landmarks, run <strong>Steiner, Ricketts, and McNamara</strong> analyses, and generate print-ready clinical reports, entirely in your browser.</p>
+
+    <h1 style="font-size:13px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.4px;text-transform:uppercase;font-family:var(--font-mono);margin-bottom:20px;margin-top:-4px;">Free Cephalometric Analysis Software for Orthodontists</h1>
 
     <div class="free-pill">&#10022;&nbsp; Free During Beta</div>
 
     <div class="hero-cta">
-      <button class="btn-launch" onclick="launchApp()">Launch BCeph <span class="arrow">&#8594;</span></button>
+      <a href="app.html" class="btn-launch">Launch BCeph <span class="arrow">&#8594;</span></a>
       <div class="cta-links">
-        <button class="cta-link" onclick="document.getElementById('s-compliance').scrollIntoView({behavior:'smooth'})">Privacy &amp; Compliance</button>
+        <a href="#s-compliance" class="cta-link">Privacy &amp; Compliance</a>
         <span class="cta-sep">&middot;</span>
-        <button class="cta-link" onclick="document.getElementById('s-features').scrollIntoView({behavior:'smooth'})">How It Works</button>
+        <a href="#s-xray" class="cta-link">How It Works</a>
       </div>
     </div>
   </div>
@@ -252,7 +264,7 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
     <div class="feat-card">
       <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(200,152,42,.8)" stroke-width="1.5" stroke-linecap="round"><path d="M3 20l5-8 4 4 4-6 5 10"/><path d="M3 3v18h18"/></svg></div>
       <div class="feat-title">9+ Analysis Modules</div>
-      <div class="feat-desc">Skeletal, dental, soft-tissue, and airway analyses with normative comparisons across multiple population standards.</div>
+      <div class="feat-desc">Includes Steiner, Ricketts, McNamara, Downs, Tweed, and Jarabak analyses with normative comparisons across multiple population standards.</div>
     </div>
     <div class="feat-card">
       <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(200,152,42,.8)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></div>
@@ -334,16 +346,43 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
   </div>
 </section>
 
+<!-- ── FAQ ── -->
+<section class="s-faq" id="s-faq">
+  <div class="faq-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">FAQ</div>
+      <div class="section-title">Common <em>Questions</em></div>
+      <p class="section-sub">Everything you need to know about BCeph before you start tracing.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Is BCeph free?</div>
+        <div class="faq-a">Yes. BCeph is completely free with no hidden fees, subscriptions, or premium tiers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does BCeph store patient data on the cloud?</div>
+        <div class="faq-a">No. All images, landmarks, and patient records stay in your browser&rsquo;s local storage. Nothing is uploaded or transmitted.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Which cephalometric analyses does BCeph support?</div>
+        <div class="faq-a">BCeph includes Steiner, Ricketts, McNamara, Downs, Tweed, Jarabak, and additional soft-tissue and airway modules &mdash; over 9 analyses total.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is BCeph HIPAA compliant?</div>
+        <div class="faq-a">BCeph is architected around HIPAA principles. Since no patient data ever leaves your device, there is no PHI transmission and no need for a Business Associate Agreement.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to install anything?</div>
+        <div class="faq-a">No. BCeph runs entirely in your web browser as a single HTML file. No downloads, plugins, or accounts required.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── FOOTER ── -->
 <footer class="s-footer">
   <strong>BCeph</strong> &middot; Bayan Healthcare Analytics &middot; All data stored locally on your device &middot; No account or internet connection required
 </footer>
-
-<script>
-function launchApp(){
-  window.location.href = "app.html";
-}
-</script>
 
 <!-- ── Structured Data (JSON-LD) ── -->
 <script type="application/ld+json">
@@ -356,7 +395,58 @@ function launchApp(){
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "description": "AI-powered cephalometric analysis for orthodontists. Automatic landmark tracing, Steiner, Ricketts, and McNamara analyses. Free, no login required.",
   "url": "https://www.bceph.com",
-  "author": { "@type": "Organization", "name": "Bayan Healthcare Analytics" }
+  "author": { "@type": "Organization", "name": "Bayan Healthcare Analytics" },
+  "screenshot": "https://www.bceph.com/og-preview.png",
+  "featureList": "AI landmark tracing, Steiner analysis, Ricketts analysis, McNamara analysis, Downs analysis, Tweed analysis, clinical report generation, image enhancement, patient database, JSON backup/restore",
+  "softwareVersion": "1.0-beta"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is BCeph free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. BCeph is completely free with no hidden fees, subscriptions, or premium tiers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does BCeph store patient data on the cloud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All images, landmarks, and patient records stay in your browser's local storage. Nothing is uploaded or transmitted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which cephalometric analyses does BCeph support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BCeph includes Steiner, Ricketts, McNamara, Downs, Tweed, Jarabak, and additional soft-tissue and airway modules — over 9 analyses total."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is BCeph HIPAA compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BCeph is architected around HIPAA principles. Since no patient data ever leaves your device, there is no PHI transmission and no need for a Business Associate Agreement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to install anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. BCeph runs entirely in your web browser as a single HTML file. No downloads, plugins, or accounts required."
+      }
+    }
+  ]
 }
 </script>
 </body>
