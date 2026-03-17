@@ -488,7 +488,6 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
         <div class="atab" onclick="showTab('bjork')">Björk</div>
         <div class="atab" onclick="showTab('ricketts')">Ricketts</div>
         <div class="atab" onclick="showTab('holdaway')">Holdaway</div>
-        <div class="atab" onclick="showTab('pancherz')">Pancherz</div>
         <div class="atab" onclick="showTab('eline')">E-Line</div>
         <div class="atab" onclick="showTab('kim')">Kim</div>
       </div>
@@ -603,13 +602,6 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
           <div class="guide-box"><div class="guide-title">📘 H-Line (Holdaway)</div><div class="guide-text">Runs from soft tissue Pogonion (sPg) to most prominent point of upper lip (Ls). The H-angle between H-line and NB line norms 7–10°. Increasing H-angle = lip protrusion relative to chin.</div></div>
           <div class="guide-box"><div class="guide-title">📘 New Landmarks Required (v2)</div><div class="guide-text"><strong style="color:var(--gold)">Sn</strong> — Subnasale: junction of nasal columella and upper lip in midsagittal plane.<br><strong style="color:var(--gold)">Me'</strong> — Soft tissue Menton: most inferior point of soft tissue chin.</div></div>
         </div>
-        <div class="apanel" id="tab-pancherz">
-          <div class="sec-title"><span class="icon">📏</span> Pancherz Analysis</div>
-          <div class="sec-sub">Sagittal projections onto OLp. Essential for Class II functional appliance assessment. Requires calibration + Op1, Op2. Op3 enables 3-point occlusal plane (more accurate).</div>
-          <table class="mtable" id="pancherz-table"><thead><tr><th>Measurement</th><th>Value</th><th>Norm</th><th>Dev / Needs</th></tr></thead><tbody></tbody></table>
-          <div class="guide-box"><div class="guide-title">📘 Occlusal Line Perpendicular (OLp)</div><div class="guide-text">All Pancherz values are projections perpendicular to the functional occlusal plane through Op1. With Op3 placed, a 3-point best-fit plane is used automatically — significantly more accurate than the 2-point method for rotated occlusal planes.<br><br><strong style="color:var(--gold)">⚠ Landmark order matters:</strong> Place <strong>Op1</strong> at the <strong>posterior molar contact</strong> and <strong>Op2</strong> at the <strong>anterior incisor contact</strong>. This determines the AP sign convention — anterior to OLp = positive.<br><br>The four absolute OLp position values (is, ii, ss, pg) are shown as <em>reference only</em> — they are magnification-dependent and not scored against population norms.</div></div>
-          <div class="guide-box"><div class="guide-title">📘 Interpreting Changes (T1→T2)</div><div class="guide-text">Overjet change = Δ(is/OLp) − Δ(ii/OLp). Skeletal correction = Δ(ss/OLp) − Δ(pg/OLp). Dentoalveolar compensation = remaining overjet change. A positive jaw relation change indicates forward mandibular growth relative to maxilla.</div></div>
-        </div>
         <div class="apanel" id="tab-wits">
           <div class="sec-title"><span class="icon">📏</span> Wits Appraisal</div>
           <div class="sec-sub">Sagittal jaw discrepancy measured on the functional occlusal plane — independent of SN plane. Requires Op1, Op2, A, B and calibration.</div>
@@ -648,7 +640,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 /* ══════════════════════════════════════════════════════
    BCeph v2 — Cephalometric Analysis Engine
    BAYAN Healthcare Analytics
-   v2 New: Holdaway ST · Pancherz · 3-pt Occlusal Plane
+   v2 New: Holdaway ST · 3-pt Occlusal Plane
            Landmark Skip · "Needs X" table feedback
            Report percentile bar charts
            30 landmarks: Dc, CF, Sn, Me', Op3
@@ -919,14 +911,6 @@ function getOcclusalPlane(){
   if(has('Op1')&&has('Op2'))return{A:L('Op1'),B:L('Op2')};
   return null;
 }
-function olpProj(P){
-  // Pancherz: project P along the occlusal plane onto OLp (line through Op1, ⊥ to occlusal plane).
-  // Value = signed AP distance from OLp. Op1=posterior(molar), Op2=anterior(incisor) → anterior = positive.
-  const op=getOcclusalPlane(); if(!op||!has('Op1'))return NaN;
-  const dx=op.B.x-op.A.x,dy=op.B.y-op.A.y,len=Math.sqrt(dx*dx+dy*dy); if(len===0)return NaN;
-  const ux=dx/len,uy=dy/len; // unit vector ALONG the occlusal plane (was wrongly negated before)
-  return px2mm((P.x-L('Op1').x)*ux+(P.y-L('Op1').y)*uy);
-}
 const EASTMAN=[
   {name:'SNA',unit:'°',norm:81,sd:3,requires:['S','N','A'],calc:()=>angleAtVertex(L('S'),L('N'),L('A'))},
   {name:'SNB',unit:'°',norm:79,sd:3,requires:['S','N','B'],calc:()=>angleAtVertex(L('S'),L('N'),L('B'))},
@@ -1019,7 +1003,7 @@ const RICKETTS=[
       const dx=L('Pg').x-L('N').x, dy=L('Pg').y-L('N').y, len=Math.sqrt(dx*dx+dy*dy);
       if(len===0)return NaN;
       const cross=(L('A').x-L('N').x)*dy-(L('A').y-L('N').y)*dx;
-      return px2mm(-cross/len);
+      return px2mm(cross/len);
     }},
   {name:'U1 to A-Po (mm)',unit:'mm',norm:3.5,sd:2.3,requires:['A','Pg','U1T'],
     calc:()=>px2mm(perpDist(L('U1T'),L('A'),L('Pg')))},
@@ -1073,28 +1057,6 @@ const HOLDAWAY=[
     calc:()=>angleAtVertex(L('Prn'),L('Sn'),L('Ls'))},
 ];
 
-/* ── PANCHERZ ANALYSIS (v2) ── */
-// NOTE: Op1 = posterior molar contact (place first), Op2 = anterior incisor contact.
-// Placement order determines the sign of all AP projections — anterior to OLp = positive.
-const PANCHERZ=[
-  {name:'Upper Incisor / OLp (is)',unit:'mm',norm:null,sd:null,requires:['U1T','Op1','Op2'],
-    calc:()=>olpProj(L('U1T'))},
-  {name:'Lower Incisor / OLp (ii)',unit:'mm',norm:null,sd:null,requires:['L1T','Op1','Op2'],
-    calc:()=>olpProj(L('L1T'))},
-  {name:'Maxillary Base / OLp (ss)',unit:'mm',norm:null,sd:null,requires:['A','Op1','Op2'],
-    calc:()=>olpProj(L('A'))},
-  {name:'Chin / OLp (pg)',unit:'mm',norm:null,sd:null,requires:['Pg','Op1','Op2'],
-    calc:()=>olpProj(L('Pg'))},
-  {name:'Overjet (is − ii)',unit:'mm',norm:2.5,sd:1.5,requires:['U1T','L1T','Op1','Op2'],
-    calc:()=>{const a=olpProj(L('U1T')),b=olpProj(L('L1T'));return(isNaN(a)||isNaN(b))?NaN:a-b;}},
-  {name:'Jaw Relation (ss − pg)',unit:'mm',norm:0,sd:2,requires:['A','Pg','Op1','Op2'],
-    calc:()=>{const a=olpProj(L('A')),b=olpProj(L('Pg'));return(isNaN(a)||isNaN(b))?NaN:a-b;}},
-  {name:'Dentoalveolar Upper (is − ss)',unit:'mm',norm:5,sd:2,requires:['U1T','A','Op1','Op2'],
-    calc:()=>{const a=olpProj(L('U1T')),b=olpProj(L('A'));return(isNaN(a)||isNaN(b))?NaN:a-b;}},
-  {name:'Dentoalveolar Lower (ii − pg)',unit:'mm',norm:2,sd:2,requires:['L1T','Pg','Op1','Op2'],
-    calc:()=>{const a=olpProj(L('L1T')),b=olpProj(L('Pg'));return(isNaN(a)||isNaN(b))?NaN:a-b;}},
-];
-
 /* ── KIM'S ANALYSIS ── */
 // ODI: AB-to-MandPlane + signed(PalPlane-to-FH)
 // APDI: FacialAngle + AB-to-NPg + signed(PalPlane-to-FH)
@@ -1128,7 +1090,7 @@ const KIM=[
     // AB to N-Pg (facial plane): signed — B anterior to NPg → positive (Class III)
     const dx=L('Pg').x-L('N').x, dy=L('Pg').y-L('N').y, len=Math.sqrt(dx*dx+dy*dy);
     if(len===0) return NaN;
-    const cross=(L('B').x-L('A').x)*dy-(L('B').y-L('A').y)*dx;
+    const cross=dx*(L('B').y-L('N').y)-dy*(L('B').x-L('N').x);
     const abNpg=acuteAngleBetweenLines(L('A'),L('B'),L('N'),L('Pg'));
     const abNpgSigned=cross<0?abNpg:-abNpg; // positive when B is anterior to NPg
     return facialAng + abNpgSigned + kimSignedPalFH();
@@ -1139,7 +1101,7 @@ const KIM=[
     const facialAng=angleBetweenLines(L('N'),L('Pg'),L('Po'),L('Or'));
     const dx=L('Pg').x-L('N').x, dy=L('Pg').y-L('N').y, len=Math.sqrt(dx*dx+dy*dy);
     if(len===0) return NaN;
-    const cross=(L('B').x-L('A').x)*dy-(L('B').y-L('A').y)*dx;
+    const cross=dx*(L('B').y-L('N').y)-dy*(L('B').x-L('N').x);
     const abNpg=acuteAngleBetweenLines(L('A'),L('B'),L('N'),L('Pg'));
     const abNpgSigned=cross<0?abNpg:-abNpg;
     const odi=abMand+palFH;
@@ -1166,7 +1128,6 @@ const ANALYSES = [
   {key:'bjork',    label:'Björk-Jarabak Analysis',   sub:'Saddle, articular, gonial angles, PFH/AFH',      data:BJORK},
   {key:'ricketts', label:'Ricketts Analysis',         sub:'Facial axis, depth, convexity, A-Po distances',  data:RICKETTS},
   {key:'holdaway', label:'Holdaway Soft Tissue',      sub:'H-angle, nose, lip, ST convexity — needs Sn, Me\'', data:HOLDAWAY},
-  {key:'pancherz', label:'Pancherz Analysis',         sub:'OLp projections — Op1=posterior molar, Op2=anterior incisor. Absolute values are reference-only (magnification-dependent).', data:PANCHERZ},
   {key:'eline',    label:'E-Line Analysis',           sub:'Lip positions to E-line (Prn–sPg), nasolabial angle',  data:ELINE},
   {key:'kim',      label:"Kim's Analysis",            sub:'ODI, APDI, Combination Factor, Extraction Index — requires calibration for EI', data:KIM},
 ];
