@@ -375,23 +375,23 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q">Is BCeph free?</div>
+        <div class="faq-q">Is BCeph free?<span class="faq-chevron">+</span></div>
         <div class="faq-a">Yes. BCeph is completely free with no hidden fees, subscriptions, or premium tiers.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Does BCeph store patient data on the cloud?</div>
+        <div class="faq-q">Does BCeph store patient data on the cloud?<span class="faq-chevron">+</span></div>
         <div class="faq-a">No. All images, landmarks, and patient records stay in your browser&rsquo;s local storage. Nothing is uploaded or transmitted.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Which cephalometric analyses does BCeph support?</div>
+        <div class="faq-q">Which cephalometric analyses does BCeph support?<span class="faq-chevron">+</span></div>
         <div class="faq-a">BCeph includes Steiner, Ricketts, McNamara, Downs, Tweed, Jarabak, and additional soft-tissue and airway modules &mdash; over 9 analyses total.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Is BCeph HIPAA compliant?</div>
+        <div class="faq-q">Is BCeph HIPAA compliant?<span class="faq-chevron">+</span></div>
         <div class="faq-a">BCeph is architected around HIPAA principles. Since no patient data ever leaves your device, there is no PHI transmission and no need for a Business Associate Agreement.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Do I need to install anything?</div>
+        <div class="faq-q">Do I need to install anything?<span class="faq-chevron">+</span></div>
         <div class="faq-a">No. BCeph runs entirely in your web browser as a single HTML file. No downloads, plugins, or accounts required.</div>
       </div>
     </div>
@@ -487,4 +487,13 @@ html,body{font-family:var(--font);font-size:13px;overflow-x:hidden;background:#f
 </script>
 <script>
 (function(){
-  var items = document.querySelec
+  var items = document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    item.querySelector('.faq-q').addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      items.forEach(function(i){ i.classList.remove('open'); });
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+})();
+</script>
