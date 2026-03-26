@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Cephalometric Analysis in Orthodontics — Complete Clinical Guide | BCeph</title>
+  <meta name="description" content="A complete guide to cephalometric analysis in orthodontics — landmark identification, lateral cephalometric analysis, Steiner, Ricketts, McNamara methods, and normative values. Run analyses free in BCeph.">
+  <link rel="canonical" href="https://www.bceph.com/cephalometric-analysis">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cephalometric Analysis in Orthodontics — Complete Clinical Guide">
+  <meta property="og:description" content="Everything dental students and clinicians need to know about cephalometric analysis: workflow, analysis systems, normative values, and clinical applications.">
+  <meta property="og:url" content="https://www.bceph.com/cephalometric-analysis">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://www.bceph.com/og-preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cephalometric Analysis in Orthodontics — Complete Clinical Guide">
+  <meta name="twitter:description" content="A clinician-authored guide to cephalometric analysis — landmark placement, analysis methods, norms, and clinical applications.">
+
+  <!-- Structured Data: Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cephalometric Analysis in Orthodontics: A Complete Clinical Guide",
+    "description": "A comprehensive guide to cephalometric analysis in orthodontics covering lateral cephalometric analysis, landmark identification, analysis systems (Steiner, Ricketts, McNamara), normative values, and clinical applications.",
+    "author": {
+      "@type": "Organization",
+      "name": "Bayan Healthcare Analytics",
+      "url": "https://www.bceph.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BCeph",
+      "url": "https://www.bceph.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.bceph.com/favicon.ico"
+      }
+    },
+    "url": "https://www.bceph.com/cephalometric-analysis",
+    "mainEntityOfPage": "https://www.bceph.com/cephalometric-analysis",
+    "datePublished": "2026-03-26",
+    "dateModified": "2026-03-26",
+    "keywords": "cephalometric analysis, lateral cephalometric analysis, cephalometric analysis in orthodontics, Steiner analysis, Ricketts analysis, McNamara analysis, ceph tracing, orthodontic treatment planning"
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is cephalometric analysis in orthodontics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cephalometric analysis is the systematic measurement and interpretation of skeletal, dental, and soft-tissue relationships from standardised cephalometric radiographs. It is used in orthodontics to diagnose malocclusion, plan treatment, and assess growth and treatment outcomes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a lateral cephalometric analysis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A lateral cephalometric analysis is performed on a lateral (side-view) cephalogram — an X-ray taken with standardised geometry. Clinicians identify anatomical landmarks and measure angles and distances to assess sagittal and vertical skeletal relationships, dental positions, and soft-tissue profile."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the most common cephalometric analysis methods?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most widely used methods are Steiner Analysis (ANB angle, SNA, SNB), Ricketts Analysis (facial axis, convexity), McNamara Analysis (N-perpendicular, airway dimensions), Downs Analysis, Tweed Triangle, and Björk-Jarabak Analysis for growth prediction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many landmarks are used in a cephalometric analysis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most comprehensive analyses require 20–35 defined landmarks. A full multi-analysis workflow — covering skeletal, dental, and soft-tissue measurements — typically uses around 30 landmarks. BCeph supports 30+ anatomical landmarks across all its analysis modules."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I perform cephalometric analysis without expensive software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. BCeph is a free, browser-based cephalometric analysis tool that runs entirely in your browser with no installation or subscription. It supports 9+ analysis modules including Steiner, Ricketts, McNamara, Downs, Tweed, and Jarabak. All data stays on your device."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "BCeph",
+        "item": "https://www.bceph.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cephalometric Analysis",
+        "item": "https://www.bceph.com/cephalometric-analysis"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #152242;
+      --navy-mid: #1c2e57;
+      --navy-light: #243569;
+      --gold: #D4A030;
+      --gold-light: #e8b84b;
+      --gold-dim: rgba(212, 160, 48, 0.15);
+      --text: #e8edf5;
+      --text-muted: #8fa3c4;
+      --text-subtle: #5a729a;
+      --border: rgba(212, 160, 48, 0.18);
+      --surface: rgba(255,255,255,0.03);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--navy);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(21, 34, 66, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 2rem 0;
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+    }
+    .breadcrumb a { color: var(--text-subtle); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { margin: 0 0.4rem; }
+
+    /* ── HERO ── */
+    .article-hero {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(212, 160, 48, 0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      max-width: 720px;
+    }
+    .article-meta {
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .article-meta strong { color: var(--text-muted); font-weight: 600; }
+
+    /* ── LAYOUT ── */
+    .article-layout {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── CONTENT ── */
+    .article-body {
+      padding: 3rem 0;
+      min-width: 0;
+    }
+    .article-body p {
+      margin-bottom: 1.4rem;
+      color: #c8d5e8;
+      font-size: 1.01rem;
+    }
+    .article-body h2 {
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      color: var(--text);
+      margin: 2.8rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 2rem 0 0.6rem;
+      letter-spacing: 0.01em;
+    }
+    .article-body ul, .article-body ol {
+      margin: 0.5rem 0 1.4rem 1.4rem;
+      color: #c8d5e8;
+    }
+    .article-body li { margin-bottom: 0.5rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(212, 160, 48, 0.3); }
+    .article-body a:hover { border-color: var(--gold); }
+
+    /* callout box */
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout p { margin-bottom: 0; font-size: 0.95rem; color: var(--text-muted); }
+    .callout strong { color: var(--gold); }
+
+    /* analysis grid */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .analysis-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.3rem;
+      transition: border-color 0.2s;
+    }
+    .analysis-card:hover { border-color: rgba(212, 160, 48, 0.5); }
+    .analysis-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .analysis-card p {
+      font-size: 0.83rem;
+      color: var(--text-subtle);
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+
+    /* norms table */
+    .norms-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0 2rem;
+      font-size: 0.88rem;
+    }
+    .norms-table th {
+      text-align: left;
+      padding: 0.65rem 1rem;
+      background: rgba(212, 160, 48, 0.1);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .norms-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: #c8d5e8;
+      vertical-align: top;
+    }
+    .norms-table tr:last-child td { border-bottom: none; }
+    .norms-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .norms-table td:first-child { font-weight: 600; color: var(--text); }
+
+    /* faq */
+    .faq-item {
+      border-top: 1px solid var(--border);
+      padding: 1.4rem 0;
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .faq-answer {
+      font-size: 0.93rem;
+      color: #c8d5e8;
+      line-height: 1.7;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      padding-top: 3rem;
+      position: sticky;
+      top: 80px;
+    }
+    .toc-card, .sidebar-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+      display: block;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+    .toc-list li { border-top: 1px solid rgba(255,255,255,0.05); }
+    .toc-list li:first-child { border-top: none; }
+    .toc-list a {
+      display: block;
+      padding: 0.5rem 0;
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      text-decoration: none;
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+    .toc-list a:hover { color: var(--gold); }
+
+    .sidebar-cta {
+      background: linear-gradient(135deg, rgba(212,160,48,0.1) 0%, rgba(21,34,66,0.4) 100%);
+      border-color: rgba(212,160,48,0.35);
+      text-align: center;
+    }
+    .sidebar-cta p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 7px;
+      text-decoration: none;
+      border: none;
+      transition: background 0.2s, transform 0.15s;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .sidebar-cta .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+      margin-top: 0.9rem;
+    }
+    .sidebar-cta .tag {
+      font-size: 0.7rem;
+      color: var(--text-subtle);
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 3rem;
+      margin: 3rem 0 1rem;
+      text-align: center;
+    }
+    .bottom-cta h2 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      border: none;
+      padding: 0;
+    }
+    .bottom-cta p {
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-lg {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-lg:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .bottom-cta .sub-note {
+      display: block;
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+    }
+    footer a { color: var(--text-subtle); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .article-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .sidebar { position: static; padding-top: 0; }
+      .toc-card { display: none; }
+      .analysis-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .bottom-cta { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="https://www.bceph.com" class="nav-logo">BCeph</a>
+      <ul class="nav-links">
+        <li><a href="https://www.bceph.com/#features">Features</a></li>
+        <li><a href="https://www.bceph.com/#analyses">Analyses</a></li>
+        <li><a href="https://www.bceph.com/#faq">FAQ</a></li>
+        <li><a href="https://www.bceph.com/app.html" class="nav-cta">Launch App →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── BREADCRUMB ── -->
+  <div class="breadcrumb">
+    <a href="https://www.bceph.com">BCeph</a>
+    <span>›</span>
+    Cephalometric Analysis
+  </div>
+
+  <!-- ── ARTICLE HERO ── -->
+  <header class="article-hero">
+    <div class="article-tag">Clinical Reference</div>
+    <h1>Cephalometric Analysis in Orthodontics: A Complete Clinical Guide</h1>
+    <div class="article-meta">
+      <span>By <strong>Bayan Healthcare Analytics</strong></span>
+      <span>·</span>
+      <span>~10 min read</span>
+      <span>·</span>
+      <span>Steiner · Ricketts · McNamara · Downs · Tweed · Jarabak</span>
+    </div>
+  </header>
+
+  <!-- ── MAIN LAYOUT ── -->
+  <div class="article-layout">
+
+    <!-- ── ARTICLE BODY ── -->
+    <main class="article-body" id="main-content">
+
+      <!-- 1. Definition -->
+      <section id="definition">
+        <h2>What is Cephalometric Analysis?</h2>
+        <p>
+          Cephalometric analysis is the systematic measurement and clinical interpretation of skeletal, dental, and soft-tissue structures from standardised cephalometric radiographs. In orthodontics, it is one of the primary diagnostic tools used to characterise facial morphology, quantify malocclusion, plan treatment, and evaluate outcomes over time.
+        </p>
+        <p>
+          The radiographic foundation of the analysis is the <strong>cephalogram</strong> — an X-ray taken with a standardised source-to-subject distance and a fixed head posture using a cephalostat. This standardisation is what makes measurements comparable across patients, clinicians, and studies. The clinician then identifies a defined set of anatomical <strong>landmarks</strong> on the image, constructs geometric reference planes, and computes angular and linear measurements that are compared against population <strong>normative values</strong>.
+        </p>
+
+        <div class="callout">
+          <p><strong>Clinical purpose:</strong> Cephalometric analysis answers three questions — Where are the teeth and jaws relative to each other? Where are they relative to the skull base? And what does the soft-tissue profile look like? Taken together, these measurements inform diagnosis, treatment mechanics, and long-term stability predictions.</p>
+        </div>
+      </section>
+
+      <!-- 2. Types -->
+      <section id="types">
+        <h2>Types of Cephalometric Radiographs</h2>
+        <p>
+          While <strong>lateral cephalometric analysis</strong> is by far the most common in everyday orthodontic practice, three distinct projections exist — each serving a different diagnostic purpose:
+        </p>
+
+        <h3>Lateral Cephalogram</h3>
+        <p>
+          The lateral (side-view) cephalogram is the workhorse of orthodontic diagnosis. It captures the sagittal and vertical relationships of the skull base, maxilla, mandible, and dentition in a single projection. Almost every cephalometric analysis system — Steiner, Ricketts, McNamara, Downs, Tweed — is designed for lateral cephalometric analysis. It is indicated for all orthodontic records, surgical planning, and growth assessment.
+        </p>
+
+        <h3>Posteroanterior (PA) Cephalogram</h3>
+        <p>
+          The PA cephalogram is a front-facing projection used to assess <strong>transverse skeletal asymmetry</strong>. It is routinely indicated when clinical examination suggests midline discrepancy, facial asymmetry, or a skeletal crossbite component with transverse deficiency. Measurements assess inter-orbital width, midsagittal alignment, and mandibular asymmetry indices.
+        </p>
+
+        <h3>Submentovertex (SMV) Cephalogram</h3>
+        <p>
+          The SMV view provides an axial projection of the skull base and is used primarily in orthognathic surgical planning to assess condylar angulation and midface width relationships. It is rarely taken in routine orthodontic practice.
+        </p>
+      </section>
+
+      <!-- 3. Workflow -->
+      <section id="workflow">
+        <h2>The Cephalometric Analysis Workflow</h2>
+        <p>
+          Whether performed manually on acetate or digitally in software, the cephalometric analysis workflow follows a consistent three-stage process:
+        </p>
+
+        <h3>Stage 1 — Landmark Identification</h3>
+        <p>
+          The clinician identifies and marks a defined set of anatomical landmarks on the radiograph. Common landmarks include <strong>Nasion (N)</strong>, <strong>Sella (S)</strong>, <strong>A-point</strong>, <strong>B-point</strong>, <strong>Pogonion (Pog)</strong>, <strong>Menton (Me)</strong>, <strong>Gonion (Go)</strong>, <strong>Anterior Nasal Spine (ANS)</strong>, <strong>Posterior Nasal Spine (PNS)</strong>, and key dental landmarks on the upper and lower incisors and first molars. A comprehensive multi-analysis workflow typically requires 25–35 landmarks. Landmark placement is the primary source of variability in cephalometric analysis — small errors in landmark identification compound into clinically significant measurement errors.
+        </p>
+
+        <h3>Stage 2 — Reference Plane Construction</h3>
+        <p>
+          From the identified landmarks, the software or clinician constructs reference planes and lines. Common reference planes include the <strong>Sella-Nasion (SN) plane</strong>, <strong>Frankfort Horizontal (FH) plane</strong>, <strong>Mandibular Plane (MandP)</strong>, and the <strong>Facial Plane (N-Pog)</strong>. These planes serve as baselines against which angular and linear measurements are calculated.
+        </p>
+
+        <h3>Stage 3 — Measurement and Norm Comparison</h3>
+        <p>
+          Angular measurements (in degrees) and linear distances (in millimetres) are computed from the landmark-plane geometry. Each measurement is compared against an <strong>established normative value</strong> for a specific population, age, and sex. The deviation from the norm — and its direction — drives the clinical interpretation and treatment planning conclusions.
+        </p>
+
+        <div class="callout">
+          <p><strong>BCeph automates all three stages:</strong> Place landmarks on your uploaded radiograph, and BCeph instantly computes every measurement, flags deviations from norms, and generates a print-ready clinical report. <a href="https://www.bceph.com/app.html">Try it free →</a></p>
+        </div>
+      </section>
+
+      <!-- 4. Analysis Systems -->
+      <section id="analysis-systems">
+        <h2>Major Cephalometric Analysis Systems</h2>
+        <p>
+          Over the past century, multiple analysis systems have been developed — each with a different conceptual emphasis, reference plane, and set of normative values. In clinical practice, clinicians typically select one or two primary analyses supplemented by specific measurements from others. Here is a summary of the most widely used systems:
+        </p>
+
+        <div class="analysis-grid">
+          <div class="analysis-card">
+            <h4>Steiner Analysis</h4>
+            <p>The most universally taught analysis. Uses the SN plane as the primary reference. Key measurements: SNA, SNB, ANB (sagittal jaw relationship), and incisor angulation (U1–NA, L1–NB). Norm: ANB 2°. Introduced by Cecil Steiner, 1953.</p>
+          </div>
+          <div class="analysis-card">
+            <h4>Ricketts Analysis</h4>
+            <p>A comprehensive multi-factor analysis using Frankfort Horizontal as the primary reference. Emphasises the facial axis, facial depth, mandibular plane angle, lower facial height, and soft tissue E-line (esthetic plane). Developed by Robert Ricketts, 1960.</p>
+          </div>
+          <div class="analysis-card">
+            <h4>McNamara Analysis</h4>
+            <p>Focuses on maxillary and mandibular positions relative to Nasion-perpendicular (N-Perp). Also assesses lower anterior face height and airway dimensions. Particularly useful in functional appliance planning. Published by James McNamara, 1984.</p>
+          </div>
+          <div class="analysis-card">
+            <h4>Downs Analysis</h4>
+            <p>One of the earliest systematic analyses. Uses Frankfort Horizontal. Key measurements include facial angle, A-B plane angle, mandibular plane angle, and incisor-mandibular plane angle (IMPA). William Downs, 1948.</p>
+          </div>
+          <div class="analysis-card">
+            <h4>Tweed Triangle</h4>
+            <p>Built on three angles — FMIA, FMA, and IMPA — forming a diagnostic triangle. Primarily evaluates lower incisor position relative to the Frankfort-Mandibular plane. Clinically useful for extraction and incisor torque decisions. Charles Tweed, 1954.</p>
+          </div>
+          <div class="analysis-card">
+            <h4>Björk-Jarabak Analysis</h4>
+            <p>A polygon-based analysis using articular, saddle, and gonial angles to characterise growth pattern (horizontal vs. vertical) and predict mandibular growth direction via the posterior-to-anterior face height ratio.</p>
+          </div>
+        </div>
+
+        <p>
+          <a href="https://www.bceph.com">BCeph</a> supports all six of these analysis systems, plus Holdaway soft-tissue analysis, Kim's ODI/APDI/CF analysis, Wits Appraisal, and the E-Line — a total of 9+ modules from a single landmark set.
+        </p>
+      </section>
+
+      <!-- 5. Manual vs Digital -->
+      <section id="manual-vs-digital">
+        <h2>Manual, Digital, and AI-Based Cephalometric Tracing</h2>
+
+        <h3>Manual Tracing</h3>
+        <p>
+          Historically, cephalometric analysis was performed by overlaying acetate film on a backlit cephalogram and manually tracing anatomical structures with a pencil. Measurements were calculated using a protractor and ruler. Manual tracing remains a core teaching tool in dental schools — the process builds an understanding of anatomy and geometric relationships that digital workflows abstract away. However, it is time-consuming, operator-dependent, and impractical in clinical settings where multiple analyses are required.
+        </p>
+
+        <h3>Digital Software (Desktop)</h3>
+        <p>
+          Desktop cephalometric software such as Dolphin Imaging and Nemoceph became the standard of care in specialist orthodontic practice during the 2000s. These platforms offer digital landmark placement on imported radiographic images, automated measurement calculation, and integrated patient record management. The limitations are significant: licensing costs are substantial, software is typically Windows-only, data is often cloud-dependent, and installations require IT involvement. For orthodontic residents, trainees, or solo practitioners in resource-limited settings, these platforms represent a prohibitive barrier.
+        </p>
+
+        <h3>Browser-Based Analysis</h3>
+        <p>
+          A newer category of cephalometric tools runs entirely within a web browser — no installation, no operating system restriction, no server-side data processing. <a href="https://www.bceph.com">BCeph</a> is built on this architecture: a single-file application that runs in Chrome, Safari, or any modern browser, on any device. Because all landmark data and patient records are stored locally in the browser's storage — never transmitted to a server — it is architecturally aligned with HIPAA's data residency principles without requiring a Business Associate Agreement.
+        </p>
+
+        <h3>AI-Assisted Landmark Detection</h3>
+        <p>
+          Recent research has explored deep learning models for automated cephalometric landmark detection. Published accuracy rates for AI landmark placement are approaching — and in some studies matching — experienced clinicians for commonly used landmarks. However, clinical adoption remains limited, and AI-identified landmarks still require clinician review before any treatment-planning decision is made. AI tracing reduces workflow time but does not yet replace clinical judgement in landmark verification.
+        </p>
+      </section>
+
+      <!-- 6. Normative Values -->
+      <section id="normative-values">
+        <h2>Cephalometric Normative Values</h2>
+        <p>
+          Every measurement in cephalometric analysis is interpreted relative to a <strong>normative value</strong> — the mean measurement from a reference population sample, typically accompanied by a standard deviation range (±1 SD = acceptable variation, ±2 SD = clinically significant deviation). Most published norms are derived from white Western European or North American samples; separate norms exist for East Asian, Southeast Asian, African-American, and Middle Eastern populations, with clinically meaningful differences, particularly in incisor inclination and soft-tissue profile measurements.
+        </p>
+
+        <p>Key normative values from the most commonly used analyses (adult, Caucasian reference):</p>
+
+        <table class="norms-table">
+          <thead>
+            <tr>
+              <th>Measurement</th>
+              <th>Analysis</th>
+              <th>Norm</th>
+              <th>SD / Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SNA</td>
+              <td>Steiner</td>
+              <td>82°</td>
+              <td>± 2°</td>
+            </tr>
+            <tr>
+              <td>SNB</td>
+              <td>Steiner</td>
+              <td>80°</td>
+              <td>± 2°</td>
+            </tr>
+            <tr>
+              <td>ANB</td>
+              <td>Steiner</td>
+              <td>2°</td>
+              <td>± 2°</td>
+            </tr>
+            <tr>
+              <td>U1 to NA (angle)</td>
+              <td>Steiner</td>
+              <td>22°</td>
+              <td>± 2°</td>
+            </tr>
+            <tr>
+              <td>L1 to NB (angle)</td>
+              <td>Steiner</td>
+              <td>25°</td>
+              <td>± 2°</td>
+            </tr>
+            <tr>
+              <td>Facial Angle (N-Pog/FH)</td>
+              <td>Downs</td>
+              <td>87.8°</td>
+              <td>± 3.6°</td>
+            </tr>
+            <tr>
+              <td>FMA (Frankfort-Mandibular)</td>
+              <td>Tweed</td>
+              <td>25°</td>
+              <td>± 4°</td>
+            </tr>
+            <tr>
+              <td>IMPA (Incisor-Mandibular)</td>
+              <td>Tweed</td>
+              <td>87°</td>
+              <td>± 5°</td>
+            </tr>
+            <tr>
+              <td>Facial Axis (Ricketts)</td>
+              <td>Ricketts</td>
+              <td>90°</td>
+              <td>± 3°</td>
+            </tr>
+            <tr>
+              <td>Wits Appraisal (F)</td>
+              <td>Wits</td>
+              <td>–1 mm</td>
+              <td>± 2 mm</td>
+            </tr>
+            <tr>
+              <td>Wits Appraisal (M)</td>
+              <td>Wits</td>
+              <td>–2 mm</td>
+              <td>± 2 mm</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          BCeph compares each measurement against these norms in real time and flags values outside the ±2 SD range with colour-coded indicators in the results panel and in the exported PDF report.
+        </p>
+      </section>
+
+      <!-- 7. Clinical Applications -->
+      <section id="clinical-applications">
+        <h2>Clinical Applications of Cephalometric Analysis</h2>
+
+        <h3>Orthodontic Treatment Planning</h3>
+        <p>
+          Cephalometric analysis is central to orthodontic treatment planning decisions. The ANB angle, Wits appraisal, and ANS-Me/total face height ratio directly inform whether a malocclusion has a dental or skeletal aetiology — and whether growth modification, dental compensation, or orthognathic surgery is the appropriate treatment modality. Incisor measurements (U1–NA, L1–NB, IMPA) guide extraction decisions and determine the acceptable range of incisor proclination or retroclination achievable within the treatment plan.
+        </p>
+
+        <h3>Growth Assessment and Monitoring</h3>
+        <p>
+          Serial cephalometric records taken at different stages allow clinicians to assess the direction and magnitude of skeletal growth. The <strong>Björk-Jarabak analysis</strong> — using the ratio of posterior to anterior face height and the sum of polygon angles — is particularly useful for predicting growth pattern (hypodivergent vs. hyperdivergent). In growing patients, cephalometric superimpositions on stable structures (SN at Sella, or mandibular symphysis) allow precise quantification of treatment changes versus natural growth.
+        </p>
+
+        <h3>Orthognathic Surgical Planning</h3>
+        <p>
+          In surgical orthodontic cases, cephalometric analysis underpins the prediction tracing — a simulation of the post-surgical skeletal position used to plan jaw movements, predict soft-tissue changes, and communicate the treatment goal to the patient and surgeon. Both two-dimensional cephalometric prediction and three-dimensional virtual surgical planning (VSP) rely on the same underlying landmark geometry.
+        </p>
+
+        <h3>Research and Population Studies</h3>
+        <p>
+          Published normative data for cephalometric measurements is derived from population studies that recruited subjects with clinically ideal occlusion and facial balance. These studies underpin the normative values used in daily clinical practice. Ongoing research continues to refine population-specific norms — an important correction given that Steiner's original norms were derived from a sample of fewer than 70 subjects.
+        </p>
+      </section>
+
+      <!-- 8. FAQ -->
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">What is cephalometric analysis in orthodontics?</div>
+          <div class="faq-answer">Cephalometric analysis is the systematic measurement and interpretation of skeletal, dental, and soft-tissue relationships from standardised cephalometric radiographs. It is used in orthodontics to diagnose malocclusion, plan treatment, and assess growth and treatment outcomes.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">What is a lateral cephalometric analysis?</div>
+          <div class="faq-answer">A lateral cephalometric analysis is performed on a lateral (side-view) cephalogram — an X-ray taken with standardised geometry. Clinicians identify anatomical landmarks and measure angles and distances to assess sagittal and vertical skeletal relationships, dental positions, and soft-tissue profile. It is the most common cephalometric radiograph used in orthodontic practice.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">What are the most common cephalometric analysis methods?</div>
+          <div class="faq-answer">The most widely used methods are Steiner Analysis (ANB angle, SNA, SNB), Ricketts Analysis (facial axis, convexity, E-line), McNamara Analysis (N-perpendicular, airway dimensions), Downs Analysis, Tweed Triangle (FMA, IMPA, FMIA), and Björk-Jarabak Analysis for growth prediction. Holdaway soft-tissue analysis and Wits appraisal are commonly used as supplements.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How many landmarks are used in a cephalometric analysis?</div>
+          <div class="faq-answer">Most comprehensive analyses require 20–35 defined landmarks. A full multi-analysis workflow — covering skeletal, dental, and soft-tissue measurements — typically uses around 30 landmarks. <a href="https://www.bceph.com">BCeph</a> supports 30+ anatomical landmarks across all its analysis modules.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I perform cephalometric analysis without expensive software?</div>
+          <div class="faq-answer">Yes. BCeph is a free, browser-based cephalometric analysis tool that runs entirely in your browser — no installation, no subscription, no cloud upload. It supports 9+ analysis modules including Steiner, Ricketts, McNamara, Downs, Tweed, and Jarabak. All patient data stays on your device. <a href="https://www.bceph.com/app.html">Launch BCeph free →</a></div>
+        </div>
+      </section>
+
+      <!-- ── BOTTOM CTA ── -->
+      <div class="bottom-cta">
+        <h2>Run a Cephalometric Analysis Free — Right Now</h2>
+        <p>BCeph runs entirely in your browser. Upload your lateral cephalogram, place landmarks, and get a complete Steiner, Ricketts, or McNamara analysis with a print-ready report. No installation. No cloud. No subscription.</p>
+        <a href="https://www.bceph.com/app.html" class="btn-lg">Launch BCeph Free →</a>
+        <span class="sub-note">Works on any device · All data stays local · Built by orthodontists</span>
+      </div>
+
+    </main>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+
+      <div class="toc-card">
+        <span class="toc-label">In this guide</span>
+        <ul class="toc-list">
+          <li><a href="#definition">What is cephalometric analysis?</a></li>
+          <li><a href="#types">Types of cephalograms</a></li>
+          <li><a href="#workflow">The analysis workflow</a></li>
+          <li><a href="#analysis-systems">Major analysis systems</a></li>
+          <li><a href="#manual-vs-digital">Manual vs. digital vs. AI</a></li>
+          <li><a href="#normative-values">Normative values</a></li>
+          <li><a href="#clinical-applications">Clinical applications</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-cta">
+        <p>Run Steiner, Ricketts, McNamara and 6+ more analyses. Free, browser-based, private.</p>
+        <a href="https://www.bceph.com/app.html" class="btn-primary">Launch BCeph →</a>
+        <div class="tag-list">
+          <span class="tag">Steiner</span>
+          <span class="tag">Ricketts</span>
+          <span class="tag">McNamara</span>
+          <span class="tag">Downs</span>
+          <span class="tag">Tweed</span>
+          <span class="tag">Jarabak</span>
+          <span class="tag">Holdaway</span>
+          <span class="tag">Wits</span>
+          <span class="tag">Kim</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- end .article-layout -->
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>
+      <a href="https://www.bceph.com">BCeph</a> ·
+      <a href="https://www.bceph.com/cephalometric-analysis">Cephalometric Analysis</a> ·
+      Built by <a href="https://www.bceph.com">Bayan Healthcare Analytics</a>
+    </p>
+    <p style="margin-top:0.5rem">© 2026 Bayan Healthcare Analytics. BCeph is a free clinical tool — not a substitute for specialist clinical judgment.</p>
+  </footer>
+
+</body>
+</html>
