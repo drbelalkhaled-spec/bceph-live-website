@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Björk-Jarabak Cephalometric Analysis: Posterior/Anterior Ratio, Sum of Angles | BCeph</title>
+<meta name="description" content="Complete guide to Björk-Jarabak cephalometric analysis: saddle angle, articular angle, gonial angle, PFH/AFH ratio, and sum of posterior angles. Growth rotation classification and free browser tool.">
+<link rel="canonical" href="https://www.bceph.com/bjork-jarabak-analysis">
+<meta property="og:title" content="Björk-Jarabak Cephalometric Analysis — Posterior/Anterior Facial Height Ratio Guide">
+<meta property="og:description" content="Master the Björk-Jarabak analysis: saddle angle, articular angle, gonial angle, S-Go/N-Me ratio, and the sum of posterior angles that predicts growth rotation.">
+<meta property="og:url" content="https://www.bceph.com/bjork-jarabak-analysis">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.bceph.com/og-preview.png">
+<meta property="og:site_name" content="BCeph">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bceph.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Cephalometric Analysis", "item": "https://www.bceph.com/cephalometric-analysis" },
+        { "@type": "ListItem", "position": 3, "name": "Björk-Jarabak Analysis", "item": "https://www.bceph.com/bjork-jarabak-analysis" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Björk-Jarabak Cephalometric Analysis: PFH/AFH Ratio and Growth Rotation",
+      "description": "Comprehensive guide to Björk-Jarabak cephalometric analysis — covering the saddle angle, articular angle, gonial angle, posterior-anterior facial height ratio, and the sum of posterior angles used to predict mandibular growth rotation.",
+      "author": { "@type": "Organization", "name": "Bayan Healthcare Analytics", "url": "https://www.bceph.com" },
+      "publisher": { "@type": "Organization", "name": "BCeph", "url": "https://www.bceph.com" },
+      "datePublished": "2026-03-27",
+      "dateModified": "2026-03-27",
+      "mainEntityOfPage": "https://www.bceph.com/bjork-jarabak-analysis",
+      "image": "https://www.bceph.com/og-preview.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Björk-Jarabak cephalometric analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Björk-Jarabak analysis is a cephalometric system that evaluates facial growth pattern and vertical skeletal morphology using a chain of three posterior angles — the saddle angle (N-S-Ar), articular angle (S-Ar-Go), and gonial angle (Ar-Go-Me) — plus the ratio of posterior facial height to anterior facial height (S-Go/N-Me). Together these measurements classify mandibular growth rotation into anterior, neutral, and posterior types." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal posterior/anterior facial height ratio?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The normal posterior-anterior facial height ratio (PFH/AFH, or S-Go divided by N-Me) is 62–65%. A ratio above 65% indicates an anterior growth rotation (hypodivergent pattern with deep bite tendency). A ratio below 62% indicates a posterior growth rotation (hyperdivergent pattern with open bite tendency)." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal sum of posterior angles in Björk-Jarabak analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The normal sum of the three posterior angles (saddle angle + articular angle + gonial angle) is 396° ± 6°, giving a clinical range of 390–402°. A sum below 390° indicates an anterior growth rotation pattern (closed, hypodivergent). A sum above 402° indicates a posterior growth rotation pattern (open, hyperdivergent). The sum is considered the most reliable single predictor of mandibular growth direction in the analysis." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the saddle angle measure in Björk-Jarabak analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The saddle angle (N-S-Ar) measures the angle at Sella formed between Nasion, Sella, and Articulare. Its norm is 123° ± 5° (range 118–128°). A smaller saddle angle positions Articulare anteriorly, contributing to a more anterior condylar position and generally a more favourable skeletal pattern. A larger saddle angle positions Articulare posteriorly, contributing to mandibular retrusion." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run Björk-Jarabak analysis for free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. BCeph includes a complete Björk-Jarabak analysis module at no cost. All three angles, the PFH/AFH ratio, and the sum of posterior angles are calculated automatically from landmark placements. The tool runs entirely in the browser — no installation, no cloud storage, no subscription." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --navy: #152242; --navy-deep: #0e1a38; --gold: #D4A030;
+    --text-dark: #0e1a38; --text-body: #4a5568; --text-muted: #9aa0aa;
+    --border: rgba(0,0,0,0.08); --bg-alt: #f8f9fb;
+    --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: #fff; color: var(--text-dark); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  a { color: var(--navy); text-decoration: none; }
+  a:hover { color: var(--gold); text-decoration: underline; }
+
+  /* NAV */
+  .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--font-display); font-size: 20px; color: var(--text-dark); }
+  .nav-logo span.g { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-body); }
+  .nav-links a:hover { color: var(--navy); text-decoration: none; }
+  .nav-cta { background: var(--gold); color: var(--navy-deep) !important; padding: 7px 18px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; }
+  .nav-cta:hover { background: #e0ad35; color: var(--navy-deep) !important; text-decoration: none !important; }
+  @media (max-width: 640px) { .site-nav { display: none; } }
+
+  /* BREADCRUMB */
+  .breadcrumb { max-width: 860px; margin: 0 auto; padding: 24px 32px 0; font-size: 12px; color: var(--text-muted); }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--gold); text-decoration: none; }
+  .breadcrumb span { margin: 0 6px; opacity: 0.5; }
+
+  /* HERO */
+  .hero { max-width: 860px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy-deep); background: var(--gold); border-radius: 5px; padding: 5px 12px; margin-bottom: 20px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.2; color: var(--text-dark); margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle { font-size: 15px; color: var(--text-body); max-width: 620px; line-height: 1.75; }
+  .hero-meta { margin-top: 24px; font-size: 11px; color: var(--text-muted); }
+
+  /* ARTICLE */
+  .article { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  .article section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .article section:last-child { border-bottom: none; }
+  .article h2 { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 28px); font-weight: 400; color: var(--text-dark); margin-bottom: 20px; }
+  .article h3 { font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; margin-top: 32px; }
+  .article h3:first-child { margin-top: 0; }
+  .article p { color: var(--text-body); margin-bottom: 16px; line-height: 1.8; font-size: 15px; }
+  .article p:last-child { margin-bottom: 0; }
+  .article strong { color: var(--text-dark); font-weight: 600; }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; margin: 24px 0 8px; border-radius: 12px; border: 1px solid var(--border); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .norms-table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px; }
+  .norms-table thead th { background: var(--navy); color: rgba(255,255,255,0.85); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; padding: 12px 16px; text-align: left; border-bottom: none; white-space: nowrap; }
+  .norms-table thead th:first-child { border-radius: 11px 0 0 0; }
+  .norms-table thead th:last-child { border-radius: 0 11px 0 0; }
+  .norms-table tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-body); vertical-align: middle; }
+  .norms-table tbody tr:last-child td { border-bottom: none; }
+  .norms-table tbody tr:hover td { background: var(--bg-alt); }
+  .meas-name { font-weight: 700; color: var(--text-dark) !important; }
+  .tag-hi { color: #dc2626; font-size: 12px; }
+  .tag-lo { color: #2563eb; font-size: 12px; }
+
+  /* LANDMARK CARDS */
+  .landmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 24px; }
+  .landmark-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .landmark-card .lm-abbr { font-size: 11px; font-weight: 800; color: var(--navy); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .landmark-card .lm-name { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+  .landmark-card .lm-desc { font-size: 13px; color: var(--text-body); line-height: 1.6; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: #fffbf0; border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 24px 0; }
+  .highlight-box p { font-size: 14px; color: var(--text-body); margin-bottom: 0; }
+  .highlight-box strong { color: #92700a; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .faq-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: border-color 0.2s, box-shadow 0.2s; }
+  .faq-item:hover { border-color: rgba(212,160,48,0.4); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .faq-q::before { content: "Q"; font-size: 9px; font-weight: 800; color: var(--navy-deep); background: var(--gold); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; margin-top: 1px; letter-spacing: 0.5px; }
+  .faq-a { font-size: 14px; color: var(--text-body); line-height: 1.8; padding-left: 36px; }
+
+  /* CTA */
+  .cta-banner { text-align: center; padding: 64px 32px; background: var(--navy); border-top: 1px solid var(--border); }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(24px, 4vw, 32px); color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-launch { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px; padding: 14px 32px; border-radius: 8px; transition: background 0.2s, transform 0.15s; }
+  .btn-launch:hover { background: #e0ad35; text-decoration: none; transform: translateY(-1px); color: var(--navy-deep); }
+
+  /* FOOTER */
+  .site-footer { background: var(--navy-deep); padding: 24px 32px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.4px; }
+  .site-footer a { color: rgba(255,255,255,0.35); }
+  .site-footer a:hover { color: var(--gold); text-decoration: none; }
+  .site-footer strong { color: rgba(212,160,48,0.5); }
+
+  @media (max-width: 640px) { .hero { padding: 36px 20px 40px; } .article { padding: 0 20px; } .article section { padding: 36px 0; } .breadcrumb { padding: 20px 20px 0; } .cta-banner { padding: 48px 20px; } }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#analyses">Analyses</a>
+    <a href="/cephalometric-analysis">Ceph Guide</a>
+    <a href="/app.html" class="nav-cta">Launch App →</a>
+  </div>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">BCeph</a><span>›</span><a href="/cephalometric-analysis">Cephalometric Analysis</a><span>›</span><span>Björk-Jarabak Analysis</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-label">Analysis Guide</div>
+  <h1>Björk-Jarabak Cephalometric Analysis: <em>Growth Rotation & the Posterior/Anterior Ratio</em></h1>
+  <p class="hero-subtitle">The Björk-Jarabak analysis is orthodontics' primary tool for classifying mandibular growth rotation. Through a chain of three posterior angles and the ratio of posterior to anterior facial height, it distinguishes anterior rotators from posterior rotators — a distinction that fundamentally shapes treatment strategy in growing patients.</p>
+  <p class="hero-meta">By <strong>Bayan Healthcare Analytics</strong> · Updated <time datetime="2026-03-27">March 27, 2026</time> · 9 min read</p>
+</header>
+
+<article class="article">
+
+  <section id="overview">
+    <h2>What Is the Björk-Jarabak Analysis?</h2>
+    <p>The Björk-Jarabak analysis synthesises the independent work of Arne Björk (a Danish-Swedish orthodontist who studied mandibular implant markers to observe actual growth rotation) and Jaroslav Jarabak (who formalised the angular and linear measurements into a clinically applicable cephalometric system). The analysis focuses primarily on the <strong>vertical dimension and growth pattern</strong> — the features that most influence the stability of orthodontic treatment and the long-term prognosis for malocclusion correction.</p>
+    <p>Its central contribution is the concept of <strong>mandibular growth rotation</strong>. Björk's implant studies demonstrated that the mandible does not simply grow downward and forward as a unit — it rotates about a condylar centre of rotation, and the direction of that rotation varies dramatically between individuals. A patient growing with strong anterior rotation will tend to close their bite over time; a patient growing with posterior rotation will tend to open it. These tendencies have profound implications for deep bite management, open bite prognosis, and the stability of any achieved occlusal result.</p>
+    <p>For context on how growth rotation fits into the broader diagnostic picture alongside angular and linear analyses, see the <a href="/cephalometric-analysis">cephalometric analysis guide</a>. For the complementary linear measurement of lower facial height, see <a href="/mcnamara-analysis">McNamara analysis</a>.</p>
+  </section>
+
+  <section id="measurements">
+    <h2>Björk-Jarabak Measurements — Norms and Interpretation</h2>
+
+    <div class="table-wrap">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Measurement</th>
+            <th>Mean Norm</th>
+            <th>SD</th>
+            <th>Clinical Range</th>
+            <th>High Value</th>
+            <th>Low Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="meas-name">Saddle Angle (N-S-Ar)</td>
+            <td>123°</td>
+            <td>± 5°</td>
+            <td>118° – 128°</td>
+            <td class="tag-hi">Post. condylar position</td>
+            <td class="tag-lo">Ant. condylar position</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Articular Angle (S-Ar-Go)</td>
+            <td>143°</td>
+            <td>± 6°</td>
+            <td>137° – 149°</td>
+            <td class="tag-hi">Posterior ramus inclination</td>
+            <td class="tag-lo">Anterior ramus inclination</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Gonial Angle (Ar-Go-Me)</td>
+            <td>130°</td>
+            <td>± 7°</td>
+            <td>123° – 137°</td>
+            <td class="tag-hi">Open / hyperdivergent</td>
+            <td class="tag-lo">Closed / hypodivergent</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Upper Gonial Angle (Ar-Go-N)</td>
+            <td>52° – 55°</td>
+            <td>—</td>
+            <td>47° – 60°</td>
+            <td class="tag-hi">Ramus flared forward</td>
+            <td class="tag-lo">Ramus inclined posteriorly</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Lower Gonial Angle (N-Go-Me)</td>
+            <td>70° – 75°</td>
+            <td>—</td>
+            <td>65° – 80°</td>
+            <td class="tag-hi">Steep mandibular body</td>
+            <td class="tag-lo">Flat mandibular body</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Sum of Posterior Angles</td>
+            <td>396°</td>
+            <td>± 6°</td>
+            <td>390° – 402°</td>
+            <td class="tag-hi">&gt;402° = Posterior rotation</td>
+            <td class="tag-lo">&lt;390° = Anterior rotation</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Post. Facial Height (S-Go)</td>
+            <td>~80 mm</td>
+            <td>± 5 mm</td>
+            <td>Sex/age dependent</td>
+            <td class="tag-hi">Long posterior face</td>
+            <td class="tag-lo">Short posterior face</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Ant. Facial Height (N-Me)</td>
+            <td>~122 mm</td>
+            <td>± 6 mm</td>
+            <td>Sex/age dependent</td>
+            <td class="tag-hi">Long anterior face</td>
+            <td class="tag-lo">Short anterior face</td>
+          </tr>
+          <tr>
+            <td class="meas-name">PFH/AFH Ratio (S-Go/N-Me)</td>
+            <td>62% – 65%</td>
+            <td>—</td>
+            <td>59% – 68%</td>
+            <td class="tag-hi">&gt;65% = Anterior rotation</td>
+            <td class="tag-lo">&lt;62% = Posterior rotation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:12px;">Norms from Jarabak & Fizzell (1972) and Björk's original growth studies. PFH/AFH ratio norms reflect white Western European and North American samples.</p>
+
+    <div class="highlight-box">
+      <p><strong>The sum of posterior angles is the single most reliable predictor of growth rotation type.</strong> A sum below 390° indicates anterior rotation (deep bite tendency, favourable for Class II correction in growing patients). A sum above 402° indicates posterior rotation (open bite tendency, less favourable prognosis for Class II or open bite correction). A sum between 390° and 402° is neutral.</p>
+    </div>
+  </section>
+
+  <section id="landmarks">
+    <h2>Landmarks Required for Björk-Jarabak Analysis</h2>
+
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="lm-abbr">N</div>
+        <div class="lm-name">Nasion</div>
+        <div class="lm-desc">Most anterior point of the frontonasal suture. Superior point of the anterior facial height measurement (N-Me) and the upper reference for the upper gonial angle subdivision (Ar-Go-N).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">S</div>
+        <div class="lm-name">Sella</div>
+        <div class="lm-desc">Centre of the sella turcica. Vertex of the saddle angle (N-S-Ar) and superior reference point for posterior facial height (S-Go).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Ar</div>
+        <div class="lm-name">Articulare</div>
+        <div class="lm-desc">The intersection of the posterior border of the mandibular ramus with the lower border of the cranial base. Used as a practical substitute for the condyle in the saddle angle and articular angle. Not to be confused with Condylion (Co) used in McNamara analysis.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Go</div>
+        <div class="lm-name">Gonion</div>
+        <div class="lm-desc">Most posteroinferior point at the mandibular angle, constructed at the intersection of the ramus tangent and mandibular plane tangent. Central vertex for both the articular angle (S-Ar-Go) and the full gonial angle (Ar-Go-Me), and the reference point for upper/lower gonial angle subdivision.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Me</div>
+        <div class="lm-name">Menton</div>
+        <div class="lm-desc">Most inferior point of the mandibular symphysis. Inferior endpoint for both the anterior facial height (N-Me) and the gonial angle (Ar-Go-Me). One of the most reliably identified landmarks in cephalometrics.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Articulare vs Condylion:</strong> The Björk-Jarabak analysis uses Articulare (Ar) — a constructed landmark at the intersection of the ramus posterior border and cranial base — rather than the anatomical Condylion (Co) used in McNamara analysis. Articulare is more consistently identifiable on standard lateral cephalograms where the condylar outline may be obscured by superimposition.</p>
+    </div>
+  </section>
+
+  <section id="interpretation">
+    <h2>Clinical Interpretation of Björk-Jarabak Analysis</h2>
+
+    <h3>Anterior vs Posterior Growth Rotation</h3>
+    <p>An <strong>anterior rotator</strong> (sum &lt; 390°, PFH/AFH &gt; 65%) grows with the mandibular symphysis rotating forward and upward relative to the anterior cranial base. This rotation tends to close the bite, increase the overbite, and may convert a Class II malocclusion into a more favourable skeletal relationship over time. Anterior rotators are generally good candidates for functional appliances and have better long-term stability for deep bite correction.</p>
+    <p>A <strong>posterior rotator</strong> (sum &gt; 402°, PFH/AFH &lt; 62%) grows with the symphysis rotating downward and backward. The bite tends to open over time, the mandibular plane angle steepens, and Class II malocclusions become more severe with growth. Posterior rotators are significantly more challenging to treat, particularly for open bite correction, and relapse rates are higher. Treatment decisions in posterior rotators must account for the ongoing negative growth vector.</p>
+
+    <h3>The Gonial Angle Subdivision</h3>
+    <p>The full gonial angle (Ar-Go-Me, norm 130°) can be subdivided by a line from Go to Nasion. The <strong>upper gonial angle</strong> (Ar-Go-N, norm 52–55°) reflects the relationship between the ramus and the anterior cranial base. The <strong>lower gonial angle</strong> (N-Go-Me, norm 70–75°) reflects the angle of the mandibular body. In anterior rotators, the upper gonial angle tends to be larger (the ramus is relatively more anteriorly inclined); in posterior rotators, the lower gonial angle tends to be larger (the mandibular body is more steeply inclined).</p>
+
+    <h3>Using Björk-Jarabak Alongside Other Analyses</h3>
+    <p>The Björk-Jarabak analysis complements the vertical measurements in <a href="/mcnamara-analysis">McNamara analysis</a> (which provides the lower facial height in absolute millimetres), the vertical component of <a href="/downs-analysis">Downs analysis</a> (mandibular plane angle and Y-axis), and the vertical growth indicators in <a href="/ricketts-analysis">Ricketts analysis</a> (facial axis and mandibular plane angle). When multiple analyses consistently classify a patient as hyperdivergent, the growth rotation classification from Björk-Jarabak adds the prognostic dimension: not just <em>how much</em> vertical excess exists now, but <em>which direction</em> it is heading.</p>
+  </section>
+
+  <section id="bceph">
+    <h2>Run Björk-Jarabak Analysis Free in BCeph</h2>
+    <p>BCeph includes a complete Björk-Jarabak module computing all three posterior angles, their sum, the upper and lower gonial angle subdivisions, S-Go, N-Me, and the PFH/AFH ratio. Results are displayed with norm ranges and growth rotation classification (anterior, neutral, or posterior).</p>
+    <p>The Articulare landmark used in Björk-Jarabak overlaps with the Ricketts analysis in BCeph, and the Nasion, Sella, Gonion, and Menton landmarks are shared across most analysis modules. Running a full diagnostic session across all BCeph modules requires a single unified landmark placement workflow.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the Björk-Jarabak cephalometric analysis?</div>
+        <div class="faq-a">The Björk-Jarabak analysis uses a chain of three posterior angles (saddle, articular, gonial) and the posterior-anterior facial height ratio to classify mandibular growth rotation. It distinguishes anterior rotators (hypodivergent, deep bite tendency) from posterior rotators (hyperdivergent, open bite tendency) — a clinically critical distinction for treatment planning in growing patients.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal posterior/anterior facial height ratio?</div>
+        <div class="faq-a">The normal PFH/AFH ratio (S-Go divided by N-Me) is 62–65%. Above 65% indicates anterior growth rotation (hypodivergent pattern); below 62% indicates posterior growth rotation (hyperdivergent). The ratio is one of the most informative single values for vertical skeletal classification.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal sum of posterior angles?</div>
+        <div class="faq-a">The sum of the saddle angle (N-S-Ar), articular angle (S-Ar-Go), and gonial angle (Ar-Go-Me) has a norm of 396° ± 6°. Below 390° = anterior rotation. Above 402° = posterior rotation. The sum is considered the most reliable predictor of growth rotation direction in the analysis.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does the saddle angle measure?</div>
+        <div class="faq-a">The saddle angle (N-S-Ar) measures the angular relationship at Sella between Nasion, Sella, and Articulare. Norm is 123° ± 5°. A smaller saddle angle positions Articulare anteriorly, generally contributing to a more Class I or anterior rotation tendency. A larger saddle angle places Articulare more posteriorly, contributing to mandibular retrusion.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I run Björk-Jarabak analysis for free?</div>
+        <div class="faq-a">Yes. BCeph includes a complete Björk-Jarabak module at no cost. All three angles, the PFH/AFH ratio, the sum of posterior angles, and the growth rotation classification are calculated automatically. Runs entirely in your browser — no installation, no cloud storage.</div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<div class="cta-banner">
+  <h2>Run Björk-Jarabak Analysis Free in BCeph</h2>
+  <p>Classify growth rotation, compute PFH/AFH, and sum the posterior angles — instantly, in your browser, with no data leaving your device.</p>
+  <a href="/app.html" class="btn-launch">Launch BCeph →</a>
+</div>
+
+<footer class="site-footer">
+  <strong>BCeph</strong> by Bayan Healthcare Analytics · <a href="/">Home</a> · <a href="/cephalometric-analysis">Ceph Analysis Guide</a> · <a href="/mcnamara-analysis">McNamara Analysis</a> · <a href="/ricketts-analysis">Ricketts Analysis</a> · <a href="/cephalometric-software-comparison">Software Comparison</a> · <a href="/app.html">Launch App</a>
+</footer>
+
+</body>
+</html>

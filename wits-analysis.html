@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wits Appraisal: AO-BO Cephalometric Measurement, Norms & Landmarks | BCeph</title>
+<meta name="description" content="Complete guide to the Wits appraisal: AO-BO measurement, clinical norms by sex, landmarks, and how it complements ANB angle. Free browser-based Wits analysis — no install required.">
+<link rel="canonical" href="https://www.bceph.com/wits-analysis">
+<meta property="og:title" content="Wits Appraisal — AO-BO Cephalometric Measurement Guide">
+<meta property="og:description" content="The Wits appraisal measures AO and BO perpendiculars to the occlusal plane, bypassing cranial base variation. Full norms, landmarks, and free browser tool.">
+<meta property="og:url" content="https://www.bceph.com/wits-analysis">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.bceph.com/og-preview.png">
+<meta property="og:site_name" content="BCeph">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bceph.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Cephalometric Analysis", "item": "https://www.bceph.com/cephalometric-analysis" },
+        { "@type": "ListItem", "position": 3, "name": "Wits Appraisal", "item": "https://www.bceph.com/wits-analysis" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Wits Appraisal: The AO-BO Measurement in Cephalometric Analysis",
+      "description": "Complete clinical guide to the Wits appraisal — the AO-BO measurement that assesses anteroposterior jaw relationships without dependence on cranial base anatomy.",
+      "author": { "@type": "Organization", "name": "Bayan Healthcare Analytics", "url": "https://www.bceph.com" },
+      "publisher": { "@type": "Organization", "name": "BCeph", "url": "https://www.bceph.com" },
+      "datePublished": "2026-03-27",
+      "dateModified": "2026-03-27",
+      "mainEntityOfPage": "https://www.bceph.com/wits-analysis",
+      "image": "https://www.bceph.com/og-preview.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Wits appraisal in cephalometrics?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Wits appraisal, introduced by Alexander Jacobson in 1975 at the University of the Witwatersrand, is a cephalometric measurement of anteroposterior jaw relationship that bypasses Nasion and the cranial base. It measures the perpendicular distances from A point (AO) and B point (BO) to the functional occlusal plane, and computes the difference: Wits = AO − BO." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal Wits appraisal value?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wits appraisal norms differ by sex. For males, the mean is approximately +1 mm (AO is 1 mm anterior to BO), with a range of −1 to +3 mm. For females, the mean is approximately 0 mm, with a range of −2 to +2 mm. Positive Wits values indicate a Class II skeletal pattern; negative values indicate Class III." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the Wits appraisal used instead of ANB angle?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The ANB angle is sensitive to the vertical position of Nasion, which varies considerably between individuals and can create misleading anteroposterior classifications. A superiorly displaced Nasion artificially increases ANB in Class II cases; an inferiorly displaced Nasion artificially decreases it. The Wits appraisal avoids this dependency by referencing the functional occlusal plane instead — making it a valuable independent check on the ANB-based classification." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a negative Wits value indicate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A negative Wits value means that BO falls anterior to AO on the occlusal plane — indicating that the mandibular base is positioned anteriorly relative to the maxillary base. This is consistent with a Class III skeletal pattern. The more negative the Wits value, the greater the magnitude of mandibular prognathism or maxillary retrognathism." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run the Wits appraisal free in BCeph?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. BCeph includes a standalone Wits appraisal module at no cost. The AO and BO projections onto the functional occlusal plane are computed automatically from your landmark placements. All data stays on your device — no cloud, no subscription required." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --navy: #152242; --navy-deep: #0e1a38; --gold: #D4A030;
+    --gold-dim: rgba(212,160,48,0.15); --gold-glow: rgba(212,160,48,0.08);
+    --text-primary: rgba(255,255,255,0.92); --text-secondary: rgba(255,255,255,0.55);
+    --text-muted: rgba(255,255,255,0.35); --border: rgba(255,255,255,0.06);
+    --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy); color: var(--text-primary); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(14,26,56,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--font-display); font-size: 20px; color: var(--text-primary); }
+  .nav-logo span.g { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+  .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+  .nav-cta { background: var(--gold); color: var(--navy-deep) !important; padding: 7px 18px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; }
+  .nav-cta:hover { background: #e0ad35; }
+  @media (max-width: 640px) { .site-nav { display: none; } }
+  .breadcrumb { max-width: 860px; margin: 0 auto; padding: 24px 32px 0; font-size: 12px; color: var(--text-muted); }
+  .breadcrumb a { color: var(--text-muted); } .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { margin: 0 6px; opacity: 0.4; }
+  .hero { max-width: 860px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(212,160,48,0.2); border-radius: 5px; padding: 5px 12px; margin-bottom: 20px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.2; color: #fff; margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle { font-size: 15px; color: var(--text-secondary); max-width: 620px; line-height: 1.75; }
+  .hero-meta { margin-top: 24px; font-size: 11px; color: var(--text-muted); }
+  .hero-meta time { color: var(--text-secondary); }
+  .article { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  .article section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .article section:last-child { border-bottom: none; }
+  .article h2 { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 28px); font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .article h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 12px; margin-top: 32px; }
+  .article h3:first-child { margin-top: 0; }
+  .article p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; font-size: 15px; }
+  .article p:last-child { margin-bottom: 0; }
+  .article strong { color: var(--text-primary); font-weight: 600; }
+  .table-wrap { overflow-x: auto; margin: 24px 0 8px; border-radius: 12px; border: 1px solid var(--border); background: var(--navy-deep); }
+  .norms-table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 13px; }
+  .norms-table thead th { background: rgba(212,160,48,0.08); color: var(--gold); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .norms-table tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: middle; }
+  .norms-table tbody tr:last-child td { border-bottom: none; }
+  .norms-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+  .meas-name { font-weight: 700; color: var(--text-primary) !important; }
+  .tag-hi { color: #f87171; font-size: 12px; } .tag-lo { color: #60a5fa; font-size: 12px; }
+  .landmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 24px; }
+  .landmark-card { background: var(--navy-deep); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .landmark-card .lm-abbr { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .landmark-card .lm-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .landmark-card .lm-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .highlight-box { background: var(--gold-glow); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 24px 0; }
+  .highlight-box p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+  .highlight-box strong { color: var(--gold); }
+  .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .faq-item { background: var(--navy-deep); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; transition: border-color 0.2s; }
+  .faq-item:hover { border-color: rgba(212,160,48,0.2); }
+  .faq-q { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .faq-q::before { content: "Q"; font-size: 9px; font-weight: 800; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(212,160,48,0.2); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; margin-top: 1px; }
+  .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; padding-left: 36px; }
+  .cta-banner { text-align: center; padding: 64px 32px; border-top: 1px solid var(--border); }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(24px, 4vw, 32px); color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: var(--text-secondary); font-size: 15px; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-launch { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px; padding: 14px 32px; border-radius: 8px; transition: background 0.2s, transform 0.15s; }
+  .btn-launch:hover { background: #e0ad35; text-decoration: none; transform: translateY(-1px); }
+  .site-footer { background: var(--navy-deep); padding: 24px 32px; text-align: center; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+  .site-footer a { color: var(--text-muted); } .site-footer a:hover { color: var(--gold); }
+  .site-footer strong { color: rgba(212,160,48,0.5); }
+  @media (max-width: 640px) { .hero { padding: 36px 20px 40px; } .article { padding: 0 20px; } .article section { padding: 36px 0; } .breadcrumb { padding: 20px 20px 0; } .cta-banner { padding: 48px 20px; } }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#analyses">Analyses</a>
+    <a href="/cephalometric-analysis">Ceph Guide</a>
+    <a href="/app.html" class="nav-cta">Launch App →</a>
+  </div>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">BCeph</a><span>›</span><a href="/cephalometric-analysis">Cephalometric Analysis</a><span>›</span><span>Wits Appraisal</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-label">Analysis Guide</div>
+  <h1>Wits Appraisal: <em>The AO-BO Cephalometric Measurement</em></h1>
+  <p class="hero-subtitle">The Wits appraisal provides an assessment of anteroposterior jaw relationship that is independent of cranial base anatomy — the key limitation of the ANB angle. This guide covers the AO-BO measurement, sex-specific norms, landmark requirements, and why the Wits remains an indispensable part of the skeletal diagnostic record.</p>
+  <p class="hero-meta">By <strong>Bayan Healthcare Analytics</strong> · Updated <time datetime="2026-03-27">March 27, 2026</time> · 7 min read</p>
+</header>
+
+<article class="article">
+
+  <section id="overview">
+    <h2>What Is the Wits Appraisal?</h2>
+    <p>The Wits appraisal was introduced by Alexander Jacobson in 1975 while working at the University of the Witwatersrand, Johannesburg — the name "Wits" being an informal abbreviation of the institution. Jacobson developed the measurement in response to a recognised limitation of the ANB angle: because ANB is measured relative to Nasion, it is sensitive to any variation in Nasion's vertical position, which is common across patients and not related to jaw-base discrepancy.</p>
+    <p>The Wits measurement sidesteps this problem entirely. Instead of using Nasion as a reference, it measures the perpendicular distances from <strong>A point (AO)</strong> and <strong>B point (BO)</strong> to the <strong>functional occlusal plane</strong>. The Wits appraisal value is the linear distance between AO and BO on that plane: <strong>Wits = AO − BO</strong>. When AO is anterior to BO, the value is positive (Class II tendency). When BO is anterior to AO, the value is negative (Class III tendency).</p>
+    <p>The functional occlusal plane is drawn through the overlapping cusps of the most posterior teeth in occlusion — typically the first molars and first premolars — providing a reference plane that is directly related to the dental occlusion rather than the cranial base.</p>
+    <p>For a full context of how the Wits fits into the diagnostic record alongside ANB and other measurements, see the <a href="/cephalometric-analysis">cephalometric analysis overview</a> and the <a href="/steiner-analysis">Steiner analysis guide</a> (which uses ANB as its primary anteroposterior measure).</p>
+  </section>
+
+  <section id="measurements">
+    <h2>Wits Norms and Clinical Ranges</h2>
+    <p>Wits norms differ between males and females, reflecting sexual dimorphism in both jaw projection and facial height. Jacobson's original norms were established from the Burlington Growth Study sample and have been broadly replicated in subsequent population studies.</p>
+
+    <div class="table-wrap">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Sex</th>
+            <th>Mean (AO-BO)</th>
+            <th>SD</th>
+            <th>Clinical Range</th>
+            <th>Positive = </th>
+            <th>Negative = </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="meas-name">Males</td>
+            <td>+1 mm</td>
+            <td>± 1.9 mm</td>
+            <td>−1 to +3 mm</td>
+            <td class="tag-hi">Class II pattern</td>
+            <td class="tag-lo">Class III pattern</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Females</td>
+            <td>0 mm</td>
+            <td>± 1.77 mm</td>
+            <td>−2 to +2 mm</td>
+            <td class="tag-hi">Class II pattern</td>
+            <td class="tag-lo">Class III pattern</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:12px;">Norms from Jacobson (1975) and the Burlington Growth Study. Values apply to white North American adults; population-specific norms exist for other ethnic groups.</p>
+
+    <div class="highlight-box">
+      <p><strong>Interpreting Wits severity:</strong> A Wits value of +4 to +6 mm in males (or +3 to +5 mm in females) represents a moderate Class II skeletal discrepancy. Values above +8 mm indicate severe Class II. For Class III, values below −4 mm (males) or −3 mm (females) are considered moderate, with values below −6 mm indicating severe mandibular prognathism.</p>
+    </div>
+  </section>
+
+  <section id="landmarks">
+    <h2>Landmarks Required for the Wits Appraisal</h2>
+    <p>The Wits appraisal requires fewer landmarks than most analysis modules — only A point, B point, and the occlusal plane reference points. In BCeph, the Wits module uses the same A and B point landmarks placed for other analyses, and the occlusal plane is defined by the Op1 (anterior) and Op2 (posterior) occlusal plane reference points.</p>
+
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="lm-abbr">A</div>
+        <div class="lm-name">A Point (Subspinale)</div>
+        <div class="lm-desc">Deepest point on the anterior contour of the maxillary alveolar process between the ANS and the upper incisor alveolus. The perpendicular from A point to the occlusal plane defines the AO point.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">B</div>
+        <div class="lm-name">B Point (Supramentale)</div>
+        <div class="lm-desc">Deepest point on the anterior contour of the mandibular alveolar process between the lower incisor alveolus and Pogonion. The perpendicular from B point to the occlusal plane defines the BO point.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Op1</div>
+        <div class="lm-name">Occlusal Plane — Anterior</div>
+        <div class="lm-desc">The anteriormost reference point for the functional occlusal plane, placed at the cusp tip or occlusal contact of the most anterior teeth in occlusion. Typically the incisor overlap region or first premolar contact.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Op2</div>
+        <div class="lm-name">Occlusal Plane — Posterior</div>
+        <div class="lm-desc">The posteriormost reference point for the functional occlusal plane, placed at the molar cusp contact. Paired with Op1, these two points define the plane onto which AO and BO are projected perpendicularly.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Occlusal plane accuracy is critical:</strong> The Wits value is directly dependent on how the occlusal plane is drawn. In patients with posterior open bite or missing teeth, the occlusal plane can be difficult to define consistently. Use the functional (intercuspation-based) plane rather than the anatomical occlusal plane for Wits to match Jacobson's original methodology.</p>
+    </div>
+  </section>
+
+  <section id="interpretation">
+    <h2>Clinical Interpretation of the Wits Appraisal</h2>
+
+    <h3>Wits vs ANB: When They Disagree</h3>
+    <p>The Wits appraisal is most useful when it provides an independent check on the ANB angle. In most patients with normal Nasion anatomy, Wits and ANB will agree directionally. When they disagree — for instance, when ANB shows Class II but Wits is normal — this is a signal to re-examine the position of Nasion. A superiorly positioned Nasion will artificially inflate ANB; in such cases, Wits provides the more accurate reflection of true jaw-base discrepancy.</p>
+    <p>The converse is also true: a patient with a Class III Wits but a near-normal ANB may have an inferiorly positioned Nasion that is masking the true mandibular prognathism. These discordant cases are precisely where the Wits appraisal adds diagnostic value that ANB cannot provide alone.</p>
+
+    <h3>Wits in Growing vs Adult Patients</h3>
+    <p>The Wits appraisal is useful at all ages, but interpretation must account for growth. During the adolescent growth spurt, both A and B points may change significantly in their vertical and horizontal projections onto the occlusal plane. Serial Wits measurements across growth are more informative than single cross-sectional values for assessing the trajectory of jaw-base discrepancy.</p>
+    <p>The occlusal plane itself changes inclination during growth, which can introduce variability in serial measurements. When comparing Wits values over time in a growing patient, ensure that the occlusal plane is defined consistently at each timepoint.</p>
+
+    <h3>Population Variation in Wits Norms</h3>
+    <p>Jacobson's original norms were derived from white North American subjects. Subsequent studies have found meaningful differences across ethnic groups. South Asian and East Asian populations often show slightly more positive Wits values in Class I individuals; sub-Saharan African populations may show different distributions. BCeph displays the Jacobson norms as the primary reference, with results interpreted in the context of the individual patient's background.</p>
+
+    <h3>Integrating Wits with Other Measurements</h3>
+    <p>In clinical practice, the Wits is always used alongside ANB and other anteroposterior indicators. Cross-referencing with the <a href="/ricketts-analysis">Ricketts convexity measurement</a>, the <a href="/steiner-analysis">Steiner ANB</a>, and the facial plane angle from <a href="/downs-analysis">Downs analysis</a> gives the clinician a multi-source picture of the anteroposterior skeletal pattern. When four different measurements converge on the same classification, diagnostic confidence is high. When they diverge, each discordant measurement warrants investigation.</p>
+  </section>
+
+  <section id="bceph">
+    <h2>Run the Wits Appraisal Free in BCeph</h2>
+    <p>BCeph provides the Wits appraisal as a standalone independent module — not bundled or combined with other measurements. AO and BO are computed as true perpendicular projections from A point and B point to the functional occlusal plane, and the distance between them is calculated directly. Both male and female norm references are displayed in the report output.</p>
+    <p>The landmark set for Wits (A point, B point, Op1, Op2) overlaps completely with the E-Line module's occlusal plane reference. Running both modules requires no additional landmark placements. As with all BCeph modules, no data is transmitted to any server — the entire analysis runs in your browser.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the Wits appraisal in cephalometrics?</div>
+        <div class="faq-a">The Wits appraisal, introduced by Jacobson (1975), measures the anteroposterior relationship of the jaw bases by projecting A point (AO) and B point (BO) perpendicularly onto the functional occlusal plane. The Wits value = AO − BO. Unlike ANB, it does not depend on the position of Nasion and therefore avoids errors caused by cranial base variation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal Wits appraisal value?</div>
+        <div class="faq-a">For males, the mean Wits is approximately +1 mm (range −1 to +3 mm). For females, the mean is approximately 0 mm (range −2 to +2 mm). Positive values indicate Class II; negative values indicate Class III. Values outside these ranges should prompt correlation with ANB, facial plane, and clinical examination.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why is Wits used instead of ANB?</div>
+        <div class="faq-a">ANB is sensitive to Nasion's vertical position — a superiorly displaced Nasion inflates ANB, a depressed Nasion reduces it — in neither case reflecting the true jaw-base relationship. The Wits appraisal bypasses this by referencing the occlusal plane directly. Most clinicians use both measurements; when they disagree, examining Nasion position is the first diagnostic step.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does a negative Wits value indicate?</div>
+        <div class="faq-a">A negative Wits value means BO falls anterior to AO on the occlusal plane — the mandibular base is positioned anteriorly relative to the maxillary base. This is consistent with a Class III skeletal pattern. The more negative, the greater the discrepancy. Values below −4 mm in males and −3 mm in females suggest moderate Class III.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I run the Wits appraisal free in BCeph?</div>
+        <div class="faq-a">Yes. BCeph provides a standalone Wits appraisal module at no cost. AO and BO projections are computed automatically from your landmark placements. All data stays on your device — no cloud storage, no subscription.</div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<div class="cta-banner">
+  <h2>Run the Wits Appraisal Free in BCeph</h2>
+  <p>Compute AO-BO from your lateral ceph instantly — alongside Steiner, Ricketts, Kim, and more. No account needed. No data leaves your device.</p>
+  <a href="/app.html" class="btn-launch">Launch BCeph →</a>
+</div>
+
+<footer class="site-footer">
+  <strong>BCeph</strong> by Bayan Healthcare Analytics · <a href="/">Home</a> · <a href="/cephalometric-analysis">Ceph Analysis Guide</a> · <a href="/kim-analysis">Kim Analysis</a> · <a href="/steiner-analysis">Steiner Analysis</a> · <a href="/cephalometric-software-comparison">Software Comparison</a> · <a href="/app.html">Launch App</a>
+</footer>
+
+</body>
+</html>

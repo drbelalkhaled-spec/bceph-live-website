@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kim Analysis: ODI, APDI, CF & Extraction Index — Cephalometric Guide | BCeph</title>
+<meta name="description" content="Complete guide to Kim cephalometric analysis: ODI, APDI, Combination Factor, and Extraction Index. Norms, landmarks, and extraction decision criteria. Free analysis tool — no install.">
+<link rel="canonical" href="https://www.bceph.com/kim-analysis">
+<meta property="og:title" content="Kim Analysis — ODI, APDI & Extraction Index Cephalometric Guide">
+<meta property="og:description" content="Master Kim's cephalometric analysis: Overbite Depth Indicator, Anteroposterior Dysplasia Indicator, Combination Factor, and Extraction Index with clinical norms and free browser tool.">
+<meta property="og:url" content="https://www.bceph.com/kim-analysis">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.bceph.com/og-preview.png">
+<meta property="og:site_name" content="BCeph">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bceph.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Cephalometric Analysis", "item": "https://www.bceph.com/cephalometric-analysis" },
+        { "@type": "ListItem", "position": 3, "name": "Kim Analysis", "item": "https://www.bceph.com/kim-analysis" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Kim Cephalometric Analysis: ODI, APDI, CF and the Extraction Index",
+      "description": "Comprehensive guide to Kim's cephalometric analysis system — covering the Overbite Depth Indicator, Anteroposterior Dysplasia Indicator, Combination Factor, and Extraction Index with clinical norms and decision criteria.",
+      "author": { "@type": "Organization", "name": "Bayan Healthcare Analytics", "url": "https://www.bceph.com" },
+      "publisher": { "@type": "Organization", "name": "BCeph", "url": "https://www.bceph.com" },
+      "datePublished": "2026-03-27",
+      "dateModified": "2026-03-27",
+      "mainEntityOfPage": "https://www.bceph.com/kim-analysis",
+      "image": "https://www.bceph.com/og-preview.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Kim analysis in orthodontics?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Kim's analysis, developed by In-Kwon Kim (1978), is a cephalometric system that integrates vertical and anteroposterior skeletal measurements to guide extraction decisions. It produces four values: the Overbite Depth Indicator (ODI), the Anteroposterior Dysplasia Indicator (APDI), the Combination Factor (CF = ODI + APDI), and the Extraction Index — a threshold-based tool for deciding whether orthodontic extraction is indicated." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal ODI value in Kim analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The normal ODI (Overbite Depth Indicator) is 74.5° ± 6.07°, with a clinical range of approximately 62.4–86.6°. ODI reflects the vertical skeletal pattern: high ODI values indicate a hypodivergent deep bite tendency, while low ODI values indicate a hyperdivergent open bite tendency." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal APDI value in Kim analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The normal APDI (Anteroposterior Dysplasia Indicator) is 81.4° ± 3.82°, with a range of approximately 73.8–89°. High APDI values indicate a Class III skeletal pattern; low APDI values indicate a Class II skeletal pattern. The APDI combines three angular measurements to produce a composite anteroposterior classification." }
+        },
+        {
+          "@type": "Question",
+          "name": "What CF value indicates extraction in Kim analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In Kim's Extraction Index, a Combination Factor (CF = ODI + APDI) below 149.0° strongly indicates extraction is needed. A CF of 149.0–155.9° is a borderline zone where extraction depends on other clinical factors. A CF above 155.9° suggests non-extraction treatment is appropriate. The norm for CF is 155.9° ± 6.24°." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run Kim analysis for free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. BCeph includes a complete Kim analysis module — ODI, APDI, CF, and Extraction Index — at no cost. The tool runs entirely in your browser with no installation or cloud storage. All measurements are calculated automatically from landmark positions, with signed angle conventions correctly applied for canvas coordinate systems." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --navy: #152242; --navy-deep: #0e1a38; --gold: #D4A030;
+    --gold-dim: rgba(212,160,48,0.15); --gold-glow: rgba(212,160,48,0.08);
+    --text-primary: rgba(255,255,255,0.92); --text-secondary: rgba(255,255,255,0.55);
+    --text-muted: rgba(255,255,255,0.35); --border: rgba(255,255,255,0.06);
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy); color: var(--text-primary); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(14,26,56,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--font-display); font-size: 20px; color: var(--text-primary); }
+  .nav-logo span.g { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+  .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+  .nav-cta { background: var(--gold); color: var(--navy-deep) !important; padding: 7px 18px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; }
+  .nav-cta:hover { background: #e0ad35; }
+  @media (max-width: 640px) { .site-nav { display: none; } }
+  .breadcrumb { max-width: 860px; margin: 0 auto; padding: 24px 32px 0; font-size: 12px; color: var(--text-muted); }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { margin: 0 6px; opacity: 0.4; }
+  .hero { max-width: 860px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(212,160,48,0.2); border-radius: 5px; padding: 5px 12px; margin-bottom: 20px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.2; color: #fff; margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle { font-size: 15px; color: var(--text-secondary); max-width: 620px; line-height: 1.75; }
+  .hero-meta { margin-top: 24px; font-size: 11px; color: var(--text-muted); }
+  .hero-meta time { color: var(--text-secondary); }
+  .article { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  .article section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .article section:last-child { border-bottom: none; }
+  .article h2 { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 28px); font-weight: 400; color: #fff; margin-bottom: 20px; line-height: 1.25; }
+  .article h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 12px; margin-top: 32px; }
+  .article h3:first-child { margin-top: 0; }
+  .article p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; font-size: 15px; }
+  .article p:last-child { margin-bottom: 0; }
+  .article strong { color: var(--text-primary); font-weight: 600; }
+  .table-wrap { overflow-x: auto; margin: 24px 0 8px; border-radius: 12px; border: 1px solid var(--border); background: var(--navy-deep); }
+  .norms-table { width: 100%; min-width: 580px; border-collapse: collapse; font-size: 13px; }
+  .norms-table thead th { background: rgba(212,160,48,0.08); color: var(--gold); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .norms-table tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: middle; }
+  .norms-table tbody tr:last-child td { border-bottom: none; }
+  .norms-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+  .meas-name { font-weight: 700; color: var(--text-primary) !important; }
+  .tag-hi { color: #f87171; font-size: 12px; }
+  .tag-lo { color: #60a5fa; font-size: 12px; }
+  .landmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 24px; }
+  .landmark-card { background: var(--navy-deep); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .landmark-card .lm-abbr { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .landmark-card .lm-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .landmark-card .lm-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .highlight-box { background: var(--gold-glow); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 24px 0; }
+  .highlight-box p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+  .highlight-box strong { color: var(--gold); }
+  /* Extraction index table */
+  .extraction-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .extraction-table thead th { background: rgba(212,160,48,0.08); color: var(--gold); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  .extraction-table tbody td { padding: 13px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+  .extraction-table tbody tr:last-child td { border-bottom: none; }
+  .zone-extract { color: #f87171; font-weight: 700; }
+  .zone-border { color: #fbbf24; font-weight: 700; }
+  .zone-nonex { color: #34d399; font-weight: 700; }
+  .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .faq-item { background: var(--navy-deep); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; transition: border-color 0.2s; }
+  .faq-item:hover { border-color: rgba(212,160,48,0.2); }
+  .faq-q { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .faq-q::before { content: "Q"; font-size: 9px; font-weight: 800; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(212,160,48,0.2); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; margin-top: 1px; }
+  .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; padding-left: 36px; }
+  .cta-banner { text-align: center; padding: 64px 32px; border-top: 1px solid var(--border); }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(24px, 4vw, 32px); color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: var(--text-secondary); font-size: 15px; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-launch { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px; padding: 14px 32px; border-radius: 8px; transition: background 0.2s, transform 0.15s; }
+  .btn-launch:hover { background: #e0ad35; text-decoration: none; transform: translateY(-1px); }
+  .site-footer { background: var(--navy-deep); padding: 24px 32px; text-align: center; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+  .site-footer a { color: var(--text-muted); }
+  .site-footer a:hover { color: var(--gold); }
+  .site-footer strong { color: rgba(212,160,48,0.5); }
+  @media (max-width: 640px) { .hero { padding: 36px 20px 40px; } .article { padding: 0 20px; } .article section { padding: 36px 0; } .breadcrumb { padding: 20px 20px 0; } .cta-banner { padding: 48px 20px; } }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#analyses">Analyses</a>
+    <a href="/cephalometric-analysis">Ceph Guide</a>
+    <a href="/app.html" class="nav-cta">Launch App →</a>
+  </div>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">BCeph</a><span>›</span><a href="/cephalometric-analysis">Cephalometric Analysis</a><span>›</span><span>Kim Analysis</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-label">Analysis Guide</div>
+  <h1>Kim Analysis: <em>ODI, APDI, CF & the Extraction Index</em></h1>
+  <p class="hero-subtitle">Kim's cephalometric analysis integrates vertical and anteroposterior skeletal measurements to guide one of orthodontics' most consequential decisions: whether to extract. This guide covers all four measurements with clinical norms, formulas, extraction thresholds, and the landmarks required to compute them.</p>
+  <p class="hero-meta">By <strong>Bayan Healthcare Analytics</strong> · Updated <time datetime="2026-03-27">March 27, 2026</time> · 9 min read</p>
+</header>
+
+<article class="article">
+
+  <section id="overview">
+    <h2>What Is Kim's Analysis?</h2>
+    <p>Kim's analysis was introduced by In-Kwon Kim in 1978 as a systematic approach to the extraction-versus-non-extraction decision in orthodontic treatment planning. Its core insight is that the extraction question cannot be answered by arch length discrepancy alone — it must incorporate both the <strong>vertical skeletal pattern</strong> and the <strong>anteroposterior skeletal pattern</strong>, because both influence how much space is available, how teeth will move, and what the final soft tissue profile will look like.</p>
+    <p>The analysis produces four values: the <strong>Overbite Depth Indicator (ODI)</strong>, which quantifies the vertical skeletal tendency; the <strong>Anteroposterior Dysplasia Indicator (APDI)</strong>, which quantifies the anteroposterior skeletal class; the <strong>Combination Factor (CF)</strong>, which is simply ODI + APDI; and the <strong>Extraction Index</strong>, a clinical threshold system based on CF that categorises cases as extraction, borderline, or non-extraction.</p>
+    <p>Unlike analyses such as <a href="/steiner-analysis">Steiner</a> or <a href="/downs-analysis">Downs</a> that focus primarily on describing skeletal and dental relationships, Kim's analysis is explicitly <strong>prescriptive</strong> — it is designed to inform a treatment decision. This makes it particularly useful during the treatment planning phase after the skeletal classification has already been established.</p>
+  </section>
+
+  <section id="measurements">
+    <h2>Measurements, Formulas & Norms</h2>
+
+    <h3>Overbite Depth Indicator (ODI)</h3>
+    <p>The ODI is computed as the sum of two angles: the <strong>angle between the AB plane and the Frankfort Horizontal (FH)</strong>, and the <strong>angle between the palatal plane (ANS-PNS) and the Frankfort Horizontal</strong>. When the palatal plane is tipped downward anteriorly (as in many hyperdivergent cases), the second component is measured as a negative contribution.</p>
+    <p>Geometrically, a high ODI reflects a steep AB plane (B point inferior to A) combined with a relatively horizontal palatal plane — the skeletal configuration associated with deep bite and hypodivergent patterns. A low ODI reflects the opposite: an open bite, hyperdivergent skeletal configuration.</p>
+
+    <h3>Anteroposterior Dysplasia Indicator (APDI)</h3>
+    <p>The APDI sums three angular components: the <strong>facial plane angle</strong> (FH to N-Pog, equivalent to the Downs facial angle), the <strong>AB to facial plane angle</strong> (equivalent to the Downs A-B plane angle), and the <strong>palatal plane to FH angle</strong>. This formulation means that APDI captures anteroposterior dysplasia across all three levels — cranial base, jaw bases, and palatal orientation.</p>
+    <p>A high APDI reflects a prognathic mandible, anterior B point position, and/or a reverse-tipped palatal plane — all consistent with a Class III skeletal pattern. A low APDI reflects the opposite Class II configuration.</p>
+
+    <div class="table-wrap">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Measurement</th>
+            <th>Mean Norm</th>
+            <th>SD</th>
+            <th>Clinical Range</th>
+            <th>High Value</th>
+            <th>Low Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="meas-name">ODI</td>
+            <td>74.5°</td>
+            <td>± 6.07°</td>
+            <td>62.4° – 86.6°</td>
+            <td class="tag-hi">Deep bite / hypodivergent</td>
+            <td class="tag-lo">Open bite / hyperdivergent</td>
+          </tr>
+          <tr>
+            <td class="meas-name">APDI</td>
+            <td>81.4°</td>
+            <td>± 3.82°</td>
+            <td>73.8° – 89.0°</td>
+            <td class="tag-hi">Class III skeletal</td>
+            <td class="tag-lo">Class II skeletal</td>
+          </tr>
+          <tr>
+            <td class="meas-name">CF (ODI + APDI)</td>
+            <td>155.9°</td>
+            <td>± 6.24°</td>
+            <td>143.4° – 168.4°</td>
+            <td class="tag-hi">Non-extraction favoured</td>
+            <td class="tag-lo">Extraction indicated</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:12px;">Norms from Kim IK (1978, 1987). Sample: Korean adults with Class I occlusion.</p>
+
+    <h3>Extraction Index Thresholds</h3>
+    <p>Kim derived extraction decision thresholds based on the CF value. These thresholds were developed from analysis of treated cases and represent population-based guidance — they are not absolute rules, and clinical judgment remains essential.</p>
+
+    <div class="table-wrap">
+      <table class="extraction-table">
+        <thead>
+          <tr>
+            <th>CF Value</th>
+            <th>Category</th>
+            <th>Clinical Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>&lt; 149.0°</strong></td>
+            <td><span class="zone-extract">Extraction</span></td>
+            <td>Skeletal pattern strongly favours extraction; space creation typically needed to achieve facial harmony</td>
+          </tr>
+          <tr>
+            <td><strong>149.0° – 155.9°</strong></td>
+            <td><span class="zone-border">Borderline</span></td>
+            <td>Decision depends on arch length discrepancy, profile, incisor position, and patient preference</td>
+          </tr>
+          <tr>
+            <td><strong>&gt; 155.9°</strong></td>
+            <td><span class="zone-nonex">Non-extraction</span></td>
+            <td>Skeletal pattern favours non-extraction; space can typically be created without profile compromise</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Important:</strong> The Extraction Index addresses the skeletal contribution to the extraction decision. It should always be integrated with arch length analysis, incisor proclination, profile assessment, and patient-specific factors. A borderline CF with severe crowding may still require extraction; a low CF with minimal crowding may be treated non-extraction with expansion.</p>
+    </div>
+  </section>
+
+  <section id="landmarks">
+    <h2>Landmarks Required for Kim Analysis</h2>
+    <p>Kim analysis requires landmarks for the Frankfort Horizontal plane, the facial plane, the maxillary base, the mandibular base, and the palatal plane. These overlap heavily with the landmark sets used in <a href="/downs-analysis">Downs</a> and <a href="/tweed-analysis">Tweed</a> analysis, so if you are running multiple analyses, the same landmark placements serve multiple modules in BCeph.</p>
+
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="lm-abbr">Po</div>
+        <div class="lm-name">Porion</div>
+        <div class="lm-desc">Most superior point of the external auditory meatus. Paired with Orbitale to establish the Frankfort Horizontal — the primary reference plane for both ODI and APDI.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Or</div>
+        <div class="lm-name">Orbitale</div>
+        <div class="lm-desc">Most inferior point of the bony orbital rim. Paired with Porion to define the FH plane against which the AB plane, facial plane, and palatal plane are measured.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">N</div>
+        <div class="lm-name">Nasion</div>
+        <div class="lm-desc">Most anterior point of the frontonasal suture. Used with Pogonion to define the facial plane (N-Pog) for the facial plane angle component of APDI.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Pog</div>
+        <div class="lm-name">Pogonion</div>
+        <div class="lm-desc">Most anterior point on the bony chin. Used with Nasion for the facial plane. The position of B point relative to the N-Pog line determines the AB-to-facial-plane angle in APDI.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">A</div>
+        <div class="lm-name">A Point</div>
+        <div class="lm-desc">Deepest point on the anterior maxillary alveolar contour. Component of the AB line for ODI angle calculation and the AB-to-facial-plane angle in APDI.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">B</div>
+        <div class="lm-name">B Point</div>
+        <div class="lm-desc">Deepest point on the anterior mandibular alveolar contour. The relative inferior or anterior position of B versus A is the core of both ODI and APDI calculations. Geometric sign conventions depend on B's actual position relative to the N-Pog line.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">ANS</div>
+        <div class="lm-name">Anterior Nasal Spine</div>
+        <div class="lm-desc">Tip of the anterior nasal spine of the maxilla. Paired with PNS to define the palatal plane — a critical component of both ODI and APDI whose inclination significantly affects both measurements.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">PNS</div>
+        <div class="lm-name">Posterior Nasal Spine</div>
+        <div class="lm-desc">Tip of the posterior nasal spine at the posterior end of the hard palate. Paired with ANS for the palatal plane (PP). Palatal plane inclination relative to FH affects both ODI and APDI components.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Sign convention note:</strong> In digital cephalometric software running on screen coordinates (where y increases downward), the sign conventions for the AB plane angle and the B-point-to-facial-plane distance must be computed geometrically — testing B point's actual position relative to the N-Pog line — not simply from the vector direction of A to B. BCeph implements this correctly to prevent false Class III classifications in low-angle Class II cases.</p>
+    </div>
+  </section>
+
+  <section id="interpretation">
+    <h2>Clinical Interpretation of Kim Analysis</h2>
+
+    <h3>Integrating ODI and APDI Separately</h3>
+    <p>Before combining ODI and APDI into the CF, each measurement should be read independently. A patient with a low ODI (open bite tendency) but normal APDI (Class I anteroposterior) has a primarily vertical problem — the extraction question may be secondary to vertical control strategies. A patient with low APDI (Class II) but normal ODI has a primarily anteroposterior problem — camouflage, growth modification, or orthognathic surgery may be more relevant than the extraction question alone.</p>
+    <p>The combination is most informative when both measurements deviate in the same direction. A patient with low ODI (hyperdivergent) and low APDI (Class II) has a genuinely complex skeletal pattern where extraction is frequently indicated to avoid profile flattening and to manage the vertical dimension.</p>
+
+    <h3>CF and the Extraction Decision in Context</h3>
+    <p>A CF below 149° should prompt a serious extraction discussion, but it does not mandate it. Clinical factors that may support non-extraction despite a low CF include: mild arch length discrepancy, severely retroclined lower incisors where proclination is planned, a class III molar relationship in a growing patient with remaining class III correction potential, and strong patient preference with full informed consent regarding profile outcomes.</p>
+    <p>Conversely, a CF above 155.9° (non-extraction zone) does not preclude extraction if there is significant crowding, excessive incisor proclination already present, or a profile that cannot tolerate further dental compensation. Kim's Index is a starting point for the extraction conversation, not the final answer.</p>
+
+    <h3>Kim Analysis Alongside Other Modules</h3>
+    <p>Kim analysis works best when interpreted alongside the vertical measurements from <a href="/bjork-jarabak-analysis">Björk-Jarabak analysis</a> (posterior-anterior facial height ratio, sum of posterior angles) and the anteroposterior measurements from <a href="/steiner-analysis">Steiner analysis</a> (SNA, SNB, ANB). The <a href="/wits-analysis">Wits appraisal</a> provides an independent check on the anteroposterior relationship that is not dependent on the cranial base reference.</p>
+  </section>
+
+  <section id="bceph">
+    <h2>Run Kim Analysis Free in BCeph</h2>
+    <p>BCeph implements Kim analysis with all four outputs — ODI, APDI, CF, and Extraction Index classification — computed automatically from landmark positions. The sign conventions for the AB plane angle and the B-point position relative to the facial plane are handled correctly for screen coordinate systems, addressing a common source of error in manual implementations.</p>
+    <p>Kim analysis in BCeph is part of a complete multi-analysis workflow. The same landmark set used for Kim overlaps with <a href="/downs-analysis">Downs</a>, <a href="/tweed-analysis">Tweed</a>, and Wits, so running multiple analyses requires no additional landmark placement. All data stays on your device — no cloud upload, no subscription, no per-case fees.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the Kim analysis in orthodontics?</div>
+        <div class="faq-a">Kim's analysis, introduced by In-Kwon Kim (1978), integrates vertical and anteroposterior skeletal measurements to guide the extraction decision in orthodontic treatment planning. It produces the ODI (vertical pattern), APDI (anteroposterior pattern), CF (ODI + APDI), and an Extraction Index based on the CF threshold.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal ODI value?</div>
+        <div class="faq-a">The normal ODI is 74.5° ± 6.07°, with a range of approximately 62.4–86.6°. High ODI values indicate a hypodivergent deep bite skeletal configuration; low ODI values indicate a hyperdivergent open bite pattern.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal APDI value?</div>
+        <div class="faq-a">The normal APDI is 81.4° ± 3.82°, with a range of approximately 73.8–89°. High values indicate a Class III anteroposterior pattern; low values indicate Class II. Unlike ANB, APDI is not sensitive to vertical displacement of Nasion because it references the Frankfort Horizontal.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What CF value indicates extraction?</div>
+        <div class="faq-a">A CF (ODI + APDI) below 149° is categorised as indicating extraction. CF 149–155.9° is borderline and should be decided based on arch length, profile, and incisor inclination. CF above 155.9° (the population mean) favours non-extraction. These are guidelines, not absolute rules — always integrate with the full clinical picture.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I run Kim analysis for free?</div>
+        <div class="faq-a">Yes. BCeph includes a complete Kim analysis module — ODI, APDI, CF, and Extraction Index — at no cost. The tool runs entirely in your browser with no installation or cloud storage. All four values are computed automatically from your landmark placements, with correct geometric sign conventions applied.</div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<div class="cta-banner">
+  <h2>Run Kim Analysis Free in BCeph</h2>
+  <p>Get ODI, APDI, CF, and the Extraction Index instantly from your lateral cephalogram. No subscription. No cloud. No install.</p>
+  <a href="/app.html" class="btn-launch">Launch BCeph →</a>
+</div>
+
+<footer class="site-footer">
+  <strong>BCeph</strong> by Bayan Healthcare Analytics · <a href="/">Home</a> · <a href="/cephalometric-analysis">Ceph Analysis Guide</a> · <a href="/downs-analysis">Downs Analysis</a> · <a href="/wits-analysis">Wits Appraisal</a> · <a href="/cephalometric-software-comparison">Software Comparison</a> · <a href="/app.html">Launch App</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McNamara Cephalometric Analysis: Measurements, Norms & Nasion Perpendicular | BCeph</title>
+<meta name="description" content="Complete guide to McNamara cephalometric analysis: nasion perpendicular, maxillary and mandibular lengths, lower facial height, airway, and dental positions. Free browser tool included.">
+<link rel="canonical" href="https://www.bceph.com/mcnamara-analysis">
+<meta property="og:title" content="McNamara Cephalometric Analysis — Nasion Perpendicular, Lengths & Norms">
+<meta property="og:description" content="Master McNamara analysis: A-point to nasion perpendicular, Pog to nasion perpendicular, Co-A, Co-Gn, lower facial height, and pharyngeal airway. Full landmark guide and free tool.">
+<meta property="og:url" content="https://www.bceph.com/mcnamara-analysis">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.bceph.com/og-preview.png">
+<meta property="og:site_name" content="BCeph">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bceph.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Cephalometric Analysis", "item": "https://www.bceph.com/cephalometric-analysis" },
+        { "@type": "ListItem", "position": 3, "name": "McNamara Analysis", "item": "https://www.bceph.com/mcnamara-analysis" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "McNamara Cephalometric Analysis: Measurements, Norms and the Nasion Perpendicular",
+      "description": "Complete guide to McNamara cephalometric analysis including nasion perpendicular measurements, maxillary and mandibular lengths, lower facial height, pharyngeal airway, and dental positions.",
+      "author": { "@type": "Organization", "name": "Bayan Healthcare Analytics", "url": "https://www.bceph.com" },
+      "publisher": { "@type": "Organization", "name": "BCeph", "url": "https://www.bceph.com" },
+      "datePublished": "2026-03-27",
+      "dateModified": "2026-03-27",
+      "mainEntityOfPage": "https://www.bceph.com/mcnamara-analysis",
+      "image": "https://www.bceph.com/og-preview.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the McNamara cephalometric analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "McNamara analysis, introduced by James A. McNamara Jr. in 1984, is a cephalometric system that assesses skeletal jaw relationships using linear measurements rather than angular values. It evaluates the anteroposterior positions of A point and Pogonion relative to a nasion perpendicular, the effective lengths of the maxilla (Co-A) and mandible (Co-Gn), lower facial height, incisor positions, and pharyngeal airway dimensions." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal A point to nasion perpendicular in McNamara analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In McNamara analysis, the norm for A point relative to the nasion perpendicular (a true vertical line through nasion) is 0 to +1 mm in adults. Values anterior to the nasion perpendicular are positive; posterior values are negative. A point 1 mm anterior to the nasion perpendicular is considered ideal; values of −3 mm or more indicate maxillary retrusion." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the normal Pog to nasion perpendicular in McNamara analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For adult males, the norm for Pogonion to the nasion perpendicular is approximately −4 to 0 mm. For adult females, the norm is −4 to −2 mm. More negative values indicate mandibular retrusion; positive values indicate mandibular prognathism. The Pog-to-nasion-perpendicular measurement is particularly useful for assessing chin position in surgical planning." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Co-A measurement in McNamara analysis?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Co-A is the effective maxillary length — measured from Condylion (Co) to A point. Norms vary with age: approximately 85–90 mm in adolescents and 90–95 mm in adult females, with males averaging 2–3 mm longer. When compared to the mandibular length Co-Gn, the Co-A/Co-Gn ratio helps identify whether a skeletal discrepancy is primarily maxillary, mandibular, or combined." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run McNamara analysis for free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. BCeph includes a complete McNamara analysis module at no cost. All linear measurements — including the nasion perpendicular, Co-A, Co-Gn, lower facial height, and incisor positions — are computed automatically from your landmark placements. The analysis runs entirely in your browser with no data uploaded to any server." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --navy: #152242; --navy-deep: #0e1a38; --gold: #D4A030;
+    --gold-dim: rgba(212,160,48,0.15); --gold-glow: rgba(212,160,48,0.08);
+    --text-primary: rgba(255,255,255,0.92); --text-secondary: rgba(255,255,255,0.55);
+    --text-muted: rgba(255,255,255,0.35); --border: rgba(255,255,255,0.06);
+    --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy); color: var(--text-primary); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(14,26,56,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--font-display); font-size: 20px; color: var(--text-primary); }
+  .nav-logo span.g { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+  .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+  .nav-cta { background: var(--gold); color: var(--navy-deep) !important; padding: 7px 18px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; }
+  .nav-cta:hover { background: #e0ad35; }
+  @media (max-width: 640px) { .site-nav { display: none; } }
+  .breadcrumb { max-width: 860px; margin: 0 auto; padding: 24px 32px 0; font-size: 12px; color: var(--text-muted); }
+  .breadcrumb a { color: var(--text-muted); } .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { margin: 0 6px; opacity: 0.4; }
+  .hero { max-width: 860px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(212,160,48,0.2); border-radius: 5px; padding: 5px 12px; margin-bottom: 20px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.2; color: #fff; margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle { font-size: 15px; color: var(--text-secondary); max-width: 620px; line-height: 1.75; }
+  .hero-meta { margin-top: 24px; font-size: 11px; color: var(--text-muted); }
+  .hero-meta time { color: var(--text-secondary); }
+  .article { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  .article section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .article section:last-child { border-bottom: none; }
+  .article h2 { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 28px); font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .article h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 12px; margin-top: 32px; }
+  .article h3:first-child { margin-top: 0; }
+  .article p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; font-size: 15px; }
+  .article p:last-child { margin-bottom: 0; }
+  .article strong { color: var(--text-primary); font-weight: 600; }
+  .table-wrap { overflow-x: auto; margin: 24px 0 8px; border-radius: 12px; border: 1px solid var(--border); background: var(--navy-deep); }
+  .norms-table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13px; }
+  .norms-table thead th { background: rgba(212,160,48,0.08); color: var(--gold); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .norms-table tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: middle; }
+  .norms-table tbody tr:last-child td { border-bottom: none; }
+  .norms-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+  .meas-name { font-weight: 700; color: var(--text-primary) !important; }
+  .tag-hi { color: #f87171; font-size: 12px; } .tag-lo { color: #60a5fa; font-size: 12px; }
+  .landmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 24px; }
+  .landmark-card { background: var(--navy-deep); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .landmark-card .lm-abbr { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .landmark-card .lm-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .landmark-card .lm-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .highlight-box { background: var(--gold-glow); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 24px 0; }
+  .highlight-box p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+  .highlight-box strong { color: var(--gold); }
+  .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .faq-item { background: var(--navy-deep); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; transition: border-color 0.2s; }
+  .faq-item:hover { border-color: rgba(212,160,48,0.2); }
+  .faq-q { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .faq-q::before { content: "Q"; font-size: 9px; font-weight: 800; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(212,160,48,0.2); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; margin-top: 1px; }
+  .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; padding-left: 36px; }
+  .cta-banner { text-align: center; padding: 64px 32px; border-top: 1px solid var(--border); }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(24px, 4vw, 32px); color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: var(--text-secondary); font-size: 15px; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-launch { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px; padding: 14px 32px; border-radius: 8px; transition: background 0.2s, transform 0.15s; }
+  .btn-launch:hover { background: #e0ad35; text-decoration: none; transform: translateY(-1px); }
+  .site-footer { background: var(--navy-deep); padding: 24px 32px; text-align: center; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+  .site-footer a { color: var(--text-muted); } .site-footer a:hover { color: var(--gold); }
+  .site-footer strong { color: rgba(212,160,48,0.5); }
+  @media (max-width: 640px) { .hero { padding: 36px 20px 40px; } .article { padding: 0 20px; } .article section { padding: 36px 0; } .breadcrumb { padding: 20px 20px 0; } .cta-banner { padding: 48px 20px; } }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#analyses">Analyses</a>
+    <a href="/cephalometric-analysis">Ceph Guide</a>
+    <a href="/app.html" class="nav-cta">Launch App →</a>
+  </div>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">BCeph</a><span>›</span><a href="/cephalometric-analysis">Cephalometric Analysis</a><span>›</span><span>McNamara Analysis</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-label">Analysis Guide</div>
+  <h1>McNamara Cephalometric Analysis: <em>The Nasion Perpendicular & Linear Measurements</em></h1>
+  <p class="hero-subtitle">McNamara's analysis evaluates skeletal jaw relationships using linear distances rather than angles — a methodological shift that makes its measurements directly relevant to treatment mechanics. This guide covers all key measurements, age-adjusted norms, landmark requirements, and how McNamara integrates with angular analysis systems.</p>
+  <p class="hero-meta">By <strong>Bayan Healthcare Analytics</strong> · Updated <time datetime="2026-03-27">March 27, 2026</time> · 9 min read</p>
+</header>
+
+<article class="article">
+
+  <section id="overview">
+    <h2>What Is McNamara Analysis?</h2>
+    <p>McNamara analysis was introduced by James A. McNamara Jr. in 1984 as part of a broader effort to make cephalometric measurements more directly clinically applicable. Where angular analyses like <a href="/steiner-analysis">Steiner</a> and <a href="/downs-analysis">Downs</a> express jaw relationships as degree deviations from a population mean, McNamara expresses most measurements as <strong>linear distances in millimetres</strong> — values that correspond directly to the magnitude of correction needed in treatment.</p>
+    <p>The central feature of McNamara analysis is the <strong>nasion perpendicular</strong>: a true vertical line dropped from Nasion (perpendicular to the Frankfort Horizontal). The positions of A point and Pogonion relative to this line give an immediate visual and quantitative sense of whether the maxilla and mandible are appropriately positioned anteroposteriorly. This is particularly intuitive for treatment planning: a mandible 8 mm behind the nasion perpendicular in an adult female has a clearly quantified deficit that can be compared directly against surgical advancement targets or growth modification goals.</p>
+    <p>McNamara's analysis also includes measurements of absolute jaw lengths — effective maxillary length (Co-A) and effective mandibular length (Co-Gn) — that allow assessment of whether a skeletal discrepancy is primarily a size problem, a position problem, or both. The addition of <strong>lower facial height</strong> and <strong>pharyngeal airway</strong> measurements gives McNamara a unique scope among standard cephalometric analyses.</p>
+  </section>
+
+  <section id="measurements">
+    <h2>All McNamara Measurements — Norms and Interpretation</h2>
+    <p>McNamara norms are age-dependent for the jaw length measurements. The values below reflect adult (18+) reference ranges. For growing patients, McNamara's original proportional tables (published in 1984) should be consulted for age-adjusted linear norms.</p>
+
+    <div class="table-wrap">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Measurement</th>
+            <th>Adult Male Norm</th>
+            <th>Adult Female Norm</th>
+            <th>Anterior =</th>
+            <th>Posterior =</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="meas-name">A point to Nasion perp.</td>
+            <td>0 to +1 mm</td>
+            <td>0 to +1 mm</td>
+            <td class="tag-hi">Maxillary prognathism</td>
+            <td class="tag-lo">Maxillary retrusion</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Pog to Nasion perp.</td>
+            <td>−4 to 0 mm</td>
+            <td>−4 to −2 mm</td>
+            <td class="tag-hi">Mandibular prognathism</td>
+            <td class="tag-lo">Mandibular retrusion</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Effective maxillary length (Co-A)</td>
+            <td>95–100 mm</td>
+            <td>91–96 mm</td>
+            <td class="tag-hi">Long / prognathic Mx</td>
+            <td class="tag-lo">Short / retrognathic Mx</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Effective mandibular length (Co-Gn)</td>
+            <td>125–135 mm</td>
+            <td>118–128 mm</td>
+            <td class="tag-hi">Long / prognathic Mn</td>
+            <td class="tag-lo">Short / retrognathic Mn</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Lower facial height (ANS-Me)</td>
+            <td>65–75 mm</td>
+            <td>60–70 mm</td>
+            <td class="tag-hi">Hyperdivergent / open bite</td>
+            <td class="tag-lo">Hypodivergent / deep bite</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Upper pharyngeal airway width</td>
+            <td>15–20 mm</td>
+            <td>15–20 mm</td>
+            <td class="tag-hi">Wide / patent airway</td>
+            <td class="tag-lo">Narrow / potential obstruction</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Lower pharyngeal airway width</td>
+            <td>11–14 mm</td>
+            <td>11–14 mm</td>
+            <td class="tag-hi">Wide airway</td>
+            <td class="tag-lo">Narrow / potential obstruction</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Maxillary incisor to A-perp (linear)</td>
+            <td>4–6 mm</td>
+            <td>4–6 mm</td>
+            <td class="tag-hi">Protruded upper incisors</td>
+            <td class="tag-lo">Retruded upper incisors</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Mandibular incisor to A-Pog (linear)</td>
+            <td>1–3 mm</td>
+            <td>1–3 mm</td>
+            <td class="tag-hi">Protruded lower incisors</td>
+            <td class="tag-lo">Retruded lower incisors</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:12px;">Norms from McNamara (1984), based on the University of Michigan Growth Study and Burlington Growth Study samples. Age-adjusted norms for growing patients vary; consult original reference tables.</p>
+
+    <div class="highlight-box">
+      <p><strong>Key principle:</strong> McNamara analysis assesses <em>position</em> and <em>size</em> independently. A patient can have a normal A-point-to-nasion-perpendicular but a short Co-A, indicating normal maxillary position but deficient maxillary development. This distinction is critical for surgical planning — a retropositioned maxilla needs advancement; an underdeveloped maxilla may need a different intervention strategy.</p>
+    </div>
+  </section>
+
+  <section id="landmarks">
+    <h2>Landmarks Required for McNamara Analysis</h2>
+
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="lm-abbr">N</div>
+        <div class="lm-name">Nasion</div>
+        <div class="lm-desc">Most anterior point of the frontonasal suture. The origin of the nasion perpendicular — the vertical reference line that anchors both the A-point and Pog measurements.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Po / Or</div>
+        <div class="lm-name">Porion & Orbitale</div>
+        <div class="lm-desc">Define the Frankfort Horizontal, from which the nasion perpendicular is constructed as a true vertical (90° to FH). FH accuracy directly determines the reliability of the nasion perpendicular.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">A</div>
+        <div class="lm-name">A Point</div>
+        <div class="lm-desc">Deepest point on the anterior maxillary alveolar contour. The horizontal distance from A point to the nasion perpendicular quantifies maxillary anteroposterior position and is the starting point for effective maxillary length (Co-A).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Pog</div>
+        <div class="lm-name">Pogonion</div>
+        <div class="lm-desc">Most anterior point on the bony chin. The horizontal distance from Pog to the nasion perpendicular quantifies mandibular anteroposterior position and is the clinical end-point for surgical chin advancement or setback decisions.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Co</div>
+        <div class="lm-name">Condylion</div>
+        <div class="lm-desc">Most posterosuperior point of the mandibular condyle. The origin for both effective jaw length measurements: Co-A (effective maxillary length) and Co-Gn (effective mandibular length). Requires careful identification on the condylar outline.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Gn</div>
+        <div class="lm-name">Gnathion</div>
+        <div class="lm-desc">Most anteroinferior point of the mandibular symphysis. Endpoint of the effective mandibular length measurement (Co-Gn).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">ANS</div>
+        <div class="lm-name">Anterior Nasal Spine</div>
+        <div class="lm-desc">Tip of the anterior nasal spine. Superior endpoint of the lower facial height measurement (ANS to Menton).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">Me</div>
+        <div class="lm-name">Menton</div>
+        <div class="lm-desc">Most inferior point of the mandibular symphysis. Inferior endpoint of the lower facial height measurement (ANS-Me).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-abbr">U1 / L1</div>
+        <div class="lm-name">Upper & Lower Incisor Tips</div>
+        <div class="lm-desc">Incisal tips of the most prominent maxillary and mandibular central incisors. Used to compute the horizontal distances of U1 to the A-perpendicular and L1 to the A-Pog line.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="interpretation">
+    <h2>Clinical Interpretation of McNamara Analysis</h2>
+
+    <h3>Nasion Perpendicular: Reading Position</h3>
+    <p>The nasion perpendicular provides an immediately interpretable spatial picture of the anteroposterior jaw relationship. An ideal adult female profile has A point 0–1 mm anterior to the nasion perpendicular and Pog 2–4 mm posterior to it — a slight maxillary protrusion and mild mandibular retrusion that creates the balanced convex profile characteristic of Class I facial balance.</p>
+    <p>When A point is significantly posterior to the nasion perpendicular (−3 mm or more), maxillary retrusion or deficiency is implicated — a finding relevant to growth modification, BSSO sequencing, and LeFort I planning. When Pog is markedly posterior (−8 mm or more in females), mandibular deficiency is the dominant skeletal issue.</p>
+
+    <h3>Jaw Lengths: Size vs Position</h3>
+    <p>The Co-A and Co-Gn measurements distinguish between jaw <em>size</em> and jaw <em>position</em>. A patient with retropositioned A point but normal Co-A length has a positioned maxilla in a retruded location — possible causes include a Class III functional shift, maxillary posterior rotation, or a deep palatal vault. A patient with retropositioned A point <em>and</em> a short Co-A has a genuinely underdeveloped maxilla. These two scenarios require different treatment approaches.</p>
+    <p>The ratio between Co-Gn and Co-A is also informative. McNamara's original work established that in well-balanced Class I adults, mandibular length exceeds maxillary length by approximately 25–30 mm. When the discrepancy is greater than 30 mm, there may be relative mandibular excess; when it is less than 20 mm, there may be relative mandibular deficiency — even if absolute lengths are within normal range.</p>
+
+    <h3>Lower Facial Height and Vertical Integration</h3>
+    <p>The ANS-Me measurement contextualises the vertical dimension in linear terms. When interpreted alongside the posterior-anterior facial height ratio from <a href="/bjork-jarabak-analysis">Björk-Jarabak analysis</a>, the two measurements provide complementary perspectives: Björk-Jarabak expresses the vertical dimension as a ratio (informing growth rotation tendency); McNamara expresses it as an absolute millimetre value (directly comparable against treatment goals).</p>
+
+    <h3>Pharyngeal Airway Assessment</h3>
+    <p>McNamara was among the first cephalometric systems to include airway measurements as part of the standard analysis. The upper and lower pharyngeal airway widths are assessed from the posterior pharyngeal wall to the relevant anatomical boundaries. Upper airway width below 10 mm has been associated with increased sleep-disordered breathing risk; lower airway width below 11 mm is considered potentially compromised. These measurements are particularly relevant when planning mandibular setback procedures, where posterior displacement of the tongue base can narrow the airway.</p>
+  </section>
+
+  <section id="bceph">
+    <h2>Run McNamara Analysis Free in BCeph</h2>
+    <p>BCeph implements the complete McNamara analysis module including the nasion perpendicular measurements, effective jaw lengths, lower facial height, airway widths, and incisor position measurements. All values are computed from landmark positions and displayed against sex-appropriate adult norms, with deviation indicators for values outside the normal range.</p>
+    <p>McNamara analysis in BCeph uses the same Condylion landmark required for the Ricketts analysis, and the same Menton and ANS landmarks used across multiple other modules. A full multi-analysis session covering Steiner, Ricketts, McNamara, <a href="/downs-analysis">Downs</a>, and <a href="/bjork-jarabak-analysis">Björk-Jarabak</a> requires only one landmark placement session — BCeph shares landmarks across all active analysis modules simultaneously.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the McNamara cephalometric analysis?</div>
+        <div class="faq-a">McNamara analysis (1984) evaluates skeletal jaw relationships using linear measurements — particularly the positions of A point and Pogonion relative to a nasion perpendicular (a vertical line through Nasion). It also measures effective maxillary and mandibular lengths, lower facial height, pharyngeal airway width, and incisor positions. Its linear approach makes measurements directly comparable to treatment targets.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal A point to nasion perpendicular measurement?</div>
+        <div class="faq-a">The ideal A point position is 0 to +1 mm anterior to the nasion perpendicular in adults of both sexes. Values more than 1 mm anterior indicate maxillary prognathism; values more than 2 mm posterior indicate maxillary retrusion. This measurement is used in both surgical planning and growth modification assessment.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the normal Pog to nasion perpendicular?</div>
+        <div class="faq-a">For adult males, the norm is −4 to 0 mm (Pog is slightly posterior to the nasion perpendicular). For adult females, the norm is −4 to −2 mm. More negative values indicate mandibular retrusion; positive values indicate prognathism. The sex difference reflects the greater chin projection in males.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is Co-A in McNamara analysis?</div>
+        <div class="faq-a">Co-A is the effective maxillary length — the straight-line distance from Condylion to A point. It measures the size of the maxillary complex rather than just its position. Adult female norm is approximately 91–96 mm; adult male norm is 95–100 mm. When compared to Co-Gn, the ratio of the two jaw lengths helps identify whether a skeletal discrepancy is primarily maxillary, mandibular, or combined.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I run McNamara analysis for free?</div>
+        <div class="faq-a">Yes. BCeph includes a complete McNamara analysis module at no cost. All linear measurements are computed automatically from landmark placements. The analysis runs entirely in your browser with no data uploaded to any server — HIPAA-aligned by architecture, not policy.</div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<div class="cta-banner">
+  <h2>Run McNamara Analysis Free in BCeph</h2>
+  <p>Nasion perpendicular, jaw lengths, lower facial height — all computed instantly from your lateral cephalogram. Free, private, no installation.</p>
+  <a href="/app.html" class="btn-launch">Launch BCeph →</a>
+</div>
+
+<footer class="site-footer">
+  <strong>BCeph</strong> by Bayan Healthcare Analytics · <a href="/">Home</a> · <a href="/cephalometric-analysis">Ceph Analysis Guide</a> · <a href="/ricketts-analysis">Ricketts Analysis</a> · <a href="/bjork-jarabak-analysis">Björk-Jarabak</a> · <a href="/cephalometric-software-comparison">Software Comparison</a> · <a href="/app.html">Launch App</a>
+</footer>
+
+</body>
+</html>

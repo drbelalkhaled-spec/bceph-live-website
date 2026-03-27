@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Line Analysis — Ricketts Esthetic Line, Lip Position Norms & Guide | BCeph</title>
+<meta name="description" content="Complete guide to E-line (esthetic line) cephalometric analysis: upper and lower lip norms, how to measure lip to E-line, clinical interpretation, and how to run it free in BCeph.">
+<link rel="canonical" href="https://www.bceph.com/e-line-analysis">
+<meta property="og:title" content="E-Line Analysis: Lip to Esthetic Line Norms & Clinical Guide">
+<meta property="og:description" content="Everything orthodontists need to know about the Ricketts E-line — upper and lower lip position norms, measurement method, clinical interpretation, and a free browser-based tool.">
+<meta property="og:url" content="https://www.bceph.com/e-line-analysis">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.bceph.com/og-preview.png">
+<meta property="og:site_name" content="BCeph">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bceph.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Cephalometric Analysis", "item": "https://www.bceph.com/cephalometric-analysis" },
+        { "@type": "ListItem", "position": 3, "name": "E-Line Analysis", "item": "https://www.bceph.com/e-line-analysis" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "E-Line Analysis: Ricketts Esthetic Line, Lip Position Norms & Clinical Interpretation",
+      "description": "A complete clinical guide to E-line cephalometric analysis — the Ricketts esthetic line from Pronasale to soft tissue Pogonion — covering upper and lower lip position norms, age-related changes, measurement technique, and clinical interpretation for orthodontic treatment planning.",
+      "author": {
+        "@type": "Organization",
+        "name": "Bayan Healthcare Analytics",
+        "url": "https://www.bceph.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "BCeph",
+        "url": "https://www.bceph.com"
+      },
+      "datePublished": "2026-03-27",
+      "dateModified": "2026-03-27",
+      "mainEntityOfPage": "https://www.bceph.com/e-line-analysis",
+      "image": "https://www.bceph.com/og-preview.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the E-line in orthodontics?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The E-line (esthetic line) is a reference line introduced by Robert Ricketts running from Pronasale (the tip of the nose) to soft tissue Pogonion (the most anterior point of the soft tissue chin). It is used to assess the relative position of the upper and lower lips in profile. Ideally, the upper lip lies approximately 4 mm behind the E-line and the lower lip approximately 2 mm behind it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are normal values for lip position on the E-line?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The established norms for lip-to-E-line measurements are: upper lip −4 mm (±2 mm) and lower lip −2 mm (±2 mm), where negative values indicate the lip is posterior to the E-line. These values represent the average for adults with balanced profiles. The lips tend to be more protrusive relative to the E-line in children and adolescents, and more retrusive in older adults as the nose continues to grow."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does lip-to-E-line position change with age?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The E-line uses the nose tip as one of its anchors. As the nose continues to grow throughout adolescence and early adulthood — particularly the cartilaginous tip — the E-line moves anteriorly even without any dental or skeletal change. This means lips that appear relatively protrusive in a teenager may fall within or behind the E-line as an adult. Clinicians should account for this when treating growing patients."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between the E-line and the H line?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Ricketts E-line runs from the nose tip (Pronasale) to soft tissue Pogonion, assessing lip position relative to the nose and chin. The Holdaway H-line runs from soft tissue Pogonion to the most prominent point of the upper lip. The E-line is a nose-to-chin reference; the H-line is a lip-to-chin reference. Both provide useful but different information about the soft tissue profile."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I measure E-line lip position for free without downloading software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. BCeph includes E-line analysis at no cost, running entirely in the browser. You place Pronasale, soft tissue Pogonion, and the upper and lower lip landmarks on your lateral cephalogram, and BCeph calculates the perpendicular distances from each lip to the E-line with norm comparison. No installation required, no cloud upload, and every other BCeph analysis module is available in the same session."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --navy: #152242;
+    --navy-deep: #0e1a38;
+    --gold: #D4A030;
+    --gold-dim: rgba(212,160,48,0.12);
+    --text-dark: #0e1a38;
+    --text-body: #4a5568;
+    --text-muted: #9aa0aa;
+    --bg: #ffffff;
+    --bg-alt: #f8f9fb;
+    --border: rgba(0,0,0,0.08);
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--navy); text-decoration: none; }
+  a:hover { color: var(--gold); }
+  img { max-width: 100%; display: block; }
+
+  /* NAV */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--font-body); font-weight: 800; font-size: 17px; color: var(--navy-deep); letter-spacing: -0.3px; }
+  .nav-logo .g { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-size: 13px; font-weight: 500; }
+  .nav-links a { color: var(--text-body); }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { background: var(--gold); color: var(--navy-deep) !important; font-weight: 700 !important; padding: 8px 18px; border-radius: 7px; font-size: 13px !important; transition: background 0.2s; }
+  .nav-cta:hover { background: #c8941f !important; color: var(--navy-deep) !important; }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* BREADCRUMB */
+  .breadcrumb { max-width: 860px; margin: 0 auto; padding: 20px 32px 0; font-size: 12px; color: var(--text-muted); letter-spacing: 0.3px; }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { margin: 0 6px; opacity: 0.5; }
+
+  /* HERO */
+  .hero { max-width: 860px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy-deep); background: var(--gold); border-radius: 5px; padding: 5px 12px; margin-bottom: 20px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); font-weight: 400; line-height: 1.2; color: var(--navy-deep); margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle { font-size: 15px; color: var(--text-body); max-width: 620px; line-height: 1.75; }
+  .hero-meta { margin-top: 24px; font-size: 11px; color: var(--text-muted); letter-spacing: 0.3px; }
+  .hero-meta strong { color: var(--text-body); }
+  .hero-meta time { color: var(--text-body); }
+
+  /* ARTICLE */
+  .article { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  .article section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .article section:last-child { border-bottom: none; }
+  .article section.alt-bg { margin: 0 -32px; padding: 48px 32px; background: var(--bg-alt); }
+  .article h2 { font-family: var(--font-display); font-size: clamp(22px, 3.5vw, 28px); font-weight: 400; color: var(--navy-deep); margin-bottom: 20px; line-height: 1.25; }
+  .article h3 { font-size: 16px; font-weight: 700; color: var(--navy-deep); margin-bottom: 12px; margin-top: 32px; }
+  .article h3:first-child { margin-top: 0; }
+  .article p { color: var(--text-body); margin-bottom: 16px; line-height: 1.8; font-size: 15px; }
+  .article p:last-child { margin-bottom: 0; }
+  .article strong { color: var(--navy-deep); font-weight: 600; }
+  .article a { color: var(--navy); border-bottom: 1px solid rgba(21,34,66,0.15); }
+  .article a:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; margin: 24px 0 8px; border-radius: 12px; border: 1px solid var(--border); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.05); -webkit-overflow-scrolling: touch; }
+  .norms-table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 13px; }
+  .norms-table thead th { background: var(--navy); color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; padding: 13px 16px; text-align: left; }
+  .norms-table tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-body); vertical-align: middle; }
+  .norms-table tbody tr:last-child td { border-bottom: none; }
+  .norms-table tbody tr:hover td { background: #f4f6fb; }
+  .norms-table .meas-name { font-weight: 600; color: var(--navy-deep); white-space: nowrap; }
+  .norms-table .norm-val { font-weight: 700; color: var(--navy-deep); }
+  .tag-high { color: #b45309; font-size: 11px; font-weight: 600; }
+  .tag-low { color: #1d7a5f; font-size: 11px; font-weight: 600; }
+
+  /* LANDMARKS */
+  .landmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 24px; }
+  .landmark-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .landmark-card .lm-code { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 0.8px; margin-bottom: 6px; text-transform: uppercase; }
+  .landmark-card .lm-name { font-size: 13px; font-weight: 700; color: var(--navy-deep); margin-bottom: 6px; }
+  .landmark-card .lm-desc { font-size: 12px; color: var(--text-body); line-height: 1.6; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box { background: #fffbf0; border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 24px 0; font-size: 14px; color: var(--text-body); line-height: 1.75; }
+  .highlight-box strong { color: #92700a; }
+
+  /* BCEPH FEATURES */
+  .bceph-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px; }
+  .bceph-feature-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .bceph-feature-card .icon { font-size: 22px; margin-bottom: 10px; }
+  .bceph-feature-card h4 { font-size: 13px; font-weight: 700; color: var(--navy-deep); margin-bottom: 6px; }
+  .bceph-feature-card p { font-size: 12px; color: var(--text-body); line-height: 1.6; margin: 0; }
+
+  /* AGE ADJUSTMENT TABLE */
+  .age-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 16px; }
+  .age-table th { background: var(--bg-alt); color: var(--navy-deep); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); }
+  .age-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-body); font-size: 13px; }
+  .age-table tr:last-child td { border-bottom: none; }
+  .age-table .age-stage { font-weight: 600; color: var(--navy-deep); }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+  .faq-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: border-color 0.2s; }
+  .faq-item:hover { border-color: rgba(212,160,48,0.4); }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+  .faq-q::before { content: "Q"; font-size: 9px; font-weight: 800; color: var(--navy-deep); background: var(--gold); border-radius: 4px; padding: 3px 7px; flex-shrink: 0; margin-top: 2px; letter-spacing: 0.5px; }
+  .faq-a { font-size: 14px; color: var(--text-body); line-height: 1.8; padding-left: 36px; }
+
+  /* CTA */
+  .cta-banner { background: var(--navy); text-align: center; padding: 64px 32px; }
+  .cta-banner h2 { font-family: var(--font-display); font-size: clamp(22px, 4vw, 30px); color: #fff; margin-bottom: 12px; }
+  .cta-banner p { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-launch { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px; padding: 14px 32px; border-radius: 8px; letter-spacing: 0.3px; transition: background 0.2s, transform 0.15s; text-decoration: none; border-bottom: none !important; }
+  .btn-launch:hover { background: #e0ad35; transform: translateY(-1px); color: var(--navy-deep) !important; }
+  .btn-launch .arrow { font-size: 16px; }
+
+  /* FOOTER */
+  .site-footer { background: var(--navy-deep); padding: 24px 32px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.4px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .site-footer a { color: rgba(255,255,255,0.35); }
+  .site-footer a:hover { color: var(--gold); border-bottom: none; }
+  .site-footer strong { color: rgba(212,160,48,0.5); }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 20px 40px; }
+    .article { padding: 0 20px; }
+    .article section { padding: 36px 0; }
+    .article section.alt-bg { margin: 0 -20px; padding: 36px 20px; }
+    .breadcrumb { padding: 16px 20px 0; }
+    .cta-banner { padding: 48px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
+    <ul class="nav-links">
+      <li><a href="/app.html">Features</a></li>
+      <li><a href="/cephalometric-analysis">Analyses</a></li>
+      <li><a href="/cephalometric-analysis">Ceph Guide</a></li>
+      <li><a href="/app.html" class="nav-cta">Launch App →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">BCeph</a><span>›</span><a href="/cephalometric-analysis">Cephalometric Analysis</a><span>›</span><span>E-Line Analysis</span>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">Clinical Reference</div>
+  <h1>E-Line Analysis: <em>Ricketts Esthetic Line & Lip Position Norms</em></h1>
+  <p class="hero-subtitle">The E-line is one of orthodontics' most cited soft tissue references — a simple line from nose tip to soft tissue chin that reveals whether the lips fall in a balanced, protrusive, or retrusive position. This guide covers the measurement, norms, age adjustments, and clinical implications in full.</p>
+  <p class="hero-meta">By <strong>Bayan Healthcare Analytics</strong> · Updated <time datetime="2026-03-27">March 27, 2026</time> · 8 min read</p>
+</header>
+
+<article class="article">
+
+  <!-- 1. OVERVIEW -->
+  <section id="overview">
+    <h2>What Is the E-Line (Esthetic Line)?</h2>
+    <p>The esthetic line — universally referred to as the <strong>E-line</strong> — was introduced by Robert Ricketts as part of his comprehensive <a href="/ricketts-analysis">Ricketts cephalometric analysis</a>. It is constructed by drawing a straight line from <strong>Pronasale</strong> (the most anterior point of the nasal tip) to <strong>soft tissue Pogonion</strong> (the most anterior point of the soft tissue chin). The position of the upper and lower lips relative to this line provides an immediate, clinically meaningful indicator of lip balance within the facial profile.</p>
+    <p>The E-line's elegance lies in its simplicity: it requires only two soft tissue landmarks to establish a reference that accounts for both nasal projection and chin projection simultaneously. A lip sitting well behind the line reads as retrusive; a lip touching or anterior to the line reads as protrusive. Because both nose and chin continue to grow and change with age, the norms for lip-to-E-line position are age-dependent — a nuance that is essential when treating adolescent patients.</p>
+    <p>In clinical practice, E-line analysis is frequently used alongside <a href="/holdaway-analysis">Holdaway soft tissue analysis</a> — which uses a different reference line — to build a complete picture of the soft tissue profile. It is also an important outcome measure in extraction planning: upper incisor retraction typically moves the upper lip posteriorly, and assessing pre-treatment lip-to-E-line position helps predict whether treatment will improve or worsen the profile. BCeph supports E-line analysis alongside the full suite of <a href="/cephalometric-analysis">cephalometric analyses</a> at no cost.</p>
+
+    <div class="highlight-box">
+      <strong>Key point:</strong> The E-line uses the nose as one of its anchors. A large or projecting nose will move the E-line anteriorly, making the lips appear more retrusive than they are relative to the dentition. Always consider nasal projection when interpreting E-line findings — particularly in patients of ethnic backgrounds where nasal morphology varies from the original normative sample.
+    </div>
+  </section>
+
+  <!-- 2. MEASUREMENTS & NORMS -->
+  <section id="measurements" class="alt-bg">
+    <h2>E-Line Measurements and Norms</h2>
+    <p>E-line analysis produces two primary measurements: upper lip to E-line and lower lip to E-line. Both are measured as perpendicular distances from the most prominent point of each lip to the E-line. Negative values (posterior to the line) are the norm in adults; positive values indicate the lip is anterior to the line.</p>
+
+    <div class="table-wrap">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Measurement</th>
+            <th>Adult Norm</th>
+            <th>Standard Deviation</th>
+            <th>Positive / Anterior</th>
+            <th>Negative / Posterior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="meas-name">Upper Lip to E-Line (UL-E)</td>
+            <td class="norm-val">−4 mm</td>
+            <td>±2 mm</td>
+            <td class="tag-high">Upper lip protrusive / full profile</td>
+            <td class="tag-low">Upper lip retrusive / flat profile</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Lower Lip to E-Line (LL-E)</td>
+            <td class="norm-val">−2 mm</td>
+            <td>±2 mm</td>
+            <td class="tag-high">Lower lip protrusive / lip strain indicator</td>
+            <td class="tag-low">Lower lip retrusive / posterior chin-lip balance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:12px; color:var(--text-muted); margin-top:12px;">Norms from Ricketts (1960). Negative values = lip posterior to E-line. Positive values = lip anterior to E-line. These norms were derived from a Caucasian adult sample; clinicians should apply population-appropriate values.</p>
+
+    <h3>Age-Related Changes in E-Line Position</h3>
+    <p>The nose grows continuously throughout childhood and adolescence — particularly the cartilaginous lower third and nasal tip. As the nasal tip moves anteriorly with growth, the E-line rotates forward, meaning the lips become progressively more retrusive relative to the E-line even without any orthodontic change. Ricketts observed that lip-to-E-line position changes by approximately −0.5 to −1 mm per year of growth. The table below shows typical values at different developmental stages.</p>
+
+    <div class="table-wrap" style="margin-top:16px;">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Age / Stage</th>
+            <th>Upper Lip to E-Line</th>
+            <th>Lower Lip to E-Line</th>
+            <th>Clinical Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600; color:var(--navy-deep);">Age 8–9</td>
+            <td>0 to +1 mm</td>
+            <td>0 to +1 mm</td>
+            <td style="color:var(--text-body);">Lips typically at or slightly anterior to E-line</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600; color:var(--navy-deep);">Age 12–13</td>
+            <td>−1 to −2 mm</td>
+            <td>0 to −1 mm</td>
+            <td style="color:var(--text-body);">Lips approaching adult range as nose develops</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600; color:var(--navy-deep);">Adult</td>
+            <td>−4 mm (±2)</td>
+            <td>−2 mm (±2)</td>
+            <td style="color:var(--text-body);">Established adult norm — nose growth complete</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px;">
+      <strong>Population variation:</strong> Lip-to-E-line norms vary substantially across ethnic groups. Studies in African, East Asian, and South Asian populations consistently show more protrusive lips relative to the E-line compared to Ricketts' original Caucasian sample. Applying the −4/−2 mm norms universally can lead to over-retraction of the lips in non-Caucasian patients. Always apply population-appropriate reference values.
+    </div>
+  </section>
+
+  <!-- 3. LANDMARKS -->
+  <section id="landmarks">
+    <h2>Landmarks Required for E-Line Analysis</h2>
+    <p>E-line analysis is one of the most landmark-efficient cephalometric assessments. It requires only four points, all on the soft tissue profile. Precise identification of the nasal tip and soft tissue chin is especially important, as errors in these two anchor points directly alter the position of the reference line.</p>
+
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="lm-code">Pn</div>
+        <div class="lm-name">Pronasale</div>
+        <div class="lm-desc">The most anteriorly projecting point of the nasal tip on the lateral profile. The superior anchor of the E-line. Also used in <a href="/holdaway-analysis">Holdaway nose prominence</a> measurement. Identify the very tip of the nose — not the columella base or alar rim.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">Pog'</div>
+        <div class="lm-name">Soft Tissue Pogonion</div>
+        <div class="lm-desc">The most anteriorly projecting point of the soft tissue chin. The inferior anchor of the E-line. Compare with bony Pogonion to assess soft tissue chin thickness — relevant in orthognathic planning where soft tissue chin thickness may mask a bony deficiency.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">UL</div>
+        <div class="lm-name">Upper Lip (Most Prominent)</div>
+        <div class="lm-desc">The most anteriorly projecting point of the upper lip on the lateral profile. Measured as a perpendicular distance to the E-line. In lip incompetent patients, identify the natural resting position of the lip rather than the strained closure position.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">LL</div>
+        <div class="lm-name">Lower Lip (Most Prominent)</div>
+        <div class="lm-desc">The most anteriorly projecting point of the lower lip. Measured as a perpendicular distance to the E-line. Lower lip position is often more protrusive than the upper lip in Class II division 1 cases where the lower lip traps behind the upper incisors.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CLINICAL INTERPRETATION -->
+  <section id="interpretation" class="alt-bg">
+    <h2>Clinical Interpretation of E-Line Findings</h2>
+
+    <h3>Protrusive Lips (Values More Positive Than Norm)</h3>
+    <p>When both lips sit anterior to the E-line — particularly values of 0 mm or more in an adult — the profile reads as full or protrusive. In Class II division 1 cases, a protrusive upper lip combined with a lower lip that has been displaced lingually by upper incisor flaring may still produce misleadingly normal E-line measurements because the lower lip protrusion masks the dental and skeletal discrepancy. Always cross-reference with <a href="/steiner-analysis">Steiner</a> incisor positions and overjet measurements.</p>
+    <p>In cases of bimaxillary dentoalveolar protrusion — a common finding in certain population groups — both lips will be anterior to or at the E-line. This is often the primary driver of the chief complaint and the primary indication for extraction treatment, even when the skeletal ANB angle is relatively normal.</p>
+
+    <h3>Retrusive Lips (Values More Negative Than Norm)</h3>
+    <p>Upper lip values more negative than −6 mm with a lower lip at −4 mm or beyond indicate a very flat or retrusive profile. This pattern may be appropriate in patients with a prominent nose and strong chin, where the lips are genuinely in a posterior position relative to the facial skeleton. However, it can also indicate over-retraction of the upper incisors from previous treatment, or a pattern where further extraction and retraction would create an aesthetically unacceptable outcome. The profile impact of planned treatment should be predicted before extraction decisions are finalised.</p>
+
+    <h3>Upper Versus Lower Lip Discordance</h3>
+    <p>A significant discrepancy between upper and lower lip positions — for example, an upper lip at −2 mm but a lower lip at −5 mm — often reflects a Class II dental or skeletal relationship. The lower lip has been pushed posteriorly by a retruding mandible or proclined lower incisors, while the upper lip maintains a protrusive position. This pattern frequently resolves partially with Class II correction. Alternatively, a lower lip that sits clearly more anterior than the upper lip (lower > upper) may indicate Class III tendency or mandibular excess.</p>
+
+    <h3>E-Line, Nasal Growth, and Treatment Timing</h3>
+    <p>For growing patients, anticipating nasal growth is essential. A teenage patient whose lips are currently at −1/0 mm will likely be at −3/−2 mm as an adult without any treatment, simply due to continued nasal growth. Treating an adolescent to achieve the adult norm of −4/−2 mm today may produce an excessively flat profile at age 25. For growing patients, aim for a lip position that is more protrusive than the adult norm and will reach a natural balance once nasal growth is complete.</p>
+
+    <div class="highlight-box">
+      <strong>Treatment planning note:</strong> For extraction planning in adolescents, the target lip position post-treatment should account for residual nasal growth. A rule of thumb: allow approximately −1 mm per year of remaining nasal growth (typically through mid-to-late adolescence). A 13-year-old treated to −3/−1 mm will likely reach −4 to −5/−2 to −3 mm as an adult — within or slightly behind the normal range.
+    </div>
+
+    <h3>E-Line Versus H-Line in Soft Tissue Analysis</h3>
+    <p>The E-line and <a href="/holdaway-analysis">Holdaway H-line</a> assess the same general question — are the lips well-positioned in the profile? — but from different reference constructs. The E-line uses nose and chin as external anchors; the H-line uses the upper lip and chin. Patients with disproportionate nasal size or chin projection may give discordant readings across the two analyses. When this occurs, the discordance itself is clinically informative: a large nose can make E-line measurements appear more retrusive while the H-line remains within normal limits, indicating that the nose — not the lips — is the outlier.</p>
+  </section>
+
+  <!-- 5. BCEPH SECTION -->
+  <section id="bceph">
+    <h2>Run E-Line Analysis Free in BCeph</h2>
+    <p>BCeph includes full E-line analysis at no cost, running entirely in your browser. Place four soft tissue landmarks on your lateral cephalogram and BCeph calculates upper and lower lip-to-E-line positions in real time, comparing against Ricketts' published norms with colour-coded indicators.</p>
+
+    <div class="bceph-feature-grid">
+      <div class="bceph-feature-card">
+        <div class="icon">📏</div>
+        <h4>Precise Measurement</h4>
+        <p>BCeph calculates perpendicular distances from UL and LL to the constructed E-line with sub-millimetre precision, displayed with norm deviations.</p>
+      </div>
+      <div class="bceph-feature-card">
+        <div class="icon">🔗</div>
+        <h4>Soft Tissue Bundle</h4>
+        <p>Run E-line alongside Holdaway analysis in the same session — shared landmarks, complementary results, one integrated soft tissue assessment.</p>
+      </div>
+      <div class="bceph-feature-card">
+        <div class="icon">🔒</div>
+        <h4>Fully Private</h4>
+        <p>No cloud upload. Your patient's cephalogram is processed entirely in the browser and never transmitted to any server. HIPAA-aligned by architecture.</p>
+      </div>
+      <div class="bceph-feature-card">
+        <div class="icon">📄</div>
+        <h4>Exportable Report</h4>
+        <p>All analyses including E-line and Holdaway export to a single print-ready PDF with norms, deviations, and a complete landmark summary.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;">BCeph is free for all users with no feature gating, no per-case fees, and no subscription. See <a href="/cephalometric-software-comparison">how BCeph compares to WebCeph, Dolphin, and CephX</a> for a full breakdown of what costs zero versus what paid platforms charge for the same analyses.</p>
+  </section>
+
+  <!-- 6. FAQ -->
+  <section id="faq" class="alt-bg">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the E-line in orthodontics?</div>
+        <div class="faq-a">The E-line (esthetic line) is a reference line drawn from Pronasale (nasal tip) to soft tissue Pogonion (most anterior soft tissue chin point). Introduced by Robert Ricketts as part of his <a href="/ricketts-analysis">cephalometric analysis</a>, it is used to assess the relative prominence of the upper and lower lips within the facial profile. Adult norms are −4 mm for the upper lip and −2 mm for the lower lip, both measured perpendicular to the line.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What are normal values for lip position on the E-line?</div>
+        <div class="faq-a">In adults, the upper lip should lie approximately 4 mm posterior to the E-line (−4 mm ±2 mm) and the lower lip approximately 2 mm posterior (−2 mm ±2 mm). Values less negative — or positive — indicate lip protrusion. Values more negative indicate lip retrusion. These norms apply to the original Caucasian adult sample; population-appropriate values should be used for other ethnic groups, where more protrusive lip positions are typically normal.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why does lip position on the E-line change with age?</div>
+        <div class="faq-a">The E-line uses the nose tip as its superior anchor. As the nose grows during adolescence — particularly the cartilaginous nasal tip — the E-line shifts anteriorly. This makes the lips appear progressively more retrusive over time even without orthodontic change. Ricketts estimated lip retrusiveness increases by approximately −0.5 to −1 mm per year of nasal growth. Clinicians treating adolescents must account for residual nasal growth when targeting post-treatment lip positions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between the E-line and the H line?</div>
+        <div class="faq-a">The Ricketts E-line runs from nose tip (Pronasale) to soft tissue Pogonion — a nose-to-chin reference. The <a href="/holdaway-analysis">Holdaway H-line</a> runs from soft tissue Pogonion to the most prominent upper lip — a lip-to-chin reference. They measure lip position from different perspectives. Both are useful together: when the two analyses give discordant results, it often signals that the nose or chin projection is atypical rather than the lips themselves.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I measure E-line lip position for free without installing software?</div>
+        <div class="faq-a">Yes. BCeph includes E-line analysis completely free in the browser. Upload your lateral cephalogram, place Pronasale, soft tissue Pogonion, upper lip, and lower lip landmarks, and BCeph calculates both perpendicular distances against Ricketts' norms. No installation, no account, and no data leaves your device. Every other BCeph analysis — <a href="/steiner-analysis">Steiner</a>, <a href="/ricketts-analysis">Ricketts</a>, McNamara, Holdaway, and more — is available in the same session.</div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Run E-Line Analysis Free in BCeph</h2>
+  <p>Upper and lower lip position measured to Ricketts' esthetic line — in your browser, instantly, with no data leaving your device.</p>
+  <a href="/app.html" class="btn-launch">Launch BCeph <span class="arrow">→</span></a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <strong>BCeph</strong> by Bayan Healthcare Analytics &nbsp;·&nbsp;
+  <a href="/">Home</a> &nbsp;·&nbsp;
+  <a href="/cephalometric-analysis">What is Cephalometric Analysis?</a> &nbsp;·&nbsp;
+  <a href="/steiner-analysis">Steiner Analysis</a> &nbsp;·&nbsp;
+  <a href="/ricketts-analysis">Ricketts Analysis</a> &nbsp;·&nbsp;
+  <a href="/holdaway-analysis">Holdaway Analysis</a> &nbsp;·&nbsp;
+  <a href="/cephalometric-software-comparison">Software Comparison</a> &nbsp;·&nbsp;
+  <a href="/app.html">Launch App</a>
+</footer>
+
+</body>
+</html>
