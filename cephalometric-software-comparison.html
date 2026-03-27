@@ -132,50 +132,6 @@
   a:hover { text-decoration: underline; }
   img { max-width: 100%; display: block; }
 
-  /* ── NAV ── */
-  .site-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(14, 26, 56, 0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-  }
-  .nav-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-  }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    color: var(--gold);
-    text-decoration: none;
-  }
-  .nav-logo:hover { text-decoration: none; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: #fff; text-decoration: none; }
-  .nav-cta {
-    background: var(--gold) !important;
-    color: var(--navy-deep) !important;
-    padding: 0.45rem 1.1rem;
-    border-radius: 6px;
-    font-weight: 700 !important;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: #e0ad35 !important; }
-
   /* ── BREADCRUMB ── */
   .breadcrumb {
     max-width: 860px;
@@ -490,7 +446,6 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
-    .nav-links { display: none; }
     .hero { padding: 36px 20px 40px; }
     .article { padding: 0 20px; }
     .article section { padding: 36px 0; }
@@ -501,19 +456,6 @@
 </style>
 </head>
 <body>
-
-<!-- ── NAV ── -->
-<nav class="site-nav">
-  <div class="nav-inner">
-    <a href="https://www.bceph.com" class="nav-logo">BCeph</a>
-    <ul class="nav-links">
-      <li><a href="https://www.bceph.com/#features">Features</a></li>
-      <li><a href="https://www.bceph.com/#analyses">Analyses</a></li>
-      <li><a href="https://www.bceph.com/cephalometric-analysis">Ceph Guide</a></li>
-      <li><a href="https://www.bceph.com/app.html" class="nav-cta">Launch App →</a></li>
-    </ul>
-  </div>
-</nav>
 
 <!-- ── BREADCRUMB ── -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -654,7 +596,7 @@
       <h3>Dolphin Imaging</h3>
       <p><strong>Dolphin Imaging</strong> is the long-standing incumbent in orthodontic software. Developed by Patterson Dental, it offers an extensive feature set that goes well beyond cephalometrics: 3D CBCT integration, treatment simulation, patient communication tools, and over 50 cephalometric analysis modules. For large multi-location practices or academic departments that need a single platform for everything from 2D ceph tracing to surgical planning, Dolphin remains a common choice.</p>
       <p>However, Dolphin's strengths come with significant trade-offs. Annual licensing runs $1,000–2,000 per seat, it requires a Windows desktop with local installation, and there is no AI-assisted landmark detection. The software also carries a steep learning curve and substantial IT overhead for installation and updates. Practices that primarily need lateral cephalometric analysis — the core clinical workflow — are often paying for capabilities they never use.</p>
-      <div class="alt-note"><strong>Why consider BCeph instead:</strong> If your daily workflow is <a href="/steiner-analysis">Steiner</a>, Ricketts, or McNamara analysis on lateral cephs, BCeph covers that workflow at zero cost with no installation. It runs in any browser, keeps all data on your device, and generates print-ready PDF reports. You save $1,000–2,000 per year per seat.</div>
+      <div class="alt-note"><strong>Why consider BCeph instead:</strong> If your daily workflow is <a href="/steiner-analysis">Steiner</a>, <a href="/ricketts-analysis">Ricketts</a>, or <a href="/mcnamara-analysis">McNamara</a> analysis on lateral cephs, BCeph covers that workflow at zero cost with no installation. It runs in any browser, keeps all data on your device, and generates print-ready PDF reports. You save $1,000–2,000 per year per seat.</div>
     </div>
 
     <!-- WebCeph -->
@@ -670,7 +612,7 @@
       <h3>CephX</h3>
       <p><strong>CephX</strong> positions itself as a premium AI-powered cephalometric platform. With over 100 supported analyses and sophisticated auto-tracing algorithms, it offers the deepest analytical coverage of any browser-based tool. CephX also includes 3D ceph capabilities and integration with practice management systems. For high-volume practices that process dozens of cephs per week and need maximum automation, CephX delivers a comprehensive solution.</p>
       <p>The cost reflects that positioning: $79–199 per month puts CephX among the most expensive options in the market. Like WebCeph, all patient data is processed and stored on CephX's cloud infrastructure. The price point is difficult to justify for solo practitioners, residents, or clinics that trace a handful of cephalograms per week.</p>
-      <div class="alt-note"><strong>Why consider BCeph instead:</strong> For practices that do not need 100+ analyses or 3D CBCT integration, BCeph provides the core analyses — <a href="/steiner-analysis">Steiner</a>, Ricketts, McNamara, Downs, Tweed, Jarabak, Kim, Holdaway, and Wits — at no cost. That covers the diagnostic workflow for the vast majority of orthodontic cases without a $1,000–2,400 annual expense.</div>
+      <div class="alt-note"><strong>Why consider BCeph instead:</strong> For practices that do not need 100+ analyses or 3D CBCT integration, BCeph provides the core analyses — <a href="/steiner-analysis">Steiner</a>, <a href="/ricketts-analysis">Ricketts</a>, <a href="/mcnamara-analysis">McNamara</a>, <a href="/downs-analysis">Downs</a>, <a href="/tweed-analysis">Tweed</a>, <a href="/bjork-jarabak-analysis">Jarabak</a>, <a href="/kim-analysis">Kim</a>, <a href="/holdaway-analysis">Holdaway</a>, and <a href="/wits-analysis">Wits</a> — at no cost. That covers the diagnostic workflow for the vast majority of orthodontic cases without a $1,000–2,400 annual expense.</div>
     </div>
 
     <!-- OnyxCeph -->
@@ -710,7 +652,7 @@
       <h3>Cephio</h3>
       <p><strong>Cephio</strong> is a newer browser-based entrant offering AI auto-tracing with a subscription model. It supports over 10 analyses and targets clinicians who want a lightweight, modern interface without desktop installation. Cephio's appeal is simplicity — it focuses on the most commonly used analyses and delivers them through a clean cloud-based workflow.</p>
       <p>The analysis library is the smallest among the tools reviewed here, which limits its utility for clinicians who need Jarabak, Kim, Holdaway, or other specialised modules. Cloud storage for all patient data applies, and the subscription pricing — while not publicly disclosed in detail — adds a recurring cost for a relatively limited feature set.</p>
-      <div class="alt-note"><strong>Why consider BCeph instead:</strong> BCeph already supports more analysis modules than Cephio (9+ versus 10+, with BCeph's modules including <a href="/steiner-analysis">Steiner</a>, Ricketts, McNamara, Downs, Tweed, Jarabak, Kim, Holdaway, and Wits), costs nothing, and keeps all data locally. If you do not need AI auto-tracing, BCeph offers more for less.</div>
+      <div class="alt-note"><strong>Why consider BCeph instead:</strong> BCeph already supports more analysis modules than Cephio (9+ versus 10+, with BCeph's modules including <a href="/steiner-analysis">Steiner</a>, <a href="/ricketts-analysis">Ricketts</a>, <a href="/mcnamara-analysis">McNamara</a>, <a href="/downs-analysis">Downs</a>, <a href="/tweed-analysis">Tweed</a>, <a href="/bjork-jarabak-analysis">Jarabak</a>, <a href="/kim-analysis">Kim</a>, <a href="/holdaway-analysis">Holdaway</a>, and <a href="/wits-analysis">Wits</a>), costs nothing, and keeps all data locally. If you do not need AI auto-tracing, BCeph offers more for less.</div>
     </div>
   </section>
 
@@ -784,7 +726,7 @@
 
 <!-- ── FOOTER ── -->
 <footer class="site-footer">
-  <strong>BCeph</strong> by Bayan Healthcare Analytics · <a href="/">Home</a> · <a href="/cephalometric-analysis">What is Cephalometric Analysis?</a> · <a href="/steiner-analysis">Steiner Analysis Guide</a> · <a href="/app.html">Launch App</a>
+  <strong>BCeph</strong> by Bayan Healthcare Analytics · <a href="/">Home</a> · <a href="/cephalometric-analysis">What is Cephalometric Analysis?</a> · <a href="/steiner-analysis">Steiner Analysis</a> · <a href="/ricketts-analysis">Ricketts</a> · <a href="/mcnamara-analysis">McNamara</a> · <a href="/downs-analysis">Downs</a> · <a href="/tweed-analysis">Tweed</a> · <a href="/bjork-jarabak-analysis">Björk-Jarabak</a> · <a href="/kim-analysis">Kim</a> · <a href="/wits-analysis">Wits</a> · <a href="/holdaway-analysis">Holdaway</a> · <a href="/e-line-analysis">E-Line</a> · <a href="/app.html">Launch App</a>
 </footer>
 
 </body>
