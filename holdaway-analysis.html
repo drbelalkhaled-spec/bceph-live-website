@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holdaway Soft Tissue Analysis — H Angle, Lip Position & Norms Explained | BCeph</title>
+<meta name="description" content="Complete guide to Holdaway soft tissue cephalometric analysis: H angle norms, upper and lower lip positions, nose prominence, skeletal convexity, and how to run it free in BCeph.">
+<link rel="canonical" href="https://www.bceph.com/holdaway-analysis">
+<meta property="og:title" content="Holdaway Analysis: H Angle, Soft Tissue Norms & Clinical Guide">
+<meta property="og:description" content="Everything you need to know about Holdaway soft tissue cephalometric analysis — H angle, lip-to-H-line measurements, nose prominence, and skeletal convexity norms for orthodontists.">
+<meta property="og:url" content="https://www.bceph.com/holdaway-analysis">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.bceph.com/og-preview.png">
+<meta property="og:site_name" content="BCeph">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bceph.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Holdaway Analysis", "item": "https://www.bceph.com/holdaway-analysis" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Holdaway Soft Tissue Analysis: H Angle, Lip Position & Clinical Norms",
+      "description": "A complete clinical guide to Holdaway cephalometric analysis covering the H angle, upper and lower lip positions, nose prominence, skeletal profile convexity, and soft tissue chin thickness — with norms, landmarks, and interpretation guidance.",
+      "author": {
+        "@type": "Organization",
+        "name": "Bayan Healthcare Analytics",
+        "url": "https://www.bceph.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "BCeph",
+        "url": "https://www.bceph.com"
+      },
+      "datePublished": "2026-03-27",
+      "dateModified": "2026-03-27",
+      "mainEntityOfPage": "https://www.bceph.com/holdaway-analysis",
+      "image": "https://www.bceph.com/og-preview.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the H angle in Holdaway analysis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The H angle is the angle formed between the H line (soft tissue chin to most prominent point of the upper lip) and the NB line (Nasion to Bony Pogonion). The norm is approximately 7–15°, with a mean around 10°. A larger H angle indicates lip protrusion relative to the skeletal profile; a smaller angle indicates lip retrusion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between the H line and the E line?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both are soft tissue reference lines, but they use different reference points. The Holdaway H line runs from soft tissue chin (Pog') to the most prominent point of the upper lip. The Ricketts E line (esthetic line) runs from Pronasale (nose tip) to soft tissue Pogonion. They assess lip position differently, and the two analyses may give complementary information when interpreted together."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are normal values for upper lip position in Holdaway analysis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Holdaway analysis, the upper lip should ideally lie on the H line (0 mm). Positive values indicate the upper lip is anterior to the H line (lip protrusion); negative values indicate it is posterior (lip retrusion). A range of -1 to +1 mm is generally considered acceptable, though population variation applies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does skeletal profile convexity measure in Holdaway analysis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Skeletal profile convexity in Holdaway analysis measures the distance from point A to the NB line, expressed in millimetres. The norm is approximately 2 mm. This reflects the degree of skeletal convexity of the maxilla relative to the mandible and complements ANB angle findings in the Steiner analysis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run Holdaway analysis for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. BCeph includes Holdaway soft tissue analysis at no cost, with no installation required. You place soft tissue landmarks — including the upper lip, soft tissue chin, and nose — directly on your uploaded cephalogram in the browser. All data stays on your device. BCeph also supports Steiner, Ricketts, McNamara, and 6+ other analyses in the same session."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --navy: #152242;
+    --navy-deep: #0e1a38;
+    --gold: #D4A030;
+    --gold-dim: rgba(212,160,48,0.12);
+    --text-dark: #0e1a38;
+    --text-body: #4a5568;
+    --text-muted: #9aa0aa;
+    --bg: #ffffff;
+    --bg-alt: #f8f9fb;
+    --border: rgba(0,0,0,0.08);
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--navy); text-decoration: none; }
+  a:hover { color: var(--gold); }
+  img { max-width: 100%; display: block; }
+
+  /* NAV */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--navy-deep);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo .g { color: var(--gold); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .nav-links a { color: var(--text-body); }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy-deep) !important;
+    font-weight: 700 !important;
+    padding: 8px 18px;
+    border-radius: 7px;
+    font-size: 13px !important;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #c8941f !important; color: var(--navy-deep) !important; }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 32px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+  }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { margin: 0 6px; opacity: 0.5; }
+
+  /* HERO */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 32px 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--navy-deep);
+    background: var(--gold);
+    border-radius: 5px;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--navy-deep);
+    margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-size: 15px;
+    color: var(--text-body);
+    max-width: 620px;
+    line-height: 1.75;
+  }
+  .hero-meta {
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+  }
+  .hero-meta strong { color: var(--text-body); }
+  .hero-meta time { color: var(--text-body); }
+
+  /* ARTICLE */
+  .article {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .article section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .article section:last-child { border-bottom: none; }
+  .article section.alt-bg {
+    margin: 0 -32px;
+    padding: 48px 32px;
+    background: var(--bg-alt);
+  }
+  .article h2 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3.5vw, 28px);
+    font-weight: 400;
+    color: var(--navy-deep);
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+  .article h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy-deep);
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+  .article h3:first-child { margin-top: 0; }
+  .article p {
+    color: var(--text-body);
+    margin-bottom: 16px;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .article p:last-child { margin-bottom: 0; }
+  .article strong { color: var(--navy-deep); font-weight: 600; }
+  .article a { color: var(--navy); border-bottom: 1px solid rgba(21,34,66,0.15); }
+  .article a:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* NORMS TABLE */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 24px 0 8px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    -webkit-overflow-scrolling: touch;
+  }
+  .norms-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .norms-table thead th {
+    background: var(--navy);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    padding: 13px 16px;
+    text-align: left;
+  }
+  .norms-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-body);
+    vertical-align: middle;
+  }
+  .norms-table tbody tr:last-child td { border-bottom: none; }
+  .norms-table tbody tr:hover td { background: #f4f6fb; }
+  .norms-table .meas-name { font-weight: 600; color: var(--navy-deep); white-space: nowrap; }
+  .norms-table .norm-val { font-weight: 700; color: var(--navy-deep); }
+  .tag-high { color: #b45309; font-size: 11px; font-weight: 600; }
+  .tag-low { color: #1d7a5f; font-size: 11px; font-weight: 600; }
+
+  /* LANDMARKS */
+  .landmark-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .landmark-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .landmark-card .lm-code {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .landmark-card .lm-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy-deep);
+    margin-bottom: 6px;
+  }
+  .landmark-card .lm-desc {
+    font-size: 12px;
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: #fffbf0;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.75;
+  }
+  .highlight-box strong { color: #92700a; }
+
+  /* BCEPH SECTION */
+  .bceph-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .bceph-feature-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .bceph-feature-card .icon { font-size: 22px; margin-bottom: 10px; }
+  .bceph-feature-card h4 { font-size: 13px; font-weight: 700; color: var(--navy-deep); margin-bottom: 6px; }
+  .bceph-feature-card p { font-size: 12px; color: var(--text-body); line-height: 1.6; margin: 0; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: rgba(212,160,48,0.4); }
+  .faq-q {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy-deep);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .faq-q::before {
+    content: "Q";
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--navy-deep);
+    background: var(--gold);
+    border-radius: 4px;
+    padding: 3px 7px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .faq-a { font-size: 14px; color: var(--text-body); line-height: 1.8; padding-left: 36px; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: var(--navy);
+    text-align: center;
+    padding: 64px 32px;
+    margin-top: 0;
+  }
+  .cta-banner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 4vw, 30px);
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .cta-banner p {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    margin-bottom: 28px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-launch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 32px;
+    border-radius: 8px;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    border-bottom: none !important;
+  }
+  .btn-launch:hover { background: #e0ad35; transform: translateY(-1px); color: var(--navy-deep) !important; }
+  .btn-launch .arrow { font-size: 16px; }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--navy-deep);
+    padding: 24px 32px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.4px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .site-footer a { color: rgba(255,255,255,0.35); }
+  .site-footer a:hover { color: var(--gold); border-bottom: none; }
+  .site-footer strong { color: rgba(212,160,48,0.5); }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 20px 40px; }
+    .article { padding: 0 20px; }
+    .article section { padding: 36px 0; }
+    .article section.alt-bg { margin: 0 -20px; padding: 36px 20px; }
+    .breadcrumb { padding: 16px 20px 0; }
+    .cta-banner { padding: 48px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
+    <ul class="nav-links">
+      <li><a href="/app.html">Features</a></li>
+      <li><a href="/cephalometric-analysis">Analyses</a></li>
+      <li><a href="/cephalometric-analysis">Ceph Guide</a></li>
+      <li><a href="/app.html" class="nav-cta">Launch App →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">BCeph</a><span>›</span><a href="/cephalometric-analysis">Cephalometric Analysis</a><span>›</span><span>Holdaway Analysis</span>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">Clinical Reference</div>
+  <h1>Holdaway Soft Tissue Analysis: <em>H Angle, Lip Position & Norms</em></h1>
+  <p class="hero-subtitle">Holdaway analysis quantifies the soft tissue profile independently of the skeletal pattern — measuring lip position, nose prominence, and chin thickness against a clinician-constructed reference line. This is the complete guide to its measurements, landmarks, norms, and clinical interpretation.</p>
+  <p class="hero-meta">By <strong>Bayan Healthcare Analytics</strong> · Updated <time datetime="2026-03-27">March 27, 2026</time> · 9 min read</p>
+</header>
+
+<article class="article">
+
+  <!-- 1. OVERVIEW -->
+  <section id="overview">
+    <h2>What Is Holdaway Analysis?</h2>
+    <p>Developed by Ray A. Holdaway in the 1950s and refined through subsequent publications, Holdaway soft tissue analysis was one of the first systematic attempts to evaluate facial aesthetics through measurable cephalometric parameters rather than subjective impression. Where most classical analyses — <a href="/steiner-analysis">Steiner</a>, <a href="/ricketts-analysis">Ricketts</a>, <a href="/downs-analysis">Downs</a> — focus primarily on skeletal and dental relationships, Holdaway's method centres on the soft tissue profile: the lips, nose, and chin as they actually appear to the patient and clinician.</p>
+    <p>The central construct of the analysis is the <strong>H line</strong> — a line drawn from the soft tissue chin (soft tissue Pogonion) to the most prominent point of the upper lip. The angle this line forms with the NB line (Nasion to bony Pogonion) constitutes the <strong>H angle</strong>, the primary indicator of lip protrusion or retrusion relative to the facial profile. A series of additional measurements then describe the relationship of the upper lip, lower lip, nose, and chin to this reference line.</p>
+    <p>In contemporary practice, Holdaway analysis is most valuable when interpreted alongside skeletal analyses. It helps answer the clinical question that patients actually care about: <em>How will this treatment change the appearance of my face?</em> It is particularly useful in extraction versus non-extraction decision-making, in planning orthognathic surgery, and in evaluating soft tissue response to dentoalveolar changes. BCeph includes full Holdaway analysis alongside <a href="/ricketts-analysis">Ricketts</a>, <a href="/mcnamara-analysis">McNamara</a>, and the full suite of skeletal analyses in a single <a href="/cephalometric-software-comparison">free browser-based session</a>.</p>
+
+    <div class="highlight-box">
+      <strong>Clinical note:</strong> Holdaway analysis assesses soft tissue form, not skeletal morphology. A Class III skeletal pattern with strong muscular tone and a well-developed chin may yield a harmonious Holdaway profile. Always interpret soft tissue findings in the context of the underlying skeletal and dental analysis.
+    </div>
+  </section>
+
+  <!-- 2. MEASUREMENTS & NORMS -->
+  <section id="measurements" class="alt-bg">
+    <h2>Holdaway Measurements and Norms</h2>
+    <p>Holdaway analysis comprises six principal measurements. Norms are based on Holdaway's original white North American sample. Clinicians should apply population-appropriate reference values where available.</p>
+
+    <div class="table-wrap">
+      <table class="norms-table">
+        <thead>
+          <tr>
+            <th>Measurement</th>
+            <th>Norm</th>
+            <th>Acceptable Range</th>
+            <th>High (↑)</th>
+            <th>Low (↓)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="meas-name">H Angle (H-NB)</td>
+            <td class="norm-val">10°</td>
+            <td>7° – 15°</td>
+            <td class="tag-high">Lip protrusion / full profile</td>
+            <td class="tag-low">Lip retrusion / flat profile</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Upper Lip to H Line</td>
+            <td class="norm-val">0 mm</td>
+            <td>−1 to +1 mm</td>
+            <td class="tag-high">Upper lip protrusive</td>
+            <td class="tag-low">Upper lip retrusive</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Lower Lip to H Line</td>
+            <td class="norm-val">0 mm</td>
+            <td>−1 to +1 mm</td>
+            <td class="tag-high">Lower lip protrusive / lip strain</td>
+            <td class="tag-low">Lower lip retrusive</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Nose Prominence (Pn to H Line)</td>
+            <td class="norm-val">9 mm</td>
+            <td>7 – 14 mm</td>
+            <td class="tag-high">Prominent / projecting nose</td>
+            <td class="tag-low">Flat / deficient nasal projection</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Skeletal Profile Convexity (A to NB)</td>
+            <td class="norm-val">2 mm</td>
+            <td>0 – 4 mm</td>
+            <td class="tag-high">Skeletal convexity / Class II tendency</td>
+            <td class="tag-low">Skeletal concavity / Class III tendency</td>
+          </tr>
+          <tr>
+            <td class="meas-name">Soft Tissue Chin Thickness (Pog to Pog')</td>
+            <td class="norm-val">10 mm</td>
+            <td>8 – 14 mm</td>
+            <td class="tag-high">Thick soft tissue chin</td>
+            <td class="tag-low">Thin soft tissue chin</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:12px; color:var(--text-muted); margin-top:12px;">Norms from Holdaway (1983). Values may vary by sex, age, and population group. Soft tissue chin thickness of ≥10 mm may mask a skeletal chin deficiency; clinicians should compare Pog' position with underlying bony Pogonion.</p>
+
+    <h3>The H Line and H Angle: Construction</h3>
+    <p>The H line is drawn from soft tissue Pogonion (Pog') to the most prominent soft tissue point of the upper lip. The angle it subtends against the NB line (hard tissue Nasion to bony Pogonion) is the H angle. Critically, the construction of the H line depends on upper lip prominence — meaning the H angle and upper lip-to-H-line measurement are interrelated. A more protrusive upper lip produces a larger H angle and simultaneously places the upper lip at or near 0 mm on the H line by definition. This self-referential aspect is important: the H angle is most informative when read alongside nose prominence and lower lip position, not in isolation.</p>
+  </section>
+
+  <!-- 3. LANDMARKS -->
+  <section id="landmarks">
+    <h2>Landmarks Required for Holdaway Analysis</h2>
+    <p>Holdaway analysis requires both hard tissue and soft tissue landmarks. Accurate tracing of the soft tissue outline is essential — errors in identifying the upper lip, lower lip, nasal tip, or soft tissue chin will directly affect all measurements.</p>
+
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="lm-code">N</div>
+        <div class="lm-name">Nasion (Hard Tissue)</div>
+        <div class="lm-desc">The most anterior point of the frontonasal suture at the midline. Used to construct the NB reference line.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">B</div>
+        <div class="lm-name">Point B (Supramentale)</div>
+        <div class="lm-desc">The most posterior midline point on the anterior surface of the mandibular symphysis, between the alveolar crest and Pogonion.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">Pog</div>
+        <div class="lm-name">Pogonion (Hard Tissue)</div>
+        <div class="lm-desc">The most anterior point of the bony chin symphysis. Used to construct the NB line and to measure skeletal profile convexity (A to NB).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">Pog'</div>
+        <div class="lm-name">Soft Tissue Pogonion</div>
+        <div class="lm-desc">The most anterior point of the soft tissue chin. The inferior anchor of the H line. Compare with hard Pogonion to derive soft tissue chin thickness.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">A</div>
+        <div class="lm-name">Point A (Subspinale)</div>
+        <div class="lm-desc">The deepest point on the anterior surface of the maxillary alveolar process between the ANS and the upper incisor. Used to measure skeletal profile convexity (A to NB line).</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">UL</div>
+        <div class="lm-name">Upper Lip (Most Prominent)</div>
+        <div class="lm-desc">The most anteriorly projecting point of the upper lip on the profile radiograph. This is the superior anchor of the H line and the measurement origin for upper lip position.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">LL</div>
+        <div class="lm-name">Lower Lip (Most Prominent)</div>
+        <div class="lm-desc">The most anteriorly projecting point of the lower lip. Measured perpendicular to the H line to determine lower lip position. A protrusive lower lip often signals increased lip strain in lip-competent patients.</div>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-code">Pn</div>
+        <div class="lm-name">Pronasale</div>
+        <div class="lm-desc">The most anterior (tip) point of the nose on the profile. Used to measure nose prominence as a perpendicular distance to the H line. Also used in <a href="/e-line-analysis">E-line analysis</a>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CLINICAL INTERPRETATION -->
+  <section id="interpretation" class="alt-bg">
+    <h2>Clinical Interpretation of Holdaway Findings</h2>
+
+    <h3>H Angle: Profile Fullness and Lip Protrusion</h3>
+    <p>The H angle is the primary descriptor of overall lip prominence relative to the chin. An H angle of 7–15° is considered harmonious. Values above 15° indicate a convex soft tissue profile with prominent lips — often seen in Class II division 1 cases with protrusive upper incisors, or in untreated bimaxillary protrusion. Values below 7° indicate a flatter or retrusive lip profile, which may be appropriate in some skeletal patterns but can become aesthetically problematic if extraction treatment or orthognathic surgery creates excessive retraction.</p>
+    <p>Holdaway observed that the ideal H angle tends to increase slightly with age as the nose grows and the lips become relatively more retrusive. Clinicians treating adolescent patients should account for this in long-range treatment planning.</p>
+
+    <h3>Lip Position and Lip Strain</h3>
+    <p>The upper lip should ideally lie at 0 mm to the H line — exactly on it. A lower lip that sits more than 1–2 mm anterior to the H line typically indicates <strong>lip strain</strong>: the lower lip is working to achieve lip seal against a protrusive upper lip or upper incisors. This finding should correlate with other indicators of upper incisor proclination in the <a href="/steiner-analysis">Steiner</a> or <a href="/ricketts-analysis">Ricketts</a> analyses. Following treatment, lower lip position is expected to move posteriorly as upper incisor retraction reduces the demand for lip strain.</p>
+
+    <h3>Nose Prominence and Profile Balance</h3>
+    <p>Nose prominence (Pronasale to H line) of approximately 9 mm represents a well-projected nose that contributes to a balanced profile. Clinicians planning maxillary impaction or orthognathic advancement should consider the effect on apparent nasal projection — maxillary advancement tends to reduce the relative prominence of the nose tip, while posterior movement can increase apparent nasal projection. These relationships are also reflected in <a href="/e-line-analysis">E-line analysis</a>, which uses Pronasale as a reference anchor.</p>
+
+    <h3>Soft Tissue Chin Thickness</h3>
+    <p>Soft tissue chin thickness (Pog to Pog') of approximately 10 mm is average. Importantly, a thick soft tissue chin can mask a deficient bony pogonion — a clinically significant finding when planning genioplasty or orthognathic surgery. Conversely, a patient with a skeletal Class III jaw relationship may still present with a well-projected soft tissue chin if the soft tissue pad is thick. Always compare bony and soft tissue pogonion positions explicitly rather than relying on one landmark alone.</p>
+
+    <div class="highlight-box">
+      <strong>Extraction planning note:</strong> Holdaway analysis is useful before and after extraction planning. An H angle of 14–15° with a protrusive lower lip may indicate that extraction and incisor retraction will improve the soft tissue profile. An H angle of 8° or lower should raise a caution flag — further retraction may flatten the profile beyond aesthetic norms, even if skeletal measurements justify it.
+    </div>
+
+    <h3>Relationship to Other Analyses</h3>
+    <p>Holdaway findings should always be read in context. An elevated skeletal convexity (A to NB &gt;4 mm) correlating with a large H angle and lip strain creates a consistent picture of a Class II soft tissue pattern. By contrast, a large H angle in a patient with a flat or concave skeletal profile may indicate bimaxillary dentoalveolar protrusion with a normal or mild skeletal discrepancy — a pattern better addressed with extraction than with skeletal correction. Cross-referencing with the <a href="/wits-analysis">Wits appraisal</a>, ANB angle, and <a href="/mcnamara-analysis">McNamara</a> maxillary position will guide the final treatment plan.</p>
+  </section>
+
+  <!-- 5. BCEPH SECTION -->
+  <section id="bceph">
+    <h2>Run Holdaway Analysis Free in BCeph</h2>
+    <p>BCeph includes complete Holdaway soft tissue analysis at no cost, with no installation and no cloud upload. You place soft tissue landmarks — upper lip, lower lip, Pronasale, soft tissue Pogonion — directly on your uploaded cephalogram, and BCeph calculates all six Holdaway measurements in real time against the published norms.</p>
+
+    <div class="bceph-feature-grid">
+      <div class="bceph-feature-card">
+        <div class="icon">🔒</div>
+        <h4>Data Stays Local</h4>
+        <p>Your cephalogram never leaves the browser. No cloud processing, no external server, no BAA required. HIPAA-aligned by architecture.</p>
+      </div>
+      <div class="bceph-feature-card">
+        <div class="icon">📊</div>
+        <h4>Full Soft Tissue Suite</h4>
+        <p>H angle, lip positions, nose prominence, skeletal convexity, and chin thickness — all six measurements with norm comparison and colour-coded deviation indicators.</p>
+      </div>
+      <div class="bceph-feature-card">
+        <div class="icon">🔗</div>
+        <h4>Combined Analyses</h4>
+        <p>Run Holdaway alongside Steiner, Ricketts, McNamara, and 6+ other analyses in one session. One landmark set, all analyses, one exportable PDF report.</p>
+      </div>
+      <div class="bceph-feature-card">
+        <div class="icon">🌐</div>
+        <h4>Any Device, No Install</h4>
+        <p>BCeph runs in any modern browser — Windows, macOS, iPad, or Chromebook. No download, no licence key, no IT approval needed.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;">BCeph is free for all users — residents, educators, and practitioners. There is no feature gating, no per-case fee, and no paywall on any analysis module. See <a href="/cephalometric-software-comparison">how BCeph compares to WebCeph, CephX, and Dolphin Imaging</a> for a full breakdown of what you get for free versus what paid platforms charge.</p>
+  </section>
+
+  <!-- 6. FAQ -->
+  <section id="faq" class="alt-bg">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is the H angle in Holdaway analysis?</div>
+        <div class="faq-a">The H angle is formed between the H line (from soft tissue Pogonion to the most prominent point of the upper lip) and the NB line (Nasion to bony Pogonion). The norm is approximately 7–15°, with a mean near 10°. A larger angle indicates lip protrusion; a smaller angle indicates retrusion relative to the facial profile.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between the H line and Ricketts' E line?</div>
+        <div class="faq-a">The H line runs from soft tissue Pogonion to the most prominent upper lip point. The <a href="/e-line-analysis">Ricketts E line</a> runs from Pronasale (nose tip) to soft tissue Pogonion. Both evaluate lip position, but from different reference frames — the H line is lip-referenced, while the E line is nose-to-chin referenced. Using both together gives a more complete soft tissue picture, particularly where nasal size or chin projection departs from average.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is normal upper lip position in Holdaway analysis?</div>
+        <div class="faq-a">The upper lip should lie at 0 mm to the H line — that is, exactly on it. A range of −1 to +1 mm is considered within normal limits. Positive values (anterior to the H line) indicate upper lip protrusion; negative values indicate upper lip retrusion. Because the H line is anchored to the upper lip by definition, deviations here are interpreted alongside H angle and lower lip position for the full clinical picture.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does skeletal profile convexity tell me in Holdaway analysis?</div>
+        <div class="faq-a">Skeletal profile convexity is the linear distance from point A to the NB line, with a norm of approximately 2 mm. It measures the sagittal prominence of the maxillary base relative to the mandible at the hard tissue level — essentially the same construct as ANB angle, expressed linearly. Values above 4 mm suggest a Class II skeletal pattern; negative values suggest a Class III tendency. This measurement provides context for interpreting the H angle and lip position findings.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I run Holdaway analysis free without installing software?</div>
+        <div class="faq-a">Yes. BCeph includes full Holdaway soft tissue analysis in the browser at no cost. Upload your lateral cephalogram, place the required soft tissue and hard tissue landmarks, and BCeph calculates all six measurements against published norms. No account is required, no data leaves your device, and every other BCeph analysis — <a href="/steiner-analysis">Steiner</a>, Ricketts, McNamara, Downs, and more — is available in the same session.</div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Run Holdaway Analysis Free in BCeph</h2>
+  <p>H angle, lip positions, nose prominence, and chin thickness — all six measurements in your browser. No installation. No data leaves your device.</p>
+  <a href="/app.html" class="btn-launch">Launch BCeph <span class="arrow">→</span></a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <strong>BCeph</strong> by Bayan Healthcare Analytics &nbsp;·&nbsp;
+  <a href="/">Home</a> &nbsp;·&nbsp;
+  <a href="/cephalometric-analysis">What is Cephalometric Analysis?</a> &nbsp;·&nbsp;
+  <a href="/steiner-analysis">Steiner Analysis</a> &nbsp;·&nbsp;
+  <a href="/ricketts-analysis">Ricketts Analysis</a> &nbsp;·&nbsp;
+  <a href="/e-line-analysis">E-Line Analysis</a> &nbsp;·&nbsp;
+  <a href="/cephalometric-software-comparison">Software Comparison</a> &nbsp;·&nbsp;
+  <a href="/app.html">Launch App</a>
+</footer>
+
+</body>
+</html>
