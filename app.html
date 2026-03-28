@@ -123,6 +123,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 .atab{padding:11px 12px;font-size:10px;font-weight:700;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;transition:all .12s;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
 .atab:hover{color:var(--text);background:var(--bg)}
 .atab.active{color:var(--gold);border-bottom-color:var(--gold);background:var(--gold-pale)}
+.tab-badge{font-family:var(--font-mono);font-size:9px;font-weight:600;margin-left:4px;vertical-align:middle}
 
 /* ── NORM BAR ── */
 #norm-bar{height:32px;flex-shrink:0;display:flex;align-items:center;gap:8px;padding:0 14px;background:var(--white);border-bottom:1px solid var(--border)}
@@ -1567,7 +1568,26 @@ function updateReportOptStyle(key){
 }
 
 /* ── UPDATE ALL UI ── */
-function updateAllUI(){ updateLandmarkUI(); updateMeasurements(); updateClassification(); updateSummary(); if(currentUser && typeof analytics!=='undefined') analytics.logEvent('landmark_count', { count: Object.keys(landmarks).filter(id=>landmarks[id]!=null).length }); }
+function updateAllUI(){ updateLandmarkUI(); updateMeasurements(); updateClassification(); updateSummary(); updateTabBadges(); if(currentUser && typeof analytics!=='undefined') analytics.logEvent('landmark_count', { count: Object.keys(landmarks).filter(id=>landmarks[id]!=null).length }); }
+function updateTabBadges(){
+  ANALYSES.forEach(a=>{
+    const required=new Set();
+    a.data.forEach(m=>m.requires.forEach(id=>required.add(id)));
+    const total=required.size;
+    const placed=[...required].filter(id=>has(id)).length;
+    const tab=document.querySelector(`.atab[onclick="showTab('${a.key}')"]`);
+    if(!tab)return;
+    let badge=tab.querySelector('.tab-badge');
+    if(!badge){badge=document.createElement('span');badge.className='tab-badge';tab.appendChild(badge);}
+    badge.textContent=placed+'/'+total;
+    let color;
+    if(placed===0)color='var(--text-muted,#94a3b8)';
+    else if(placed===total)color='var(--green)';
+    else if(placed/total>=0.5)color='var(--amber)';
+    else color='var(--red)';
+    badge.style.color=color;
+  });
+}
 
 function updateLandmarkUI(){
   const required=getRequiredLandmarkIds();
