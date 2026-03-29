@@ -721,6 +721,81 @@ function checkAuthGate() {
   if (count >= FREE_USES) { showLoginModal(); }
 }
 
+/* ── IndexedDB Image Store ── */
+function openImageDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('bceph_images', 1);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains('images')) {
+        db.createObjectStore('images', { keyPath: 'id' });
+      }
+    };
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror = e => reject(e.target.error);
+  });
+}
+
+async function idbSaveImage(patientId, imgData) {
+  try {
+    const db = await openImageDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('images', 'readwrite');
+      tx.objectStore('images').put({ id: patientId, imgData: imgData });
+      tx.oncomplete = () => resolve(true);
+      tx.onerror = e => reject(e.target.error);
+    });
+  } catch (e) {
+    console.warn('[BCeph] IDB save failed:', e);
+    return false;
+  }
+}
+
+async function idbGetImage(patientId) {
+  try {
+    const db = await openImageDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('images', 'readonly');
+      const req = tx.objectStore('images').get(patientId);
+      req.onsuccess = () => resolve(req.result?.imgData || null);
+      req.onerror = e => reject(e.target.error);
+    });
+  } catch (e) {
+    console.warn('[BCeph] IDB get failed:', e);
+    return null;
+  }
+}
+
+async function idbDeleteImage(patientId) {
+  try {
+    const db = await openImageDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('images', 'readwrite');
+      tx.objectStore('images').delete(patientId);
+      tx.oncomplete = () => resolve(true);
+      tx.onerror = e => reject(e.target.error);
+    });
+  } catch (e) {
+    console.warn('[BCeph] IDB delete failed:', e);
+    return false;
+  }
+}
+
+async function idbGetAllImages() {
+  try {
+    const db = await openImageDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('images', 'readonly');
+      const req = tx.objectStore('images').getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = e => reject(e.target.error);
+    });
+  } catch (e) {
+    console.warn('[BCeph] IDB getAll failed:', e);
+    return [];
+  }
+}
+
 /* ══════════════════════════════════════════════════════
    BCeph v2 — Cephalometric Analysis Engine
    BAYAN Healthcare Analytics
@@ -2154,11 +2229,18 @@ function exportBackup(){
   openModal('backup-modal');
 }
 
-function doExportBackup(){
+async function doExportBackup(){
   const db=getPatientDB();
   const includeImages=document.getElementById('backup-include-images').checked;
   const clone=JSON.parse(JSON.stringify(db));
-  if(!includeImages) clone.forEach(p=>{if(p._tracing)p._tracing.imgData=null;});
+  if(includeImages){
+    const allImages=await idbGetAllImages();
+    const imageMap={};
+    allImages.forEach(rec=>{imageMap[rec.id]=rec.imgData;});
+    clone.forEach(p=>{if(p._tracing){p._tracing.imgData=imageMap[p.id]||p._tracing.imgData||null;}});
+  } else {
+    clone.forEach(p=>{if(p._tracing)p._tracing.imgData=null;});
+  }
   const today=new Date().toISOString().slice(0,10);
   const envelope={app:'BCeph',version:'2.0',exportDate:new Date().toISOString(),includesImages:includeImages,patientCount:clone.length,patients:clone};
   const blob=new Blob([JSON.stringify(envelope,null,2)],{type:'application/json'});
@@ -2204,7 +2286,7 @@ function importBackup(){
   input.click();
 }
 
-function doImportBackup(){
+async function doImportBackup(){
   if(!_importPending){closeModal('import-modal');return;}
   try{
     const mode=document.querySelector('input[name="import-mode"]:checked').value;
@@ -2217,8 +2299,16 @@ function doImportBackup(){
       const toAdd=_importPending.filter(p=>!existingIds.has(p.id));
       finalDB=[...existing,...toAdd];
     }
+    const imageWrites=[];
+    finalDB.forEach(p=>{
+      if(p._tracing&&p._tracing.imgData&&p.id){
+        imageWrites.push(idbSaveImage(p.id,p._tracing.imgData));
+        p._tracing.imgData=null;
+      }
+    });
     setPatientDB(finalDB);
     renderPatientList();
+    await Promise.allSettled(imageWrites);
     if(mode==='replace'&&patientInfo.id){
       const still=finalDB.find(p=>p.id===patientInfo.id);
       if(still) loadPatientFromList(patientInfo.id);
@@ -2242,16 +2332,16 @@ function calcAgeFromDOB(){ const v=document.getElementById('pi-dob').value; cons
 function computeAge(dobStr){ if(!dobStr)return''; const dob=new Date(dobStr+'T00:00:00'),now=new Date(); let y=now.getFullYear()-dob.getFullYear(),m=now.getMonth()-dob.getMonth(); if(now.getDate()<dob.getDate())m--; if(m<0){y--;m+=12;} return y+'y '+m+'m'; }
 function getImageForStorage(){ if(!img)return null; try{ const maxDim=1200,tc=document.createElement('canvas'),tx=tc.getContext('2d'); let w=imgW,h=imgH; if(w>maxDim||h>maxDim){const r=Math.min(maxDim/w,maxDim/h);w=Math.round(w*r);h=Math.round(h*r);} tc.width=w;tc.height=h;tx.drawImage(img,0,0,w,h);return tc.toDataURL('image/jpeg',0.6);}catch(e){return imgDataURL;} }
 function clearWorkspace(){ img=null;imgW=0;imgH=0;imgDataURL=null; LM_IDS.forEach(id=>delete landmarks[id]); skippedLandmarks.clear(); pixelsPerMm=0; undoStack.length=0;redoStack.length=0; document.getElementById('notes-area').value=''; const cs=document.getElementById('calib-status');cs.textContent='Not calibrated';cs.className=''; document.getElementById('no-image-msg').style.display=''; resetEnhancement(); updateAllUI();updateUndoRedoUI();render(); }
-function autoSaveCurrentPatient(){ if(!patientInfo.id)return; const db=getPatientDB(); const idx=db.findIndex(x=>x.id===patientInfo.id); if(idx<0)return; const lmSnap={};LM_IDS.forEach(id=>{if(has(id))lmSnap[id]=L(id);}); db[idx]._tracing={landmarks:lmSnap,pixelsPerMm,notes:document.getElementById('notes-area').value,skipped:[...skippedLandmarks],imgData:getImageForStorage()}; db[idx].name=patientInfo.name;db[idx].fileno=patientInfo.fileno;db[idx].gender=patientInfo.gender;db[idx].dob=patientInfo.dob;db[idx].age=computeAge(patientInfo.dob);db[idx].xraydate=patientInfo.xraydate;db[idx].doctor=patientInfo.doctor;db[idx].complaint=patientInfo.complaint; try{setPatientDB(db);}catch(e){db[idx]._tracing.imgData=null;try{setPatientDB(db);}catch(e2){console.warn('Could not save patient tracing');}} }
-function restorePatientTracing(record){ const t=record._tracing; if(!t){clearWorkspace();return;} LM_IDS.forEach(id=>delete landmarks[id]); skippedLandmarks.clear(); if(t.landmarks)Object.keys(t.landmarks).forEach(id=>{landmarks[id]=t.landmarks[id];}); if(t.skipped)(t.skipped||[]).forEach(id=>skippedLandmarks.add(id)); pixelsPerMm=t.pixelsPerMm||0; const cs=document.getElementById('calib-status'); if(pixelsPerMm>0){cs.textContent=pixelsPerMm.toFixed(2)+' px/mm';cs.className='set';}else{cs.textContent='Not calibrated';cs.className='';} document.getElementById('notes-area').value=t.notes||''; if(t.imgData){imgDataURL=t.imgData;img=new Image();img.onload=()=>{imgW=img.naturalWidth;imgH=img.naturalHeight;document.getElementById('no-image-msg').style.display='none';resetView();};img.src=t.imgData;}else{img=null;imgW=0;imgH=0;imgDataURL=null;document.getElementById('no-image-msg').style.display='';render();} undoStack.length=0;redoStack.length=0;resetEnhancement();updateAllUI();updateUndoRedoUI(); }
+function autoSaveCurrentPatient(){ if(!patientInfo.id)return; if(patientInfo.id==='demo')return; const db=getPatientDB(); const idx=db.findIndex(x=>x.id===patientInfo.id); if(idx<0)return; const lmSnap={};LM_IDS.forEach(id=>{if(has(id))lmSnap[id]=L(id);}); const imageData=getImageForStorage(); db[idx]._tracing={landmarks:lmSnap,pixelsPerMm,notes:document.getElementById('notes-area').value,skipped:[...skippedLandmarks],imgData:null}; db[idx].name=patientInfo.name;db[idx].fileno=patientInfo.fileno;db[idx].gender=patientInfo.gender;db[idx].dob=patientInfo.dob;db[idx].age=computeAge(patientInfo.dob);db[idx].xraydate=patientInfo.xraydate;db[idx].doctor=patientInfo.doctor;db[idx].complaint=patientInfo.complaint; try{setPatientDB(db);}catch(e){console.warn('Could not save patient tracing');} if(imageData){idbSaveImage(patientInfo.id,imageData).catch(e=>console.warn('[BCeph] Image IDB save failed:',e));} }
+async function restorePatientTracing(record){ const t=record._tracing; if(!t){clearWorkspace();return;} LM_IDS.forEach(id=>delete landmarks[id]); skippedLandmarks.clear(); if(t.landmarks)Object.keys(t.landmarks).forEach(id=>{landmarks[id]=t.landmarks[id];}); if(t.skipped)(t.skipped||[]).forEach(id=>skippedLandmarks.add(id)); pixelsPerMm=t.pixelsPerMm||0; const cs=document.getElementById('calib-status'); if(pixelsPerMm>0){cs.textContent=pixelsPerMm.toFixed(2)+' px/mm';cs.className='set';}else{cs.textContent='Not calibrated';cs.className='';} document.getElementById('notes-area').value=t.notes||''; let imageData=null; if(record.id){imageData=await idbGetImage(record.id);} if(!imageData&&t.imgData){imageData=t.imgData;if(record.id){idbSaveImage(record.id,imageData).catch(()=>{});const db=getPatientDB();const idx=db.findIndex(x=>x.id===record.id);if(idx>=0&&db[idx]._tracing){db[idx]._tracing.imgData=null;try{setPatientDB(db);}catch(e){}}}} if(imageData){imgDataURL=imageData;img=new Image();img.onload=()=>{imgW=img.naturalWidth;imgH=img.naturalHeight;document.getElementById('no-image-msg').style.display='none';resetView();};img.src=imageData;}else{img=null;imgW=0;imgH=0;imgDataURL=null;document.getElementById('no-image-msg').style.display='';render();} undoStack.length=0;redoStack.length=0;resetEnhancement();updateAllUI();updateUndoRedoUI(); }
 function openPatientModal(){ document.getElementById('pi-name').value=patientInfo.name; document.getElementById('pi-fileno').value=patientInfo.fileno; document.getElementById('pi-gender').value=patientInfo.gender; document.getElementById('pi-dob').value=patientInfo.dob; document.getElementById('pi-xraydate').value=patientInfo.xraydate; document.getElementById('pi-doctor').value=patientInfo.doctor; document.getElementById('pi-complaint').value=patientInfo.complaint; document.getElementById('pi-search').value=''; calcAgeFromDOB(); renderPatientList(); openModal('patient-modal'); }
 function renderPatientList(filter){ const db=getPatientDB(),wrap=document.getElementById('pi-list-wrap'),list=document.getElementById('pi-list'),empty=document.getElementById('pi-list-empty'); const q=(filter||'').toLowerCase().trim(); const filtered=db.filter(p=>!q||(p.name||'').toLowerCase().includes(q)||(p.fileno||'').toLowerCase().includes(q)); if(db.length===0){wrap.classList.remove('has-items');return;} wrap.classList.add('has-items'); if(filtered.length===0){list.innerHTML='';empty.style.display='block';return;} empty.style.display='none'; list.innerHTML=filtered.map(p=>{const isCurrent=patientInfo.id&&p.id===patientInfo.id;const age=computeAge(p.dob);const hasT=p._tracing&&(p._tracing.imgData||Object.keys(p._tracing.landmarks||{}).length>0);return'<div class="pli'+(isCurrent?' active-pt':'')+'" onclick="loadPatientFromList(\''+p.id+'\')">'+'<div class="pli-name">'+esc(p.name||'Unnamed')+(hasT?' <span style="color:var(--green);font-size:8px;font-weight:800">● TRACED</span>':'')+'</div>'+'<div class="pli-meta">'+esc(p.fileno||'—')+(age?' · '+age:'')+'</div>'+'<button class="pli-del" onclick="event.stopPropagation();deletePatientById(\''+p.id+'\')" title="Delete">✕</button>'+'</div>';}).join(''); }
 function filterPatientList(){ renderPatientList(document.getElementById('pi-search').value); }
-function loadPatientFromList(pid){ const db=getPatientDB();const p=db.find(x=>x.id===pid);if(!p){toast('Patient not found','⚠️');return;} autoSaveCurrentPatient(); patientInfo={id:p.id,name:p.name||'',fileno:p.fileno||'',age:p.age||'',gender:p.gender||'',dob:p.dob||'',xraydate:p.xraydate||'',doctor:p.doctor||'',complaint:p.complaint||''}; document.getElementById('pi-name').value=p.name||''; document.getElementById('pi-fileno').value=p.fileno||''; document.getElementById('pi-gender').value=p.gender||''; document.getElementById('pi-dob').value=p.dob||''; document.getElementById('pi-xraydate').value=p.xraydate||''; document.getElementById('pi-doctor').value=p.doctor||''; document.getElementById('pi-complaint').value=p.complaint||''; calcAgeFromDOB(); restorePatientTracing(p); updatePatientBar(); renderPatientList(document.getElementById('pi-search').value); toast('Loaded: '+(p.name||'Patient'),'📂'); }
-function savePatientInfo(){ const name=document.getElementById('pi-name').value.trim(),fileno=document.getElementById('pi-fileno').value.trim(); if(!name&&!fileno){toast('Enter at least a name or file number','⚠️');return;} patientInfo.name=name;patientInfo.fileno=fileno;patientInfo.gender=document.getElementById('pi-gender').value;patientInfo.dob=document.getElementById('pi-dob').value;patientInfo.age=computeAge(patientInfo.dob);patientInfo.xraydate=document.getElementById('pi-xraydate').value;patientInfo.doctor=document.getElementById('pi-doctor').value.trim();patientInfo.complaint=document.getElementById('pi-complaint').value.trim(); const isNew=!patientInfo.id; if(isNew)patientInfo.id='pt_'+Date.now()+'_'+Math.random().toString(36).substr(2,5); const lmSnap={};LM_IDS.forEach(id=>{if(has(id))lmSnap[id]=L(id);}); const tracingData={landmarks:lmSnap,pixelsPerMm,notes:document.getElementById('notes-area').value,skipped:[...skippedLandmarks],imgData:getImageForStorage()}; const db=getPatientDB();const idx=db.findIndex(x=>x.id===patientInfo.id);const record={...patientInfo,_tracing:tracingData}; if(idx>=0)db[idx]=record;else db.unshift(record); try{setPatientDB(db);}catch(e){record._tracing.imgData=null;if(idx>=0)db[idx]=record;else db[0]=record;try{setPatientDB(db);toast('Saved (image too large for storage)','⚠️');}catch(e2){toast('Storage full','❌');return;}} updatePatientBar();closeModal('patient-modal');toast('Patient saved','🏥'); if(currentUser && typeof analytics!=='undefined') analytics.logEvent('patient_db_used'); }
+async function loadPatientFromList(pid){ const db=getPatientDB();const p=db.find(x=>x.id===pid);if(!p){toast('Patient not found','⚠️');return;} autoSaveCurrentPatient(); patientInfo={id:p.id,name:p.name||'',fileno:p.fileno||'',age:p.age||'',gender:p.gender||'',dob:p.dob||'',xraydate:p.xraydate||'',doctor:p.doctor||'',complaint:p.complaint||''}; document.getElementById('pi-name').value=p.name||''; document.getElementById('pi-fileno').value=p.fileno||''; document.getElementById('pi-gender').value=p.gender||''; document.getElementById('pi-dob').value=p.dob||''; document.getElementById('pi-xraydate').value=p.xraydate||''; document.getElementById('pi-doctor').value=p.doctor||''; document.getElementById('pi-complaint').value=p.complaint||''; calcAgeFromDOB(); await restorePatientTracing(p); updatePatientBar(); renderPatientList(document.getElementById('pi-search').value); toast('Loaded: '+(p.name||'Patient'),'📂'); }
+function savePatientInfo(){ const name=document.getElementById('pi-name').value.trim(),fileno=document.getElementById('pi-fileno').value.trim(); if(!name&&!fileno){toast('Enter at least a name or file number','⚠️');return;} patientInfo.name=name;patientInfo.fileno=fileno;patientInfo.gender=document.getElementById('pi-gender').value;patientInfo.dob=document.getElementById('pi-dob').value;patientInfo.age=computeAge(patientInfo.dob);patientInfo.xraydate=document.getElementById('pi-xraydate').value;patientInfo.doctor=document.getElementById('pi-doctor').value.trim();patientInfo.complaint=document.getElementById('pi-complaint').value.trim(); const isNew=!patientInfo.id; if(isNew)patientInfo.id='pt_'+Date.now()+'_'+Math.random().toString(36).substr(2,5); const lmSnap={};LM_IDS.forEach(id=>{if(has(id))lmSnap[id]=L(id);}); const imageData=getImageForStorage(); const tracingData={landmarks:lmSnap,pixelsPerMm,notes:document.getElementById('notes-area').value,skipped:[...skippedLandmarks],imgData:null}; const db=getPatientDB();const idx=db.findIndex(x=>x.id===patientInfo.id);const record={...patientInfo,_tracing:tracingData}; if(idx>=0)db[idx]=record;else db.unshift(record); try{setPatientDB(db);}catch(e){toast('Storage full','❌');return;} if(imageData&&patientInfo.id){idbSaveImage(patientInfo.id,imageData).catch(e=>console.warn('[BCeph] Image IDB save failed:',e));} updatePatientBar();closeModal('patient-modal');toast('Patient saved','🏥'); if(currentUser && typeof analytics!=='undefined') analytics.logEvent('patient_db_used'); }
 function newPatientForm(){ autoSaveCurrentPatient();clearWorkspace();patientInfo={id:'',name:'',fileno:'',age:'',gender:'',dob:'',xraydate:'',doctor:'',complaint:''};['pi-name','pi-fileno','pi-gender','pi-dob','pi-xraydate','pi-doctor','pi-complaint'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); document.getElementById('pi-age-display').textContent='';document.getElementById('pi-search').value='';updatePatientBar();renderPatientList();toast('Ready for new patient','📝'); }
 function deleteCurrentPatient(){ if(!patientInfo.id){toast('No patient selected','⚠️');return;} if(!confirm('Delete patient "'+patientInfo.name+'" from database?'))return; deletePatientById(patientInfo.id);clearWorkspace();patientInfo={id:'',name:'',fileno:'',age:'',gender:'',dob:'',xraydate:'',doctor:'',complaint:''};['pi-name','pi-fileno','pi-gender','pi-dob','pi-xraydate','pi-doctor','pi-complaint'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); document.getElementById('pi-age-display').textContent='';updatePatientBar();renderPatientList(document.getElementById('pi-search').value); }
-function deletePatientById(pid){ let db=getPatientDB();db=db.filter(x=>x.id!==pid);setPatientDB(db);if(patientInfo.id===pid){patientInfo={id:'',name:'',fileno:'',age:'',gender:'',dob:'',xraydate:'',doctor:'',complaint:''};updatePatientBar();}renderPatientList(document.getElementById('pi-search').value);toast('Patient deleted','🗑'); }
+function deletePatientById(pid){ let db=getPatientDB();db=db.filter(x=>x.id!==pid);setPatientDB(db);idbDeleteImage(pid).catch(()=>{});if(patientInfo.id===pid){patientInfo={id:'',name:'',fileno:'',age:'',gender:'',dob:'',xraydate:'',doctor:'',complaint:''};updatePatientBar();}renderPatientList(document.getElementById('pi-search').value);toast('Patient deleted','🗑'); }
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function updatePatientBar(){ const age=patientInfo.dob?computeAge(patientInfo.dob):(patientInfo.age||''); const set=(id,val,fb)=>{const el=document.getElementById('piv-'+id);const tag=document.getElementById('pit-'+id);el.textContent=val||fb;tag.classList.toggle('empty',!val);}; set('name',patientInfo.name,'No patient');set('fileno',patientInfo.fileno,'—');set('age',age,'—');set('gender',patientInfo.gender,'—');set('xraydate',patientInfo.xraydate?new Date(patientInfo.xraydate+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'','—'); }
 
