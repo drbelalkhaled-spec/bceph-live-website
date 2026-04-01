@@ -643,7 +643,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
         <!-- ── KIM ANALYSIS PANEL ── -->
         <div class="apanel" id="tab-kim">
           <div class="sec-title"><span class="icon">📐</span> Kim's Analysis</div>
-          <div class="sec-sub">ODI + APDI skeletal pattern indicators and Extraction Index (Kim 1978). Requires calibration for EI lip measurements.</div>
+          <div class="sec-sub">ODI + APDI skeletal pattern indicators and Extraction Index (Kim 1978).</div>
           <table class="mtable" id="kim-table"><thead><tr><th>Measurement</th><th>Value</th><th>Norm</th><th>Dev / Needs</th></tr></thead><tbody></tbody></table>
           <div class="guide-box">
             <div class="guide-title">📘 ODI — Overbite Depth Indicator</div>
@@ -655,7 +655,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
           </div>
           <div class="guide-box">
             <div class="guide-title">📘 EI — Extraction Index</div>
-            <div class="guide-text">EI = Interincisal angle + 2 × (UL to E-line) + 2 × (LL to E-line), where lip values are positive when retruded. EI ≥ 161° → non-extraction; EI ≤ 155° → extraction indicated; 156–160° → borderline. Requires calibration for lip measurements.</div>
+            <div class="guide-text">EI = CF + (Interincisal Angle − 131.3°), where CF = ODI + APDI and 131.3° is Kim's interincisal norm. EI ≥ 161° → non-extraction; EI ≤ 155° → extraction indicated; 156–160° → borderline.</div>
           </div>
         </div>
       </div>
@@ -1205,6 +1205,7 @@ const LM_DEFS = [
   { id:'L1T', name:'L1 Tip',               abbr:'L1T',  desc:'Incisal (cutting) edge of the lower central incisor',                                      color:'#f43f5e' },
   { id:'L1A', name:'L1 Apex',              abbr:'L1A',  desc:'Root apex of the lower central incisor',                                                    color:'#fb7185' },
   { id:'Prn', name:'Pronasale (Prn)',       abbr:'Prn',  desc:'Most prominent point of the soft tissue nose tip',                                          color:'#fb923c' },
+  { id:'Cm',  name:'Columella (Cm)',        abbr:'Cm',   desc:'Most anterior point of the columella of the nose, at the base where the columella meets the upper lip', color:'#f59e0b' },
   { id:'Sn',  name:'Subnasale (Sn)',        abbr:'Sn',   desc:'Junction of the nasal columella and upper lip in the midsagittal plane — new in v2',       color:'#fcd34d' },
   { id:'Ls',  name:'Labiale Sup (Ls)',      abbr:'Ls',   desc:'Most anterior point of the upper lip vermilion border',                                     color:'#facc15' },
   { id:'Li',  name:'Labiale Inf (Li)',      abbr:'Li',   desc:'Most anterior point of the lower lip vermilion border',                                     color:'#a3e635' },
@@ -1213,6 +1214,8 @@ const LM_DEFS = [
   { id:'Op1', name:'Occlusal Pt 1 (Op1)',  abbr:'Op1',  desc:'Occlusal plane reference — most posterior distal cusp contact (molar)',                    color:'#38bdf8' },
   { id:'Op2', name:'Occlusal Pt 2 (Op2)',  abbr:'Op2',  desc:'Occlusal plane reference — anterior incisal contact point',                                 color:'#818cf8' },
   { id:'Op3', name:'Occlusal Pt 3 (Op3)',  abbr:'Op3',  desc:'Third occlusal plane point — premolar contact — enables 3-point best-fit plane — new in v2', color:'#7dd3fc' },
+  { id:'Co',  name:'Condylion (Co)',        abbr:'Co',   desc:'Most superior-posterior point of mandibular condyle — McNamara Co-A/Co-Gn',                  color:'#fb923c' },
+  { id:'U6',  name:'Upper Molar (U6)',      abbr:'U6',   desc:'Upper first molar distal cusp tip — Ricketts upper molar to PtV',                             color:'#f97316' },
 ];
 const LM_IDS = LM_DEFS.map(d => d.id);
 
@@ -1449,6 +1452,16 @@ const EASTMAN=[
   {name:'U1–NA (mm)',unit:'mm',norm:4,sd:2,requires:['N','A','U1T'],calc:()=>px2mm(perpDist(L('U1T'),L('N'),L('A')))},
   {name:'L1–NB (mm)',unit:'mm',norm:4,sd:2,requires:['N','B','L1T'],calc:()=>px2mm(perpDist(L('L1T'),L('N'),L('B')))},
   {name:'LAFH Ratio',unit:'%',norm:55,sd:2,requires:['N','ANS','Me'],calc:()=>{const t=dist(L('N'),L('Me'));const lo=dist(L('ANS'),L('Me'));if(t===0)return NaN;return(lo/t)*100;}},
+  {name:'Upper AFH (N–ANS)',unit:'mm',norm:54,sd:3,requires:['N','ANS'],
+    calc:()=>px2mm(Math.hypot(L('N').x-L('ANS').x,L('N').y-L('ANS').y))},
+  {name:'Lower AFH (ANS–Me)',unit:'mm',norm:65,sd:5,requires:['ANS','Me'],
+    calc:()=>px2mm(Math.hypot(L('ANS').x-L('Me').x,L('ANS').y-L('Me').y))},
+  {name:'L1 to A-Pog (mm)',unit:'mm',norm:1,sd:1,requires:['A','Pg','L1T'],
+    calc:()=>px2mm(perpDist(L('L1T'),L('A'),L('Pg')))},
+  {name:'Nasolabial Angle',unit:'°',norm:102,sd:8,requires:['Cm','Sn','Ls'],
+    calc:()=>angleAtVertex(L('Cm'),L('Sn'),L('Ls'))},
+  {name:'Lower Lip to E-Plane',unit:'mm',norm:-2,sd:1,requires:['Prn','sPg','Li'],
+    calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Li').x-L('Prn').x)*dy-(L('Li').y-L('Prn').y)*dx;return px2mm(cross/len);}},
 ];
 const STEINER=[
   {name:'SNA',unit:'°',norm:82,sd:2,requires:['S','N','A'],calc:()=>angleAtVertex(L('S'),L('N'),L('A'))},
@@ -1460,6 +1473,8 @@ const STEINER=[
   {name:'L1–NB (°)',unit:'°',norm:25,sd:2,requires:['N','B','L1T','L1A'],calc:()=>acuteAngleBetweenLines(L('N'),L('B'),L('L1A'),L('L1T'))},
   {name:'L1–NB (mm)',unit:'mm',norm:4,sd:1,requires:['N','B','L1T'],calc:()=>px2mm(perpDist(L('L1T'),L('N'),L('B')))},
   {name:'Interincisal',unit:'°',norm:131,sd:6,requires:['U1T','U1A','L1T','L1A'],calc:()=>angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'))},
+  {name:'Occ Plane to SN',unit:'°',norm:14,sd:4,requires:['S','N','Op1','Op2'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('Op1'),L('Op2'))},
 ];
 const DOWNS=[
   {name:'Facial Angle',unit:'°',norm:87.8,sd:3.6,requires:['N','Pg','Po','Or'],calc:()=>angleBetweenLines(L('N'),L('Pg'),L('Po'),L('Or'))},
@@ -1475,11 +1490,21 @@ const DOWNS=[
   }},
   {name:'Mand Plane (FH)',unit:'°',norm:21.9,sd:3.2,requires:['Go','Me','Po','Or'],calc:()=>acuteAngleBetweenLines(L('Go'),L('Me'),L('Po'),L('Or'))},
   {name:'Y-Axis',unit:'°',norm:59.4,sd:3.8,requires:['S','Gn','Po','Or'],calc:()=>angleBetweenLines(L('S'),L('Gn'),L('Po'),L('Or'))},
+  {name:'Interincisal Angle',unit:'°',norm:130,sd:5.8,requires:['U1T','U1A','L1T','L1A'],
+    calc:()=>angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'))},
+  {name:'Incisor Occ Plane Angle',unit:'°',norm:14.5,sd:3.5,requires:['L1T','L1A','Op1','Op2'],
+    calc:()=>90-acuteAngleBetweenLines(L('L1A'),L('L1T'),L('Op1'),L('Op2'))},
+  {name:'Incisor Mand Plane Angle',unit:'°',norm:1.4,sd:3.8,requires:['L1T','L1A','Go','Me'],
+    calc:()=>90-acuteAngleBetweenLines(L('L1A'),L('L1T'),L('Go'),L('Me'))},
+  {name:'U1 to A-Pog (mm)',unit:'mm',norm:2.7,sd:1.8,requires:['A','Pg','U1T'],
+    calc:()=>px2mm(perpDist(L('U1T'),L('A'),L('Pg')))},
+  {name:'Cant of Occ Plane',unit:'°',norm:9.3,sd:3.8,requires:['Op1','Op2','Po','Or'],
+    calc:()=>acuteAngleBetweenLines(L('Op1'),L('Op2'),L('Po'),L('Or'))},
 ];
 const TWEED=[
   {name:'FMA',unit:'°',norm:25,sd:3,requires:['Po','Or','Go','Me'],calc:()=>acuteAngleBetweenLines(L('Po'),L('Or'),L('Go'),L('Me'))},
   {name:'FMIA',unit:'°',norm:65,sd:3,requires:['Po','Or','L1T','L1A'],calc:()=>acuteAngleBetweenLines(L('Po'),L('Or'),L('L1A'),L('L1T'))},
-  {name:'IMPA',unit:'°',norm:90,sd:3,requires:['Go','Me','L1T','L1A'],calc:()=>angleBetweenLines(L('Go'),L('Me'),L('L1T'),L('L1A'))},
+  {name:'IMPA',unit:'°',norm:90,sd:3,requires:['Po','Or','Go','Me','L1T','L1A'],calc:()=>180-acuteAngleBetweenLines(L('Po'),L('Or'),L('Go'),L('Me'))-acuteAngleBetweenLines(L('Po'),L('Or'),L('L1A'),L('L1T'))},
 ];
 const MCNAMARA=[
   {name:'Upper Face Ht (N–ANS)',unit:'mm',norm:54,sd:3,requires:['N','ANS'],calc:()=>px2mm(dist(L('N'),L('ANS')))},
@@ -1494,6 +1519,22 @@ const MCNAMARA=[
     if(fhLen===0)return NaN;
     return px2mm(((L('Pg').x-L('N').x)*fhx+(L('Pg').y-L('N').y)*fhy)/fhLen);
   }},
+  {name:'Eff. Length Maxilla (Co–A)',unit:'mm',norm:99.8,sd:6,requires:['Co','A'],
+    calc:()=>px2mm(Math.hypot(L('Co').x-L('A').x,L('Co').y-L('A').y))},
+  {name:'Eff. Length Mandible (Co–Gn)',unit:'mm',norm:134.3,sd:6.8,requires:['Co','Gn'],
+    calc:()=>px2mm(Math.hypot(L('Co').x-L('Gn').x,L('Co').y-L('Gn').y))},
+  {name:'Maxillomand. Differential',unit:'mm',norm:34.5,sd:4,requires:['Co','A','Gn'],
+    calc:()=>{const coA=px2mm(Math.hypot(L('Co').x-L('A').x,L('Co').y-L('A').y));const coGn=px2mm(Math.hypot(L('Co').x-L('Gn').x,L('Co').y-L('Gn').y));return coGn-coA;}},
+  {name:'Mand Plane Angle (McNamara)',unit:'°',norm:21.3,sd:3.9,requires:['Po','Or','Go','Me'],
+    calc:()=>acuteAngleBetweenLines(L('Po'),L('Or'),L('Go'),L('Me'))},
+  {name:'Facial Axis Angle',unit:'°',norm:0.5,sd:3.5,requires:['Ba','N','Pt','Gn'],
+    calc:()=>{const a=angleBetweenLines(L('N'),L('Ba'),L('Pt'),L('Gn'));return a-90;}},
+  {name:'U1 to A Vertical',unit:'mm',norm:5.3,sd:2,requires:['A','Po','Or','U1T'],
+    calc:()=>{const fhx=L('Or').x-L('Po').x,fhy=L('Or').y-L('Po').y,len=Math.sqrt(fhx*fhx+fhy*fhy);if(len===0)return NaN;return px2mm(((L('U1T').x-L('A').x)*fhx+(L('U1T').y-L('A').y)*fhy)/len);}},
+  {name:'SNA (McNamara)',unit:'°',norm:83.9,sd:3.2,requires:['S','N','A'],
+    calc:()=>angleAtVertex(L('S'),L('N'),L('A'))},
+  {name:'L1 to A-Pog (McNamara)',unit:'mm',norm:2.3,sd:2.1,requires:['A','Pg','L1T'],
+    calc:()=>px2mm(perpDist(L('L1T'),L('A'),L('Pg')))},
 ];
 
 /* ── BJÖRK-JARABAK ── */
@@ -1506,18 +1547,46 @@ const BJORK=[
   {name:'Sum of Angles',unit:'°',norm:396,sd:6,requires:['N','S','Ar','Go','Me'],calc:()=>{
     return angleAtVertex(L('N'),L('S'),L('Ar'))+angleAtVertex(L('S'),L('Ar'),L('Go'))+angleAtVertex(L('Ar'),L('Go'),L('Me'));
   }},
-  {name:'Post Face Ht (S-Go)',unit:'mm',norm:79,sd:6,requires:['S','Go'],calc:()=>px2mm(dist(L('S'),L('Go')))},
-  {name:'Ant Face Ht (N-Me)',unit:'mm',norm:118,sd:7,requires:['N','Me'],calc:()=>px2mm(dist(L('N'),L('Me')))},
+  {name:'Post Face Ht (S-Go)',unit:'mm',norm:90.5,sd:8.2,requires:['S','Go'],calc:()=>px2mm(dist(L('S'),L('Go')))},
+  {name:'Ant Face Ht (N-Me)',unit:'mm',norm:136.4,sd:6.8,requires:['N','Me'],calc:()=>px2mm(dist(L('N'),L('Me')))},
   {name:'PFH/AFH Ratio',unit:'%',norm:63,sd:3,requires:['S','Go','N','Me'],calc:()=>{
     const pfh=dist(L('S'),L('Go')), afh=dist(L('N'),L('Me'));
     if(afh===0)return NaN; return(pfh/afh)*100;
   }},
+  {name:'Ant. Cranial Base (S–N)',unit:'mm',norm:71.8,sd:2.8,requires:['S','N'],
+    calc:()=>px2mm(Math.hypot(L('S').x-L('N').x,L('S').y-L('N').y))},
+  {name:'Post. Cranial Base (S–Ar)',unit:'mm',norm:40.1,sd:3.4,requires:['S','Ar'],
+    calc:()=>px2mm(Math.hypot(L('S').x-L('Ar').x,L('S').y-L('Ar').y))},
+  {name:'Ramus Height (Ar–Go)',unit:'mm',norm:54.9,sd:4.5,requires:['Ar','Go'],
+    calc:()=>px2mm(Math.hypot(L('Ar').x-L('Go').x,L('Ar').y-L('Go').y))},
+  {name:'Mand. Body Length (Go–Gn)',unit:'mm',norm:78.7,sd:5.6,requires:['Go','Gn'],
+    calc:()=>px2mm(Math.hypot(L('Go').x-L('Gn').x,L('Go').y-L('Gn').y))},
+  {name:'Facial Depth (N–Go)',unit:'mm',norm:130.9,sd:6.3,requires:['N','Go'],
+    calc:()=>px2mm(Math.hypot(L('N').x-L('Go').x,L('N').y-L('Go').y))},
+  {name:'Facial Length (S–Gn)',unit:'mm',norm:139.5,sd:6,requires:['S','Gn'],
+    calc:()=>px2mm(Math.hypot(L('S').x-L('Gn').x,L('S').y-L('Gn').y))},
+  {name:'Body/Cranial Base Ratio',unit:'',norm:1.08,sd:0.1,requires:['Go','Gn','S','N'],
+    calc:()=>{const sn=Math.hypot(L('S').x-L('N').x,L('S').y-L('N').y);if(sn===0)return NaN;return Math.hypot(L('Go').x-L('Gn').x,L('Go').y-L('Gn').y)/sn;}},
+  {name:'SN–GoMe',unit:'°',norm:32.8,sd:4.3,requires:['S','N','Go','Me'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('Go'),L('Me'))},
+  {name:'Y-Axis to SN',unit:'°',norm:70.9,sd:3.4,requires:['S','N','Gn'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('S'),L('Gn'))},
+  {name:'Facial Plane (N–Pog)',unit:'°',norm:81.8,sd:1.2,requires:['N','Pg','Po','Or'],
+    calc:()=>angleBetweenLines(L('Po'),L('Or'),L('N'),L('Pg'))},
+  {name:'Facial Convexity',unit:'°',norm:1.3,sd:2.4,requires:['N','A','Pg'],
+    calc:()=>{const ang=angleAtVertex(L('N'),L('A'),L('Pg'));return 180-ang;}},
+  {name:'Lower Lip to E-Plane',unit:'mm',norm:-2,sd:2,requires:['Prn','sPg','Li'],
+    calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Li').x-L('Prn').x)*dy-(L('Li').y-L('Prn').y)*dx;return px2mm(cross/len);}},
+  {name:'U1 to SN',unit:'°',norm:109.3,sd:6,requires:['S','N','U1T','U1A'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('U1A'),L('U1T'))},
+  {name:'Occ Plane to Go-Me',unit:'°',norm:19.8,sd:4.1,requires:['Op1','Op2','Go','Me'],
+    calc:()=>acuteAngleBetweenLines(L('Op1'),L('Op2'),L('Go'),L('Me'))},
 ];
 
 /* ── RICKETTS ── */
 const RICKETTS=[
   {name:'Facial Axis (Ba-N to Pt-Gn)',unit:'°',norm:90,sd:3.5,requires:['Ba','N','Pt','Gn'],
-    calc:()=>angleBetweenLines(L('Ba'),L('N'),L('Pt'),L('Gn'))},
+    calc:()=>angleBetweenLines(L('N'),L('Ba'),L('Pt'),L('Gn'))},
   {name:'Facial Depth (FH to N-Pg)',unit:'°',norm:87,sd:3,requires:['Po','Or','N','Pg'],
     calc:()=>angleBetweenLines(L('Po'),L('Or'),L('N'),L('Pg'))},
   {name:'Mandibular Plane to FH',unit:'°',norm:26,sd:4,requires:['Go','Me','Po','Or'],
@@ -1541,6 +1610,18 @@ const RICKETTS=[
     calc:()=>angleBetweenLines(L('Po'),L('Or'),L('U1T'),L('U1A'))},
   {name:'Interincisal (U1–L1)',unit:'°',norm:130,sd:10,requires:['U1T','U1A','L1T','L1A'],
     calc:()=>angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'))},
+  {name:'Facial Taper',unit:'°',norm:68,sd:3,requires:['N','Gn','Go'],
+    calc:()=>angleAtVertex(L('N'),L('Gn'),L('Go'))},
+  {name:'Mandibular Arc',unit:'°',norm:26,sd:2,requires:['Co','Go','Me'],
+    calc:()=>angleAtVertex(L('Co'),L('Go'),L('Me'))},
+  {name:'Palatal Plane Angle',unit:'°',norm:0,sd:5,requires:['ANS','PNS','Po','Or'],
+    calc:()=>{const a=acuteAngleBetweenLines(L('ANS'),L('PNS'),L('Po'),L('Or'));const fhx=L('Or').x-L('Po').x,fhy=L('Or').y-L('Po').y;const palx=L('PNS').x-L('ANS').x,paly=L('PNS').y-L('ANS').y;const cross=fhx*paly-fhy*palx;return cross>0?a:-a;}},
+  {name:'Denture Height (LAFH)',unit:'mm',norm:47,sd:4,requires:['ANS','Me'],
+    calc:()=>px2mm(Math.hypot(L('ANS').x-L('Me').x,L('ANS').y-L('Me').y))},
+  {name:'Upper Molar to PtV',unit:'mm',norm:21.1,sd:3,requires:['Pt','Po','Or','U6'],
+    calc:()=>{const fhx=L('Or').x-L('Po').x,fhy=L('Or').y-L('Po').y,len=Math.sqrt(fhx*fhx+fhy*fhy);if(len===0)return NaN;return px2mm(((L('U6').x-L('Pt').x)*fhx+(L('U6').y-L('Pt').y)*fhy)/len);}},
+  {name:'Lower Lip to E-Plane',unit:'mm',norm:-2,sd:2,requires:['Prn','sPg','Li'],
+    calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Li').x-L('Prn').x)*dy-(L('Li').y-L('Prn').y)*dx;return px2mm(cross/len);}},
 ];
 
 const ELINE=[
@@ -1634,13 +1715,38 @@ const KIM=[
     const apdi=facialAng+abNpgSigned+palFH;
     return odi+apdi;
   }},
-  {name:'EI (Extraction Index)',unit:'°',norm:null,sd:null,requires:['U1T','U1A','L1T','L1A','Prn','Ls','Li','sPg'],calc:()=>{
+  {name:'Interincisal Angle (Kim)',unit:'°',norm:131.3,sd:null,
+    requires:['U1T','U1A','L1T','L1A'],
+    calc:()=>angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'))},
+  {name:'EI (Extraction Index)',unit:'°',norm:null,sd:null,requires:['A','B','Go','Me','ANS','PNS','Po','Or','N','Pg','U1T','U1A','L1T','L1A'],calc:()=>{
+    const abMand=acuteAngleBetweenLines(L('A'),L('B'),L('Go'),L('Me'));
+    const palFH=kimSignedPalFH();
+    const facialAng=angleBetweenLines(L('N'),L('Pg'),L('Po'),L('Or'));
+    const dx=L('Pg').x-L('N').x, dy=L('Pg').y-L('N').y, len=Math.sqrt(dx*dx+dy*dy);
+    if(len===0) return NaN;
+    const cross=dx*(L('B').y-L('N').y)-dy*(L('B').x-L('N').x);
+    const abNpg=acuteAngleBetweenLines(L('A'),L('B'),L('N'),L('Pg'));
+    const abNpgSigned=cross<0?abNpg:-abNpg;
+    const odi=abMand+palFH;
+    const apdi=facialAng+abNpgSigned+palFH;
+    const cf=odi+apdi;
     const interinc=angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'));
-    const ul=kimLipToEline('Ls');
-    const ll=kimLipToEline('Li');
-    if(isNaN(ul)||isNaN(ll)) return NaN;
-    return interinc+(ul*2)+(ll*2);
+    if(isNaN(interinc)) return NaN;
+    // EI = CF + (II - 131.3), where 131.3 is Kim's II norm
+    return cf + (interinc - 131.3);
   }},
+  {name:'A-B to Mand Plane',unit:'°',norm:69.3,sd:2.5,requires:['A','B','Go','Me'],
+    calc:()=>acuteAngleBetweenLines(L('A'),L('B'),L('Go'),L('Me'))},
+  {name:'Palatal Plane Angle (Kim)',unit:'°',norm:1.2,sd:5.4,requires:['ANS','PNS','Po','Or'],
+    calc:()=>kimSignedPalFH()},
+  {name:'Facial Angle',unit:'°',norm:87.8,sd:3.5,requires:['N','Pg','Po','Or'],
+    calc:()=>angleBetweenLines(L('N'),L('Pg'),L('Po'),L('Or'))},
+  {name:'A-B Plane Angle',unit:'°',norm:-4.4,sd:2.5,requires:['A','B','N','Pg'],
+    calc:()=>{const a=acuteAngleBetweenLines(L('A'),L('B'),L('N'),L('Pg'));const dx=L('Pg').x-L('N').x,dy=L('Pg').y-L('N').y;const cross=dx*(L('B').y-L('N').y)-dy*(L('B').x-L('N').x);return cross<0?a:-a;}},
+  {name:'Upper Lip to E-Plane',unit:'mm',norm:-4.7,sd:2,requires:['Prn','sPg','Ls'],
+    calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Ls').x-L('Prn').x)*dy-(L('Ls').y-L('Prn').y)*dx;return px2mm(cross/len);}},
+  {name:'Lower Lip to E-Plane (Kim)',unit:'mm',norm:-2,sd:2,requires:['Prn','sPg','Li'],
+    calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Li').x-L('Prn').x)*dy-(L('Li').y-L('Prn').y)*dx;return px2mm(cross/len);}},
 ];
 
 /* Report analysis registry */
@@ -2251,7 +2357,7 @@ const REPORT_INTERP = {
   'Ant Face Ht (N-Me)':           {lo:'Decreased anterior facial height.', hi:'Increased anterior facial height.'},
   'PFH/AFH Ratio':                {lo:'Vertical growth pattern.', hi:'Horizontal growth pattern.'},
   // Ricketts
-  'Facial Axis (Ba-N to Pt-Gn)':  {lo:'Dolichofacial growth tendency.', hi:'Brachyfacial growth tendency.'},
+  'Facial Axis (Ba-N to Pt-Gn)':  {lo:'Brachyfacial growth tendency.', hi:'Dolichofacial growth tendency.'},
   'Facial Depth (FH to N-Pg)':    {lo:'Mandibular retrusion (Class II).', hi:'Mandibular protrusion (Class III).'},
   'Mandibular Plane to FH':        {lo:'Hypodivergent pattern.', hi:'Hyperdivergent pattern.'},
   'Lower Face Ht % (ANS-Me/N-Me)':{lo:'Decreased vertical dimension.', hi:'Increased vertical dimension.'},
@@ -2279,6 +2385,56 @@ const REPORT_INTERP = {
   'ODI':                           {lo:'Skeletal open bite tendency.', hi:'Skeletal deep bite tendency.'},
   'APDI':                          {lo:'Class II (distal) skeletal pattern.', hi:'Class III (mesial) skeletal pattern.'},
   'CF (ODI+APDI)':                 {lo:'Open bite and Class II tendency.', hi:'Deep bite and Class III tendency.'},
+  // Steiner addition
+  'Occ Plane to SN':               {lo:'Flat occlusal plane.', hi:'Steep occlusal plane.'},
+  // Eastman additions
+  'Upper AFH (N–ANS)':             {lo:'Decreased upper facial height.', hi:'Increased upper facial height.'},
+  'Lower AFH (ANS–Me)':            {lo:'Decreased lower facial height.', hi:'Increased lower facial height.'},
+  'L1 to A-Pog (mm)':              {lo:'Retruded lower incisor.', hi:'Protruded lower incisor.'},
+  'Nasolabial Angle':              {lo:'Acute nasolabial angle — protruded upper lip.', hi:'Obtuse nasolabial angle — retruded upper lip.'},
+  'Lower Lip to E-Plane':          {lo:'Retruded lower lip.', hi:'Protruded lower lip.'},
+  // Downs additions
+  'Interincisal Angle':            {lo:'Excessive incisor proclination.', hi:'Retroclined incisors.'},
+  'Incisor Occ Plane Angle':       {lo:'Retroclined lower incisor.', hi:'Proclined lower incisor relative to occlusal plane.'},
+  'Incisor Mand Plane Angle':      {lo:'Retroclined lower incisor to mandibular plane.', hi:'Proclined lower incisor to mandibular plane.'},
+  'U1 to A-Pog (mm)':              {lo:'Retruded upper incisor.', hi:'Protruded upper incisor or retruded chin point.'},
+  'Cant of Occ Plane':             {lo:'Flat occlusal plane to FH.', hi:'Steep occlusal plane to FH.'},
+  // McNamara additions
+  'Eff. Length Maxilla (Co–A)':    {lo:'Maxillary retrognathism (short maxilla).', hi:'Maxillary prognathism.'},
+  'Eff. Length Mandible (Co–Gn)':  {lo:'Mandibular retrognathism (short mandible).', hi:'Mandibular prognathism.'},
+  'Maxillomand. Differential':     {lo:'Small mandibular length relative to maxilla.', hi:'Large mandibular length relative to maxilla.'},
+  'Mand Plane Angle (McNamara)':   {lo:'Hypodivergent pattern.', hi:'Hyperdivergent pattern.'},
+  'Facial Axis Angle':             {lo:'Brachyfacial tendency (closing axis).', hi:'Dolichofacial tendency (opening axis).'},
+  'U1 to A Vertical':              {lo:'Retruded upper incisor relative to maxilla.', hi:'Protruded upper incisor relative to maxilla.'},
+  'SNA (McNamara)':                {lo:'Maxillary retrusion.', hi:'Maxillary protrusion.'},
+  'L1 to A-Pog (McNamara)':        {lo:'Retruded lower incisor.', hi:'Protruded lower incisor.'},
+  // Björk-Jarabak additions
+  'Ant. Cranial Base (S–N)':       {lo:'Small anterior cranial base.', hi:'Large anterior cranial base.'},
+  'Post. Cranial Base (S–Ar)':     {lo:'Small posterior cranial base.', hi:'Large posterior cranial base.'},
+  'Ramus Height (Ar–Go)':          {lo:'Short ramus — vertical growth pattern.', hi:'Long ramus — horizontal growth.'},
+  'Mand. Body Length (Go–Gn)':     {lo:'Short mandibular body.', hi:'Long mandibular body.'},
+  'Facial Depth (N–Go)':           {lo:'Small facial depth.', hi:'Large facial depth.'},
+  'Facial Length (S–Gn)':          {lo:'Short total facial length.', hi:'Long total facial length.'},
+  'Body/Cranial Base Ratio':       {lo:'Short mandibular body relative to cranial base.', hi:'Long mandibular body relative to cranial base.'},
+  'SN–GoMe':                       {lo:'Hypodivergent jaw pattern.', hi:'Hyperdivergent jaw pattern.'},
+  'Y-Axis to SN':                  {lo:'Forward mandibular rotation.', hi:'Backward mandibular rotation.'},
+  'Facial Plane (N–Pog)':          {lo:'Retruded chin — Skeletal Class II.', hi:'Protruded chin — Skeletal Class III.'},
+  'Facial Convexity':              {lo:'Flat/concave facial profile.', hi:'Convex facial profile — prominent maxilla.'},
+  'U1 to SN':                      {lo:'Retruded upper incisor to SN.', hi:'Protruded upper incisor to SN.'},
+  'Occ Plane to Go-Me':            {lo:'Flat occlusal plane relative to mandibular plane.', hi:'Steep occlusal plane relative to mandibular plane.'},
+  // Ricketts additions
+  'Facial Taper':                  {lo:'Short symphysis — narrow face.', hi:'Long symphysis — wide face.'},
+  'Mandibular Arc':                {lo:'Retrognathic mandibular shape.', hi:'Prognathic mandibular shape.'},
+  'Palatal Plane Angle':           {lo:'Counter-clockwise rotated maxilla.', hi:'Clockwise rotated maxilla.'},
+  'Denture Height (LAFH)':         {lo:'Decreased lower facial height.', hi:'Increased lower facial height — open bite tendency.'},
+  'Upper Molar to PtV':            {lo:'Mesially positioned upper molar.', hi:'Distally positioned upper molar.'},
+  // Kim additions
+  'A-B to Mand Plane':             {lo:'Skeletal open bite.', hi:'Skeletal deep bite.'},
+  'Palatal Plane Angle (Kim)':     {lo:'Counter-clockwise rotated maxilla.', hi:'Clockwise rotated maxilla.'},
+  'Facial Angle':                  {lo:'Retrognathic mandible.', hi:'Prognathic mandible.'},
+  'A-B Plane Angle':               {lo:'Class III jaw relationship.', hi:'Class II jaw relationship.'},
+  'Upper Lip to E-Plane':          {lo:'Retruded upper lip.', hi:'Protruded upper lip.'},
+  'Lower Lip to E-Plane (Kim)':    {lo:'Retruded lower lip.', hi:'Protruded lower lip.'},
 };
 
 /* ── REPORT ── */
@@ -2356,6 +2512,7 @@ function buildReport(sel){
       // Special EI interpretation (ref-only threshold-based)
       if(m.name==='EI (Extraction Index)'&&!isNaN(numVal)){
         let eiTxt='';
+        // TODO: Validate EI thresholds against Kim 1978 after formula correction
         if(numVal>=161) eiTxt='Non-extraction case indicated.';
         else if(numVal<=155) eiTxt='Extraction indicated.';
         else eiTxt='Borderline — consider soft tissue and growth.';
