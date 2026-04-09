@@ -3192,4 +3192,64 @@ function startOnboarding() {
       <button id="ob-next" class="mbtn primary">Next →</button>
     </div>
   `;
-  overlay.appen
+  overlay.appendChild(card);
+  document.body.appendChild(overlay);
+
+  function showStep(idx) {
+    const s = steps[idx];
+    const target = s.targetFn ? s.targetFn() : document.querySelector(s.targetSelector);
+    document.getElementById('ob-step').textContent = (idx + 1) + ' / ' + steps.length;
+    document.getElementById('ob-title').textContent = s.title;
+    document.getElementById('ob-body').textContent = s.body;
+    document.getElementById('ob-back').style.display = idx === 0 ? 'none' : '';
+    document.getElementById('ob-next').textContent = idx === steps.length - 1 ? 'Finish ✓' : 'Next →';
+
+    if (target) {
+      const r = target.getBoundingClientRect();
+      const pad = 6;
+      Object.assign(spotlight.style, {
+        top: (r.top - pad) + 'px', left: (r.left - pad) + 'px',
+        width: (r.width + pad * 2) + 'px', height: (r.height + pad * 2) + 'px',
+        display: 'block'
+      });
+      // Position card below or above target
+      const cardH = 220;
+      const below = r.bottom + 12;
+      const above = r.top - cardH - 12;
+      const top = (below + cardH < window.innerHeight) ? below : Math.max(8, above);
+      let left = r.left;
+      if (left + 340 > window.innerWidth - 12) left = window.innerWidth - 352;
+      if (left < 12) left = 12;
+      Object.assign(card.style, { top: top + 'px', left: left + 'px' });
+    } else {
+      spotlight.style.display = 'none';
+      Object.assign(card.style, {
+        top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)'
+      });
+    }
+  }
+
+  function finish() { overlay.remove(); localStorage.setItem('bceph_toured', '1'); }
+
+  card.querySelector('#ob-next').addEventListener('click', () => {
+    if (currentStep >= steps.length - 1) { finish(); return; }
+    currentStep++;
+    card.style.transform = '';
+    showStep(currentStep);
+  });
+  card.querySelector('#ob-back').addEventListener('click', () => {
+    if (currentStep > 0) { currentStep--; card.style.transform = ''; showStep(currentStep); }
+  });
+  card.querySelector('#ob-skip').addEventListener('click', finish);
+
+  showStep(0);
+}
+
+// Auto-start tour on first visit
+document.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem('bceph_toured')) { setTimeout(startOnboarding, 600); }
+});
+</script>
+</body>
+</html>
