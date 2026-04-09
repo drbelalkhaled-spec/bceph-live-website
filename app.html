@@ -211,25 +211,6 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 .mbtn.primary{background:var(--gold);border-color:var(--gold);color:var(--navy-dark);font-weight:700}
 .mbtn.primary:hover{background:var(--gold-light);border-color:var(--gold-light)}
 
-/* ── AUTH FORM STYLES ── */
-#login-modal .auth-form{text-align:left;margin-bottom:4px}
-#login-modal .auth-field{margin-bottom:12px}
-#login-modal .auth-field label{display:block;font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;font-family:var(--font)}
-#login-modal .auth-field input{width:100%;padding:9px 10px;background:var(--bg);border:1.5px solid var(--border-light);border-radius:var(--radius);color:var(--text-bright);font-family:var(--font);font-size:13px;outline:none;transition:border-color .15s,box-shadow .15s;box-sizing:border-box}
-#login-modal .auth-field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,152,42,.12)}
-#login-modal .auth-field input.input-error{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.08)}
-#login-modal .auth-submit{width:100%;height:40px;border:none;border-radius:var(--radius);background:var(--gold);color:var(--navy-dark);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;margin-top:4px}
-#login-modal .auth-submit:hover{background:var(--gold-light)}
-#login-modal .auth-submit:disabled{opacity:.55;cursor:not-allowed}
-#login-modal .auth-error{display:none;font-size:11px;color:var(--red);padding:8px 10px;border-radius:var(--radius);background:var(--red-dim);border:1px solid rgba(248,113,113,.2);margin-bottom:14px;text-align:center}
-#login-modal .auth-divider{display:flex;align-items:center;gap:12px;margin:18px 0}
-#login-modal .auth-divider::before,#login-modal .auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
-#login-modal .auth-divider span{font-size:11px;color:var(--text-dim);font-family:var(--font);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-#login-modal .auth-link{background:none;border:none;color:var(--gold);font-family:var(--font);font-size:12px;font-weight:600;cursor:pointer;padding:0;text-decoration:none;transition:color .15s}
-#login-modal .auth-link:hover{color:var(--gold-light);text-decoration:underline}
-#login-modal .auth-toggle{text-align:center;font-size:12px;color:var(--text-dim);margin-top:14px;font-family:var(--font)}
-#login-modal .forgot-link{text-align:right;margin-bottom:8px;margin-top:-4px}
-
 /* ── TOAST ── */
 #toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(60px);z-index:600;background:var(--navy);border:1px solid var(--navy-mid);color:#fff;padding:9px 18px;border-radius:var(--radius-lg);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.25);opacity:0;transition:all .25s;pointer-events:none}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -1055,24 +1036,7 @@ const FREE_USES = 5;
 
 function getUseCount() { return parseInt(localStorage.getItem('bceph_use_count') || '0'); }
 function incrementUseCount() { const c = getUseCount() + 1; localStorage.setItem('bceph_use_count', String(c)); return c; }
-function showLoginModal() {
-  // Reset to sign-in view and clear all state
-  const modal = document.getElementById('login-modal');
-  modal.querySelectorAll('input').forEach(i => { i.value = ''; i.classList.remove('input-error'); });
-  const errEl = document.getElementById('auth-error');
-  if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
-  // Show sign-in view, hide others
-  const views = { signin: 'Sign-In', signup: 'Sign-Up', forgot: 'Forgot' };
-  Object.keys(views).forEach(v => {
-    const el = document.getElementById('auth-view-' + v);
-    if (el) el.style.display = (v === 'signin') ? 'block' : 'none';
-  });
-  const heading = document.getElementById('auth-heading');
-  const subtext = document.getElementById('auth-subtext');
-  if (heading) heading.textContent = 'Welcome to BCeph';
-  if (subtext) subtext.innerHTML = 'Sign in to continue — <strong style="color:var(--text-bright)">BCeph is completely free.</strong>';
-  modal.style.display = 'flex';
-}
+function showLoginModal() { document.getElementById('login-modal').style.display = 'flex'; }
 function hideLoginModal() { document.getElementById('login-modal').style.display = 'none'; }
 
 function googleSignIn() {
@@ -1082,147 +1046,11 @@ function googleSignIn() {
   });
 }
 
-/* ── EMAIL / PASSWORD AUTH ── */
-
-function showAuthView(view) {
-  clearAuthError();
-  // Clear all inputs and error highlights
-  document.querySelectorAll('#login-modal input').forEach(i => { i.value = ''; i.classList.remove('input-error'); });
-  // Toggle view visibility
-  ['signin', 'signup', 'forgot'].forEach(v => {
-    const el = document.getElementById('auth-view-' + v);
-    if (el) el.style.display = (v === view) ? 'block' : 'none';
-  });
-  // Update heading and subtext
-  const heading = document.getElementById('auth-heading');
-  const subtext = document.getElementById('auth-subtext');
-  if (view === 'signin') {
-    heading.textContent = 'Welcome to BCeph';
-    subtext.innerHTML = 'Sign in to continue — <strong style="color:var(--text-bright)">BCeph is completely free.</strong>';
-  } else if (view === 'signup') {
-    heading.textContent = 'Create your account';
-    subtext.innerHTML = 'Join BCeph for free — <strong style="color:var(--text-bright)">no credit card required.</strong>';
-  } else if (view === 'forgot') {
-    heading.textContent = 'Reset your password';
-    subtext.innerHTML = 'Enter your email and we\'ll send you a reset link.';
-  }
-}
-
-function showAuthError(msg) {
-  const el = document.getElementById('auth-error');
-  if (el) { el.textContent = msg; el.style.display = 'block'; }
-}
-function clearAuthError() {
-  const el = document.getElementById('auth-error');
-  if (el) { el.textContent = ''; el.style.display = 'none'; }
-}
-
-function mapFirebaseError(code) {
-  switch (code) {
-    case 'auth/invalid-email': return 'Please enter a valid email address.';
-    case 'auth/user-disabled': return 'This account has been disabled.';
-    case 'auth/user-not-found': return 'No account found with this email.';
-    case 'auth/wrong-password': return 'Incorrect password. Please try again.';
-    case 'auth/invalid-credential': return 'Incorrect email or password.';
-    case 'auth/email-already-in-use': return 'An account with this email already exists. Try signing in instead.';
-    case 'auth/weak-password': return 'Password must be at least 6 characters.';
-    case 'auth/too-many-requests': return 'Too many attempts. Please wait a moment and try again.';
-    case 'auth/network-request-failed': return 'Network error. Please check your connection.';
-    default: return 'Something went wrong. Please try again.';
-  }
-}
-
-function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
-
-async function emailSignIn() {
-  clearAuthError();
-  const emailEl = document.getElementById('auth-email-si');
-  const passEl = document.getElementById('auth-pass-si');
-  const email = emailEl.value.trim();
-  const pass = passEl.value;
-  // Client-side validation
-  if (!email) { showAuthError('Please enter your email.'); emailEl.classList.add('input-error'); return; }
-  if (!validateEmail(email)) { showAuthError('Please enter a valid email address.'); emailEl.classList.add('input-error'); return; }
-  if (!pass) { showAuthError('Please enter your password.'); passEl.classList.add('input-error'); return; }
-  // Disable button
-  const btn = emailEl.closest('.auth-form').querySelector('.auth-submit');
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  try {
-    await auth.signInWithEmailAndPassword(email, pass);
-    // onAuthStateChanged handles the rest
-  } catch (err) {
-    showAuthError(mapFirebaseError(err.code));
-  } finally {
-    btn.disabled = false; btn.textContent = 'Sign In';
-  }
-}
-
-async function emailSignUp() {
-  clearAuthError();
-  const emailEl = document.getElementById('auth-email-su');
-  const passEl = document.getElementById('auth-pass-su');
-  const confirmEl = document.getElementById('auth-pass-confirm');
-  const email = emailEl.value.trim();
-  const pass = passEl.value;
-  const confirm = confirmEl.value;
-  // Client-side validation
-  if (!email) { showAuthError('Please enter your email.'); emailEl.classList.add('input-error'); return; }
-  if (!validateEmail(email)) { showAuthError('Please enter a valid email address.'); emailEl.classList.add('input-error'); return; }
-  if (pass.length < 6) { showAuthError('Password must be at least 6 characters.'); passEl.classList.add('input-error'); return; }
-  if (pass !== confirm) { showAuthError('Passwords do not match.'); confirmEl.classList.add('input-error'); return; }
-  // Disable button
-  const btn = emailEl.closest('.auth-form').querySelector('.auth-submit');
-  btn.disabled = true; btn.textContent = 'Creating account…';
-  try {
-    await auth.createUserWithEmailAndPassword(email, pass);
-    // onAuthStateChanged handles the rest
-  } catch (err) {
-    showAuthError(mapFirebaseError(err.code));
-  } finally {
-    btn.disabled = false; btn.textContent = 'Create Account';
-  }
-}
-
-async function emailResetPassword() {
-  clearAuthError();
-  const emailEl = document.getElementById('auth-email-fg');
-  const email = emailEl.value.trim();
-  if (!email) { showAuthError('Please enter your email.'); emailEl.classList.add('input-error'); return; }
-  if (!validateEmail(email)) { showAuthError('Please enter a valid email address.'); emailEl.classList.add('input-error'); return; }
-  const btn = emailEl.closest('.auth-form').querySelector('.auth-submit');
-  btn.disabled = true; btn.textContent = 'Sending…';
-  try {
-    await auth.sendPasswordResetEmail(email);
-    toast('Password reset email sent!', '📧');
-    showAuthView('signin');
-  } catch (err) {
-    showAuthError(mapFirebaseError(err.code));
-  } finally {
-    btn.disabled = false; btn.textContent = 'Send Reset Link';
-  }
-}
-
-/* ── Enter-key support for auth forms ── */
-document.addEventListener('DOMContentLoaded', () => {
-  const on = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); fn(); } }); };
-  on('auth-email-si', () => document.getElementById('auth-pass-si').focus());
-  on('auth-pass-si', emailSignIn);
-  on('auth-email-su', () => document.getElementById('auth-pass-su').focus());
-  on('auth-pass-su', () => document.getElementById('auth-pass-confirm').focus());
-  on('auth-pass-confirm', emailSignUp);
-  on('auth-email-fg', emailResetPassword);
-  // Auto-clear error highlight on focus
-  document.querySelectorAll('#login-modal input').forEach(el => {
-    el.addEventListener('focus', () => el.classList.remove('input-error'));
-  });
-});
-
 auth.onAuthStateChanged(user => {
   currentUser = user;
   if (user) {
     hideLoginModal();
-    const method = (user.providerData && user.providerData.length > 0 && user.providerData[0].providerId === 'google.com') ? 'google' : 'email';
-    analytics.logEvent('session_start', { method: method });
+    analytics.logEvent('session_start', { method: 'google' });
     checkSubscription();
   }
 });
@@ -3193,63 +3021,215 @@ function startOnboarding() {
     </div>
   `;
   overlay.appendChild(card);
-  document.body.appendChild(overlay);
 
-  function showStep(idx) {
-    const s = steps[idx];
-    const target = s.targetFn ? s.targetFn() : document.querySelector(s.targetSelector);
-    document.getElementById('ob-step').textContent = (idx + 1) + ' / ' + steps.length;
-    document.getElementById('ob-title').textContent = s.title;
-    document.getElementById('ob-body').textContent = s.body;
-    document.getElementById('ob-back').style.display = idx === 0 ? 'none' : '';
-    document.getElementById('ob-next').textContent = idx === steps.length - 1 ? 'Finish ✓' : 'Next →';
+  card.querySelector('#ob-skip').addEventListener('click', finishTour);
+  card.querySelector('#ob-back').addEventListener('click', () => { if (currentStep > 0) { currentStep--; showStep(currentStep); } });
+  card.querySelector('#ob-next').addEventListener('click', () => {
+    if (currentStep < steps.length - 1) { currentStep++; showStep(currentStep); }
+    else { finishTour(); }
+  });
 
-    if (target) {
-      const r = target.getBoundingClientRect();
-      const pad = 6;
-      Object.assign(spotlight.style, {
-        top: (r.top - pad) + 'px', left: (r.left - pad) + 'px',
-        width: (r.width + pad * 2) + 'px', height: (r.height + pad * 2) + 'px',
-        display: 'block'
-      });
-      // Position card below or above target
-      const cardH = 220;
-      const below = r.bottom + 12;
-      const above = r.top - cardH - 12;
-      const top = (below + cardH < window.innerHeight) ? below : Math.max(8, above);
-      let left = r.left;
-      if (left + 340 > window.innerWidth - 12) left = window.innerWidth - 352;
-      if (left < 12) left = 12;
-      Object.assign(card.style, { top: top + 'px', left: left + 'px' });
+  function showStep(index) {
+    const step = steps[index];
+    const target = step.targetFn ? step.targetFn() : document.querySelector(step.targetSelector);
+    if (!target) { finishTour(); return; }
+
+    const rect = target.getBoundingClientRect();
+    const pad = 6;
+
+    spotlight.style.left   = (rect.left - pad) + 'px';
+    spotlight.style.top    = (rect.top - pad) + 'px';
+    spotlight.style.width  = (rect.width + pad * 2) + 'px';
+    spotlight.style.height = (rect.height + pad * 2) + 'px';
+
+    // Position tooltip below or above target
+    const tooltipH = 220; // approximate
+    const vpH = window.innerHeight;
+    const spaceBelow = vpH - rect.bottom;
+    let tooltipTop;
+    if (rect.top < vpH / 2 || spaceBelow >= tooltipH + 16) {
+      tooltipTop = rect.bottom + pad + 10;
     } else {
-      spotlight.style.display = 'none';
-      Object.assign(card.style, {
-        top: '50%', left: '50%',
-        transform: 'translate(-50%, -50%)'
-      });
+      tooltipTop = rect.top - pad - tooltipH - 10;
     }
+    // Clamp vertical
+    tooltipTop = Math.max(8, Math.min(tooltipTop, vpH - tooltipH - 8));
+
+    // Horizontal: align to left of spotlight, clamped
+    let tooltipLeft = rect.left - pad;
+    tooltipLeft = Math.max(8, Math.min(tooltipLeft, window.innerWidth - 348));
+
+    card.style.top  = tooltipTop + 'px';
+    card.style.left = tooltipLeft + 'px';
+
+    card.querySelector('#ob-step').textContent = (index + 1) + ' / ' + steps.length;
+    card.querySelector('#ob-title').textContent = step.title;
+    card.querySelector('#ob-body').textContent  = step.body;
+    card.querySelector('#ob-back').style.display = index === 0 ? 'none' : '';
+    card.querySelector('#ob-next').textContent   = index === steps.length - 1 ? 'Finish ✓' : 'Next →';
   }
 
-  function finish() { overlay.remove(); localStorage.setItem('bceph_toured', '1'); }
+  function finishTour() {
+    localStorage.setItem('bceph_onboarded', '1');
+    overlay.remove();
+    window.removeEventListener('resize', onResize);
+    if (typeof analytics !== 'undefined') analytics.logEvent('tour_completed');
+  }
 
-  card.querySelector('#ob-next').addEventListener('click', () => {
-    if (currentStep >= steps.length - 1) { finish(); return; }
-    currentStep++;
-    card.style.transform = '';
+  function onResize() {
     showStep(currentStep);
-  });
-  card.querySelector('#ob-back').addEventListener('click', () => {
-    if (currentStep > 0) { currentStep--; card.style.transform = ''; showStep(currentStep); }
-  });
-  card.querySelector('#ob-skip').addEventListener('click', finish);
+  }
+  window.addEventListener('resize', onResize);
 
+  document.body.appendChild(overlay);
   showStep(0);
 }
 
-// Auto-start tour on first visit
-document.addEventListener('DOMContentLoaded', () => {
-  if (!localStorage.getItem('bceph_toured')) { setTimeout(startOnboarding, 600); }
+
+/* ── QR FEATURE ── */
+const BCeph = window.BCeph || {};
+BCeph.qrScannerStream = null;
+BCeph._qrScanActive = false;
+
+function generateQRDataUrl(text) {
+  if (!text || typeof qrcode === 'undefined') return null;
+  var types = [3, 5, 8, 12, 20];
+  for (var i = 0; i < types.length; i++) {
+    try {
+      var qr = qrcode(types[i], 'M');
+      qr.addData(text, 'Byte');
+      qr.make();
+      var size = qr.getModuleCount(), scale = 8;
+      var c = document.createElement('canvas');
+      c.width = size * scale; c.height = size * scale;
+      var ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = '#000';
+      for (var r = 0; r < size; r++) {
+        for (var col = 0; col < size; col++) {
+          if (qr.isDark(r, col)) ctx.fillRect(col * scale, r * scale, scale, scale);
+        }
+      }
+      return c.toDataURL('image/png');
+    } catch(e) { continue; }
+  }
+  return null;
+}
+
+function openQRScanner() {
+  var video = document.getElementById('qrs-video');
+  var errorEl = document.getElementById('qrs-error');
+  var manualWrap = document.getElementById('qrs-manual-wrap');
+  errorEl.textContent = '';
+  manualWrap.style.display = 'none';
+  document.getElementById('qrs-manual-input').value = '';
+  video.style.display = 'none';
+  openModal('qr-scanner-modal');
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    manualWrap.style.display = 'block';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(function(stream) {
+      BCeph.qrScannerStream = stream;
+      video.srcObject = stream;
+      video.play();
+      video.style.display = 'block';
+      startQRScanLoop(video, errorEl);
+    })
+    .catch(function() {
+      manualWrap.style.display = 'block';
+    });
+}
+
+function closeQRScanner() {
+  if (BCeph.qrScannerStream) {
+    BCeph.qrScannerStream.getTracks().forEach(function(t) { t.stop(); });
+    BCeph.qrScannerStream = null;
+  }
+  BCeph._qrScanActive = false;
+  var el = document.getElementById('qr-scanner-modal');
+  if (el) el.classList.remove('open');
+}
+
+function startQRScanLoop(video, errorEl) {
+  BCeph._qrScanActive = true;
+  var canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
+  function tick() {
+    if (!BCeph._qrScanActive) return;
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+      canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0);
+      if (window.BarcodeDetector) {
+        new BarcodeDetector({ formats: ['qr_code'] }).detect(canvas)
+          .then(function(codes) {
+            if (codes.length && BCeph._qrScanActive) handleQRResult(codes[0].rawValue, errorEl);
+          }).catch(function(){});
+      } else if (typeof jsQR !== 'undefined') {
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var code = jsQR(imageData.data, imageData.width, imageData.height);
+        if (code && BCeph._qrScanActive) { handleQRResult(code.data, errorEl); return; }
+      }
+    }
+    if (BCeph._qrScanActive) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function handleQRResult(rawValue, errorEl) {
+  if (!rawValue) return;
+  BCeph._qrScanActive = false;
+  var fileNo = rawValue.trim();
+  var db = getPatientDB();
+  var match = db.find(function(p) { return (p.fileno || '').trim() === fileNo; });
+  if (match) {
+    closeQRScanner();
+    loadPatientFromList(match.id).then(function() {
+      openPatientModal();
+    });
+  } else {
+    if (errorEl) errorEl.textContent = 'No patient found for this QR (' + fileNo + ')';
+    BCeph._qrScanActive = true;
+    startQRScanLoop(document.getElementById('qrs-video'), errorEl);
+  }
+}
+
+function submitQRManual() {
+  var val = document.getElementById('qrs-manual-input').value.trim();
+  if (!val) return;
+  handleQRResult(val, document.getElementById('qrs-error'));
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  buildUI(); updateAllUI(); selectLandmark('S'); updateUndoRedoUI(); updatePatientBar();
+  const cl=document.getElementById('contact-link');if(cl){const e='team@bceph.com';cl.href='mailto:'+e;cl.textContent=e;}
+  document.querySelectorAll('.modal-overlay').forEach(ov=>{ ov.addEventListener('click',e=>{ if(e.target===ov)closeModal(ov.id); }); });
+  if (!localStorage.getItem('bceph_onboarded')) { setTimeout(() => startOnboarding(), 600); }
 });
 </script>
-</body>
-</html>
+
+<!-- ── Login Modal ── -->
+<div id="login-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(18,32,74,.85);backdrop-filter:blur(4px);align-items:center;justify-content:center">
+  <div style="background:var(--bg-panel);border-radius:var(--radius-lg);padding:40px 36px;max-width:380px;width:90%;text-align:center;box-shadow:var(--shadow-md)">
+    <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--navy-dark);font-family:var(--font-mono);letter-spacing:-1px;margin:0 auto 20px">B</div>
+    <h2 style="font-family:var(--font);font-size:20px;font-weight:700;color:var(--text-bright);margin-bottom:8px">A quick note</h2>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:28px;line-height:1.5">Sorry for the interruption! Since you've been enjoying BCeph, I'd love to be able to reach you directly for feedback and suggestions — your input is what makes this tool better.<br><br><strong style="color:var(--text-bright)">BCeph is completely free.</strong></p>
+    <button onclick="googleSignIn()" style="display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 24px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--bg-panel);color:var(--text-bright);font-family:var(--font);font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;box-shadow:var(--shadow)">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.0 24.0 0 0 0 0 21.56l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Sign in with Google
+    </button>
+    <p style="font-size:11px;color:var(--text-dim);margin-top:20px;line-height:1.4">No patient data is sent to any server.<br>Your email is used for feedback and product updates only.</p>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BCeph Cephalometric Analysis Tool",
+  "applicationCategory": "MedicalApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free browser-based cephalometric analysis to
