@@ -1015,6 +1015,7 @@ var lengths=[q.top.endX-q.top.startX,q.bottom.endX-q.bottom.startX,(q.bottom.y-q
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
 /* ── FIREBASE CONFIG ── */
 const firebaseConfig = {
@@ -1029,6 +1030,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const analytics = firebase.analytics();
+const db = firebase.firestore();
 
 /* ── AUTH STATE ── */
 let currentUser = null;
@@ -1052,6 +1054,11 @@ auth.onAuthStateChanged(user => {
     hideLoginModal();
     analytics.logEvent('session_start', { method: 'google' });
     checkSubscription();
+    db.collection('users').doc(user.uid).set({
+      lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+      email: user.email,
+      displayName: user.displayName || ''
+    }, { merge: true });
   }
 });
 
@@ -2492,6 +2499,16 @@ function confirmAndGenerateReport(){
 
 function buildReport(sel){
   if(currentUser && typeof analytics!=='undefined') analytics.logEvent('report_exported');
+  if (currentUser) {
+    const selectedAnalyses = ANALYSES.filter(a => sel[a.key]).map(a => a.key);
+    const userRef = db.collection('users').doc(currentUser.uid);
+    userRef.set({ totalReports: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+    selectedAnalyses.forEach(key => {
+      userRef.set({
+        analysisUsage: { [key]: firebase.firestore.FieldValue.increment(1) }
+      }, { merge: true });
+    });
+  }
   const today=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
   const notes=document.getElementById('notes-area').value;
   const normSetLabel=NORM_SETS[activeNormSet]?.label||'Adult Mixed';
