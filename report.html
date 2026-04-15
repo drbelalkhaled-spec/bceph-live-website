@@ -578,6 +578,59 @@ input[type=file]{display:none}
 .toggle-switch input:checked+.toggle-slider::before{transform:translateX(16px)}
 .toggle-label{font-size:12px;font-weight:600;color:var(--gray-600)}
 
+/* ─── AUTH OVERLAY ───────────────────────────────── */
+#auth-overlay{
+  display:flex;position:fixed;inset:0;z-index:800;
+  background:linear-gradient(160deg,#07111f 0%,#0f1e3a 50%,#091629 100%);
+  flex-direction:column;align-items:center;justify-content:center;
+  padding:32px 20px;overflow-y:auto;
+}
+.auth-box{width:100%;max-width:400px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 28px}
+.auth-logo-badge{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--navy-dark);font-family:'DM Serif Display',serif;letter-spacing:-1px;margin:0 auto 12px}
+.auth-title{font-size:22px;font-weight:700;color:white;text-align:center;font-family:'DM Serif Display',serif;margin-bottom:4px}
+.auth-sub{font-size:13px;color:rgba(255,255,255,.45);text-align:center;margin-bottom:28px}
+.auth-google-btn{width:100%;height:44px;border:none;border-radius:8px;background:white;color:#3c4043;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:box-shadow .15s;box-shadow:0 1px 3px rgba(0,0,0,.3);margin-bottom:20px}
+.auth-google-btn:hover{box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.auth-google-btn:disabled{opacity:.6;cursor:not-allowed}
+.auth-google-icon{width:20px;height:20px;flex-shrink:0}
+.auth-divider{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.auth-divider-line{flex:1;height:1px;background:rgba(255,255,255,.12)}
+.auth-divider-text{font-size:12px;color:rgba(255,255,255,.35);white-space:nowrap}
+.auth-field{margin-bottom:14px}
+.auth-field label{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px}
+.auth-field input{width:100%;padding:10px 12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);border-radius:8px;color:white;font-family:var(--font-body);font-size:14px;outline:none;transition:border-color .15s}
+.auth-field input:focus{border-color:rgba(200,152,42,.6);background:rgba(255,255,255,.1)}
+.auth-field input::placeholder{color:rgba(255,255,255,.25)}
+.auth-submit-btn{width:100%;height:44px;border:none;border-radius:8px;background:var(--gold);color:var(--navy-dark);font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:4px;margin-bottom:16px}
+.auth-submit-btn:hover{background:var(--gold-light)}
+.auth-submit-btn:disabled{opacity:.6;cursor:not-allowed}
+.auth-toggle-row{text-align:center;font-size:12px;color:rgba(255,255,255,.4)}
+.auth-toggle-link{color:var(--gold);cursor:pointer;font-weight:600}
+.auth-toggle-link:hover{color:var(--gold-light)}
+.auth-forgot{display:block;text-align:right;font-size:11px;color:rgba(255,255,255,.35);cursor:pointer;margin-top:-6px;margin-bottom:14px}
+.auth-forgot:hover{color:var(--gold)}
+.auth-error{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#fca5a5;border-radius:6px;padding:8px 12px;font-size:12px;margin-bottom:12px;display:none}
+.auth-error.show{display:block}
+.auth-success{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);color:#86efac;border-radius:6px;padding:8px 12px;font-size:12px;margin-bottom:12px;display:none}
+.auth-success.show{display:block}
+/* ─── TOPBAR USER INFO ────────────────────────────── */
+.topbar-user{display:none;align-items:center;gap:8px}
+.topbar-user.visible{display:flex}
+.topbar-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,152,42,.5)}
+.topbar-avatar-ph{width:28px;height:28px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--navy-dark);flex-shrink:0}
+.topbar-username{font-size:11px;color:rgba(255,255,255,.7);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-btn-logout{background:rgba(239,68,68,.15)!important;color:#fca5a5!important}
+.tb-btn-logout:hover{background:rgba(239,68,68,.28)!important}
+/* ─── CLOUD SYNC STATUS ───────────────────────────── */
+#cloud-sync-status{display:none;align-items:center;gap:5px;font-size:11px;padding:0 6px;color:rgba(255,255,255,.5)}
+#cloud-sync-status.cs-visible{display:flex}
+#cloud-sync-status .cs-icon{font-size:14px;line-height:1}
+#cloud-sync-status .cs-text{font-size:10px;color:rgba(255,255,255,.45)}
+#cloud-sync-status.cs-synced .cs-text{color:#86efac}
+#cloud-sync-status.cs-syncing .cs-icon{animation:spin .9s linear infinite}
+#cloud-sync-status.cs-error .cs-text{color:#fca5a5}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
 </style>
 </head>
 <body>
@@ -668,6 +721,83 @@ input[type=file]{display:none}
   </div>
 </div>
 
+<!-- AUTH OVERLAY -->
+<div id="auth-overlay">
+  <div class="auth-box">
+    <div class="auth-logo-badge">B</div>
+    <div class="auth-title">BCeph Report</div>
+    <div class="auth-sub">Sign in to access your clinical dashboard</div>
+
+    <!-- Google Sign-In -->
+    <button class="auth-google-btn" id="google-signin-btn" onclick="window.signInWithGoogle && window.signInWithGoogle()">
+      <svg class="auth-google-icon" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M23.745 12.27c0-.79-.07-1.54-.19-2.27h-11.3v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/>
+        <path fill="#34A853" d="M12.255 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96h-3.98v3.09C3.515 21.3 7.615 24 12.255 24z"/>
+        <path fill="#FBBC05" d="M5.525 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62h-3.98a11.86 11.86 0 0 0 0 10.76l3.98-3.09z"/>
+        <path fill="#EA4335" d="M12.255 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C18.205 1.19 15.495 0 12.255 0c-4.64 0-8.74 2.7-10.71 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/>
+      </svg>
+      Sign in with Google
+    </button>
+
+    <div class="auth-divider">
+      <div class="auth-divider-line"></div>
+      <div class="auth-divider-text">or sign in with email</div>
+      <div class="auth-divider-line"></div>
+    </div>
+
+    <div class="auth-error" id="auth-error"></div>
+    <div class="auth-success" id="auth-success"></div>
+
+    <!-- Register-only fields (hidden by default) -->
+    <div class="auth-field" id="auth-name-field" style="display:none">
+      <label>Display Name</label>
+      <input type="text" id="auth-display-name" placeholder="Dr. Your Name" autocomplete="name">
+    </div>
+    <div class="auth-field" id="auth-confirm-field" style="display:none">
+      <label>Confirm Password</label>
+      <input type="password" id="auth-confirm-pw" placeholder="Repeat password" autocomplete="new-password">
+    </div>
+
+    <div class="auth-field">
+      <label>Email</label>
+      <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email"
+        onkeydown="if(event.key==='Enter')document.getElementById('auth-password').focus()">
+    </div>
+    <div class="auth-field">
+      <label>Password</label>
+      <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')window.submitAuthForm&&window.submitAuthForm()">
+    </div>
+
+    <span class="auth-forgot" id="auth-forgot-link" onclick="window.sendForgotPassword&&window.sendForgotPassword()">Forgot password?</span>
+
+    <button class="auth-submit-btn" id="auth-submit-btn" onclick="window.submitAuthForm&&window.submitAuthForm()">Sign In</button>
+
+    <div class="auth-toggle-row">
+      <span id="auth-toggle-text">Don't have an account? </span>
+      <span class="auth-toggle-link" id="auth-toggle-link" onclick="window.toggleAuthMode&&window.toggleAuthMode()">Register</span>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT LINK MODAL -->
+<div class="modal-overlay" id="link-modal">
+  <div class="modal-box" style="max-width:420px">
+    <div class="modal-title">🔗 Link Account</div>
+    <div class="modal-sub" id="link-modal-sub">This email is already registered. Enter your password to link your Google account.</div>
+    <div style="margin-top:14px">
+      <label class="field-label">Password</label>
+      <input type="password" id="link-password" placeholder="Your existing password" style="margin-top:4px"
+        onkeydown="if(event.key==='Enter')window.doAccountLink&&window.doAccountLink()">
+    </div>
+    <div class="auth-error" id="link-error" style="margin-top:10px"></div>
+    <div class="modal-footer" style="margin-top:16px">
+      <button class="btn btn-outline" onclick="closeModal('link-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="window.doAccountLink&&window.doAccountLink()">Link & Sign In</button>
+    </div>
+  </div>
+</div>
+
 <!-- SIDEBAR OVERLAY (mobile) -->
 <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
@@ -704,6 +834,21 @@ input[type=file]{display:none}
     </div>
     <div class="topbar-sep"></div>
     <button class="tb-btn tb-btn-ghost lock-btn" onclick="lockNow()">🔒</button>
+    <!-- Cloud sync status indicator -->
+    <div class="topbar-sep" id="cloud-sep" style="display:none"></div>
+    <div id="cloud-sync-status">
+      <span class="cs-icon">☁️</span>
+      <span class="cs-text" id="cloud-text">Synced</span>
+    </div>
+    <!-- Logged-in user info -->
+    <div class="topbar-sep" id="user-sep" style="display:none"></div>
+    <div class="topbar-user" id="topbar-user">
+      <img class="topbar-avatar" id="user-avatar" src="" alt=""
+        style="display:none" onerror="this.style.display='none';document.getElementById('user-avatar-ph').style.display='flex'">
+      <div class="topbar-avatar-ph" id="user-avatar-ph" style="display:none"></div>
+      <span class="topbar-username" id="user-display-name"></span>
+      <button class="tb-btn tb-btn-ghost tb-btn-logout" onclick="window.logoutUser&&window.logoutUser()">Sign Out</button>
+    </div>
   </div>
 
   <div id="body">
@@ -1788,6 +1933,47 @@ input[type=file]{display:none}
               <div class="settings-row">
                 <div><div class="sr-label">Export All Patients CSV</div><div class="sr-sub">Export every field of every saved patient as a spreadsheet</div></div>
                 <button class="btn btn-outline" onclick="exportCSV()">📊 Export CSV</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CLOUD SYNC SETTINGS ── -->
+        <div class="card" id="cloud-sync-card">
+          <div class="card-header"><div class="card-icon">☁️</div><div class="card-title">Cloud Sync</div></div>
+          <div class="card-body">
+            <div class="settings-section">
+              <div class="settings-row">
+                <div>
+                  <div class="sr-label">Auto Backup</div>
+                  <div class="sr-sub">Patient records (except photos) are automatically synced to your secure cloud account on every save.</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="cloud-sync-toggle" checked
+                    onchange="localStorage.setItem('cloud_sync_enabled',this.checked?'1':'0')">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="sr-label">Restore from Cloud</div>
+                  <div class="sr-sub">Pull all patient records from cloud to this device — use on a new device or after clearing browser data.</div>
+                </div>
+                <button class="btn btn-outline" onclick="window.restoreFromCloud&&window.restoreFromCloud()">⬇ Restore</button>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="sr-label">Sync Status</div>
+                  <div class="sr-sub" id="last-synced-text">Sign in to enable cloud sync</div>
+                </div>
+                <span id="pending-sync-badge" style="display:none;font-size:11px;padding:3px 8px;background:var(--red-pale);color:var(--red);border-radius:12px;font-weight:600"></span>
+              </div>
+              <div class="settings-row" id="cloud-account-row" style="display:none">
+                <div>
+                  <div class="sr-label">Account</div>
+                  <div class="sr-sub" id="cloud-account-email">—</div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="window.logoutUser&&window.logoutUser()">Sign Out</button>
               </div>
             </div>
           </div>
@@ -3016,6 +3202,77 @@ function saveDB(db){
     throw e; // re-throw so callers know it failed
   }
 }
+// Expose DB accessors to Firebase module
+window._getDB = getDB;
+window._saveDB = saveDB;
+
+/* ── CLOUD SYNC UI HELPERS (called from Firebase module) ── */
+function setSyncStatus(state, pendingCount) {
+  const el = document.getElementById('cloud-sync-status');
+  const textEl = document.getElementById('cloud-text');
+  const sep = document.getElementById('cloud-sep');
+  if (!el) return;
+  el.classList.remove('cs-synced','cs-syncing','cs-error');
+  el.classList.add('cs-visible','cs-' + state);
+  if (sep) sep.style.display = '';
+  if (textEl) {
+    if (state === 'synced')  textEl.textContent = 'Synced';
+    else if (state === 'syncing') textEl.textContent = 'Syncing…';
+    else textEl.textContent = pendingCount > 0 ? pendingCount + ' pending' : 'Sync error';
+  }
+  if (state === 'synced') {
+    const ls = document.getElementById('last-synced-text');
+    if (ls) ls.textContent = 'Last synced: ' + new Date().toLocaleTimeString();
+  }
+}
+function updateTopbarUser(user) {
+  const section = document.getElementById('topbar-user');
+  const nameEl  = document.getElementById('user-display-name');
+  const avatarEl = document.getElementById('user-avatar');
+  const avatarPh = document.getElementById('user-avatar-ph');
+  const sep = document.getElementById('user-sep');
+  if (!section) return;
+  section.classList.add('visible');
+  if (sep) sep.style.display = '';
+  if (nameEl) nameEl.textContent = user.displayName || user.email || '';
+  if (user.photoURL && avatarEl) {
+    avatarEl.src = user.photoURL;
+    avatarEl.style.display = '';
+    if (avatarPh) avatarPh.style.display = 'none';
+  } else if (avatarPh) {
+    const init = (user.displayName || user.email || '?').charAt(0).toUpperCase();
+    avatarPh.textContent = init;
+    avatarPh.style.display = 'flex';
+    if (avatarEl) avatarEl.style.display = 'none';
+  }
+  // Update settings account row
+  const accountRow = document.getElementById('cloud-account-row');
+  const accountEmail = document.getElementById('cloud-account-email');
+  if (accountRow) accountRow.style.display = '';
+  if (accountEmail) accountEmail.textContent = user.email || '';
+  // Show last sync time
+  const ls = document.getElementById('last-synced-text');
+  if (ls) {
+    const saved = localStorage.getItem('last_cloud_sync');
+    ls.textContent = saved ? 'Last synced: ' + new Date(saved).toLocaleString() : 'Ready — syncing now…';
+  }
+}
+function showAuthOverlay() {
+  const el = document.getElementById('auth-overlay');
+  if (el) el.style.display = 'flex';
+  const section = document.getElementById('topbar-user');
+  if (section) section.classList.remove('visible');
+  const userSep = document.getElementById('user-sep');
+  if (userSep) userSep.style.display = 'none';
+}
+function hideAuthOverlay() {
+  const el = document.getElementById('auth-overlay');
+  if (el) el.style.display = 'none';
+}
+window._setSyncStatus    = setSyncStatus;
+window._updateTopbarUser = updateTopbarUser;
+window._showAuthOverlay  = showAuthOverlay;
+window._hideAuthOverlay  = hideAuthOverlay;
 
 function captureFormData() {
   const d = {};
@@ -3058,7 +3315,8 @@ async function savePatientDB() {
   }
 
   const newId = existingIdx >= 0 ? db[existingIdx].id : 'p_' + Date.now();
-  const entry = { id: newId, meta: {name, date, record}, data: formData, savedAt: new Date().toISOString() };
+  const nowTs = Date.now();
+  const entry = { id: newId, meta: {name, date, record}, data: formData, savedAt: new Date().toISOString(), updatedAt: nowTs };
   if (existingIdx >= 0) { db[existingIdx] = entry; }
   else { db.push(entry); }
   _currentPatientDbId = entry.id; // persist the ID for subsequent saves in this session
@@ -3069,6 +3327,19 @@ async function savePatientDB() {
     showToast(existingIdx >= 0 ? `Record updated: ${name}` : `Patient saved: ${name}`, '💾', 2500);
   } catch(e) {
     // saveDB already showed the toast on QuotaExceededError
+  }
+
+  // Cloud sync (if signed in and sync enabled)
+  if (window._cloudSync && localStorage.getItem('cloud_sync_enabled') !== '0') {
+    setSyncStatus('syncing');
+    try {
+      const cloudPayload = { ...entry.meta, ...entry.data, savedAt: entry.savedAt, updatedAt: nowTs };
+      await window._cloudSync.saveRecord('patients', entry.id, cloudPayload);
+      setSyncStatus('synced');
+    } catch(e) {
+      setSyncStatus('error');
+      console.warn('Cloud sync failed:', e);
+    }
   }
 }
 
@@ -3172,6 +3443,10 @@ async function deletePatient(id) {
   await PhotoManager.deleteForPatient(id);
   // Clear session ID if the deleted patient is the one currently loaded
   if (_currentPatientDbId === id) _currentPatientDbId = null;
+  // Cloud delete
+  if (window._cloudSync) {
+    try { await window._cloudSync.deleteRecord('patients', id); } catch(e) { console.warn('Cloud delete failed:', e); }
+  }
   const searchEl = document.getElementById('search-records');
   renderRecordsList(searchEl ? searchEl.value : '');
   renderRecordsPage('');
@@ -4042,6 +4317,14 @@ window.onload = () => {
   if (sagNone && !sagNone.checked) sagNone.checked = true;
 };
 
+// Retry cloud sync when connectivity is restored
+window.addEventListener('online', () => {
+  if (window._cloudSync) {
+    setSyncStatus('syncing');
+    window._cloudSync.retryPendingSync().catch(e => setSyncStatus('error'));
+  }
+});
+
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey||e.metaKey) && e.key === 'Enter') { e.preventDefault(); generateReport(); }
 
@@ -4416,6 +4699,378 @@ function generateClinicalDescription(force) {
   }
 }
 
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     FIREBASE CLOUD SYNC  (modular v10)
+     Replace firebaseConfig values with your project's keys
+     from Firebase Console → Project Settings → Your apps
+     ═══════════════════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp }        from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import {
+  getAuth, onAuthStateChanged,
+  signInWithPopup, signInWithEmailAndPassword,
+  createUserWithEmailAndPassword, sendPasswordResetEmail,
+  GoogleAuthProvider, linkWithCredential, EmailAuthProvider,
+  signOut, updateProfile
+} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+import {
+  getFirestore, doc, setDoc, getDoc, getDocs,
+  collection, deleteDoc
+} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+/* ── YOUR FIREBASE CONFIG ─────────────────────────────── */
+const firebaseConfig = {
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
+};
+/* ──────────────────────────────────────────────────────── */
+
+const firebaseApp    = initializeApp(firebaseConfig);
+const auth           = getAuth(firebaseApp);
+const db             = getFirestore(firebaseApp);
+const googleProvider = new GoogleAuthProvider();
+
+let _authMode = 'login';          // 'login' | 'register'
+let _pendingGoogleCred = null;    // credential stored during account-link flow
+
+/* ── ERROR / SUCCESS DISPLAY ── */
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  if (!el) return;
+  el.textContent = msg; el.classList.add('show');
+  document.getElementById('auth-success')?.classList.remove('show');
+}
+function showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success');
+  if (!el) return;
+  el.textContent = msg; el.classList.add('show');
+  document.getElementById('auth-error')?.classList.remove('show');
+}
+function clearAuthMessages() {
+  document.getElementById('auth-error')?.classList.remove('show');
+  document.getElementById('auth-success')?.classList.remove('show');
+}
+function setAuthLoading(loading) {
+  const btn  = document.getElementById('auth-submit-btn');
+  const gBtn = document.getElementById('google-signin-btn');
+  if (btn) {
+    btn.disabled = loading;
+    btn.textContent = loading ? 'Please wait…'
+      : (_authMode === 'register' ? 'Create Account' : 'Sign In');
+  }
+  if (gBtn) gBtn.disabled = loading;
+}
+
+/* ── TOGGLE LOGIN / REGISTER ── */
+function toggleAuthMode() {
+  clearAuthMessages();
+  _authMode = _authMode === 'login' ? 'register' : 'login';
+  const nameField    = document.getElementById('auth-name-field');
+  const confirmField = document.getElementById('auth-confirm-field');
+  const submitBtn    = document.getElementById('auth-submit-btn');
+  const toggleText   = document.getElementById('auth-toggle-text');
+  const toggleLink   = document.getElementById('auth-toggle-link');
+  const pwInput      = document.getElementById('auth-password');
+  if (_authMode === 'register') {
+    if (nameField)    nameField.style.display = '';
+    if (confirmField) confirmField.style.display = '';
+    if (submitBtn)    submitBtn.textContent = 'Create Account';
+    if (toggleText)   toggleText.textContent = 'Already have an account? ';
+    if (toggleLink)   toggleLink.textContent = 'Sign In';
+    if (pwInput)      pwInput.autocomplete = 'new-password';
+  } else {
+    if (nameField)    nameField.style.display = 'none';
+    if (confirmField) confirmField.style.display = 'none';
+    if (submitBtn)    submitBtn.textContent = 'Sign In';
+    if (toggleText)   toggleText.textContent = "Don't have an account? ";
+    if (toggleLink)   toggleLink.textContent = 'Register';
+    if (pwInput)      pwInput.autocomplete = 'current-password';
+  }
+}
+
+/* ── SUBMIT EMAIL/PASSWORD FORM ── */
+async function submitAuthForm() {
+  clearAuthMessages();
+  const email    = document.getElementById('auth-email')?.value.trim() || '';
+  const password = document.getElementById('auth-password')?.value || '';
+  if (!email || !password) { showAuthError('Please enter your email and password.'); return; }
+  setAuthLoading(true);
+  try {
+    if (_authMode === 'register') {
+      const displayName = document.getElementById('auth-display-name')?.value.trim() || '';
+      const confirm     = document.getElementById('auth-confirm-pw')?.value || '';
+      if (!displayName)          { showAuthError('Please enter a display name.'); setAuthLoading(false); return; }
+      if (password !== confirm)  { showAuthError('Passwords do not match.'); setAuthLoading(false); return; }
+      if (password.length < 6)   { showAuthError('Password must be at least 6 characters.'); setAuthLoading(false); return; }
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(result.user, { displayName });
+      await onSuccessfulAuth(result.user);
+    } else {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      await onSuccessfulAuth(result.user);
+    }
+  } catch(err) {
+    setAuthLoading(false);
+    showAuthError(friendlyError(err));
+  }
+}
+
+/* ── GOOGLE SIGN-IN ── */
+async function signInWithGoogle() {
+  clearAuthMessages();
+  setAuthLoading(true);
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    await onSuccessfulAuth(result.user);
+  } catch(err) {
+    setAuthLoading(false);
+    if (err.code === 'auth/account-exists-with-different-credential') {
+      _pendingGoogleCred = GoogleAuthProvider.credentialFromError(err);
+      const email = err.customData?.email || '';
+      const subEl = document.getElementById('link-modal-sub');
+      if (subEl) subEl.textContent = `An account with ${email} already exists. Enter your password to link your Google account.`;
+      window.openModal?.('link-modal');
+    } else {
+      showAuthError(friendlyError(err));
+    }
+  }
+}
+
+/* ── FORGOT PASSWORD ── */
+async function sendForgotPassword() {
+  const email = document.getElementById('auth-email')?.value.trim() || '';
+  if (!email) { showAuthError('Enter your email address first.'); return; }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showAuthSuccess('Password reset email sent — check your inbox.');
+  } catch(err) { showAuthError(friendlyError(err)); }
+}
+
+/* ── ACCOUNT LINKING ── */
+async function doAccountLink() {
+  const password  = document.getElementById('link-password')?.value || '';
+  const errEl     = document.getElementById('link-error');
+  const email     = (auth.currentUser?.email) || document.getElementById('auth-email')?.value.trim() || '';
+  if (!password) return;
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    if (_pendingGoogleCred) {
+      await linkWithCredential(result.user, _pendingGoogleCred);
+      _pendingGoogleCred = null;
+    }
+    window.closeModal?.('link-modal');
+    await onSuccessfulAuth(result.user);
+  } catch(err) {
+    if (errEl) { errEl.textContent = friendlyError(err); errEl.classList.add('show'); }
+  }
+}
+
+/* ── SUCCESSFUL AUTH HANDLER ── */
+async function onSuccessfulAuth(user) {
+  setAuthLoading(false);
+
+  // Persist user profile to Firestore
+  try {
+    await setDoc(doc(db, 'users', user.uid, 'profile', user.uid), {
+      displayName:  user.displayName || '',
+      email:        user.email || '',
+      photoURL:     user.photoURL || '',
+      authProvider: user.providerData[0]?.providerId || 'unknown',
+      lastLogin:    Date.now(),
+      updatedAt:    Date.now()
+    }, { merge: true });
+  } catch(e) { console.warn('Profile write failed (non-fatal):', e); }
+
+  // Create global CloudSync instance
+  window._cloudSync = new CloudSync(db, auth, user);
+
+  // Wire restore & toggle into window so settings buttons work
+  window.toggleCloudSync = (enabled) => {
+    localStorage.setItem('cloud_sync_enabled', enabled ? '1' : '0');
+  };
+  window.restoreFromCloud = async () => {
+    if (!confirm('Restore all patient records from cloud? They will be merged with your local data.')) return;
+    window._setSyncStatus?.('syncing');
+    try {
+      const restored = await window._cloudSync.restoreFromCloud();
+      const patients = restored.patients || [];
+      if (patients.length > 0) {
+        const localDb  = window._getDB?.() || [];
+        const localMap = {};
+        localDb.forEach(r => { localMap[r.id] = true; });
+        let added = 0;
+        patients.forEach(p => {
+          if (!localMap[p.id]) {
+            localDb.push({
+              id: p.id,
+              meta: { name: p['pt-name'] || p.name || 'Restored', date: p['pt-date'] || p.date || '', record: p['pt-record'] || p.record || '' },
+              data: p,
+              savedAt:   p.savedAt || new Date().toISOString(),
+              updatedAt: p.updatedAt || Date.now()
+            });
+            added++;
+          }
+        });
+        window._saveDB?.(localDb);
+        window.showToast?.(`Restored ${added} new patient(s) from cloud`, '☁️', 3500);
+      } else {
+        window.showToast?.('No cloud records found for your account', 'ℹ️', 3000);
+      }
+      window._setSyncStatus?.('synced');
+    } catch(e) {
+      window._setSyncStatus?.('error');
+      window.showToast?.('Restore failed: ' + e.message, '❌', 4000);
+    }
+  };
+
+  // Update topbar with user info
+  window._updateTopbarUser?.(user);
+
+  // Hide auth overlay — show the app
+  window._hideAuthOverlay?.();
+
+  // Retry any pending syncs
+  window._setSyncStatus?.('syncing');
+  window._cloudSync.retryPendingSync()
+    .then(() => window._setSyncStatus?.('synced'))
+    .catch(e => { console.warn('Retry sync error:', e); window._setSyncStatus?.('error'); });
+}
+
+/* ── SIGN OUT ── */
+async function logout() {
+  if (!confirm('Sign out? Your data remains safely backed up in the cloud.')) return;
+  await signOut(auth);
+  window._cloudSync = null;
+  const section = document.getElementById('topbar-user');
+  if (section) section.classList.remove('visible');
+  ['user-sep','cloud-sep'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+  const cs = document.getElementById('cloud-sync-status');
+  if (cs) { cs.classList.remove('cs-visible','cs-synced','cs-syncing','cs-error'); }
+  window._showAuthOverlay?.();
+}
+
+/* ── CLOUDSYNC CLASS ── */
+class CloudSync {
+  constructor(firestore, firebaseAuth, user) {
+    this.fs   = firestore;
+    this.auth = firebaseAuth;
+    this._user = user;
+  }
+  get uid() { return this._user?.uid || this.auth.currentUser?.uid; }
+  _doc(sub, id)  { return doc(this.fs, 'users', this.uid, sub, id); }
+  _coll(sub)     { return collection(this.fs, 'users', this.uid, sub); }
+
+  // Save a stripped (no photos) record to Firestore
+  async saveRecord(sub, id, data) {
+    const payload = this._strip({ ...data, updatedAt: Date.now() });
+    await setDoc(this._doc(sub, id), payload, { merge: true });
+    this._updateLastSynced();
+  }
+
+  // Delete a record from Firestore
+  async deleteRecord(sub, id) {
+    await deleteDoc(this._doc(sub, id));
+  }
+
+  // Pull all records from Firestore for this user
+  async restoreFromCloud() {
+    const subs = ['patients'];
+    const result = {};
+    for (const sub of subs) {
+      const snap = await getDocs(this._coll(sub));
+      result[sub] = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+    }
+    return result;
+  }
+
+  // Push every local record that may be missing from Firestore
+  async retryPendingSync() {
+    const localDb = window._getDB?.() || [];
+    if (!localDb.length) { return; }
+    let errors = 0;
+    for (const entry of localDb) {
+      try {
+        const payload = this._strip({ ...entry.meta, ...entry.data, savedAt: entry.savedAt, updatedAt: entry.updatedAt || Date.now() });
+        await setDoc(this._doc('patients', entry.id), payload, { merge: true });
+      } catch(e) {
+        errors++;
+        console.warn('Sync failed for', entry.id, e.message);
+      }
+    }
+    if (errors > 0) throw new Error(errors + ' record(s) failed to sync');
+    this._updateLastSynced();
+  }
+
+  // Strip photo fields and base64 blobs before cloud upload
+  _strip(data) {
+    const clone = JSON.parse(JSON.stringify(data));
+    const photoFields = [
+      'photos','images','photo','image','intraoral','extraoral',
+      'radiographs','cephImage','profilePhoto','frontalPhoto',
+      'panoramic','lateralCeph','photoData','imageData','thumbnail'
+    ];
+    photoFields.forEach(f => delete clone[f]);
+    this._stripB64(clone);
+    return clone;
+  }
+  _stripB64(obj) {
+    for (const k in obj) {
+      if (typeof obj[k] === 'string' && obj[k].startsWith('data:image')) {
+        obj[k] = '[LOCAL_PHOTO]';
+      } else if (obj[k] && typeof obj[k] === 'object') {
+        this._stripB64(obj[k]);
+      }
+    }
+  }
+
+  _updateLastSynced() {
+    const ts = new Date().toISOString();
+    localStorage.setItem('last_cloud_sync', ts);
+    const el = document.getElementById('last-synced-text');
+    if (el) el.textContent = 'Last synced: ' + new Date(ts).toLocaleString();
+  }
+}
+
+/* ── FRIENDLY ERROR MESSAGES ── */
+function friendlyError(err) {
+  const map = {
+    'auth/invalid-email':               'Invalid email address.',
+    'auth/user-not-found':              'No account found with this email.',
+    'auth/wrong-password':              'Incorrect password.',
+    'auth/invalid-credential':          'Incorrect email or password.',
+    'auth/email-already-in-use':        'This email is already registered. Sign in instead.',
+    'auth/weak-password':               'Password is too weak (min 6 characters).',
+    'auth/too-many-requests':           'Too many attempts — try again later.',
+    'auth/network-request-failed':      'Network error. Check your connection.',
+    'auth/popup-closed-by-user':        'Sign-in popup was closed. Please try again.',
+    'auth/popup-blocked':               'Popup was blocked by your browser. Allow popups for this site.',
+    'auth/cancelled-popup-request':     'Sign-in cancelled.',
+  };
+  return map[err.code] || err.message || 'An error occurred. Please try again.';
+}
+
+/* ── AUTH STATE LISTENER ── */
+onAuthStateChanged(auth, async user => {
+  if (user) {
+    await onSuccessfulAuth(user);
+  } else {
+    window._showAuthOverlay?.();
+  }
+});
+
+/* ── EXPOSE TO GLOBAL SCOPE ── */
+window.signInWithGoogle   = signInWithGoogle;
+window.submitAuthForm     = submitAuthForm;
+window.toggleAuthMode     = toggleAuthMode;
+window.sendForgotPassword = sendForgotPassword;
+window.doAccountLink      = doAccountLink;
+window.logoutUser         = logout;
 </script>
 </body>
 </html>
