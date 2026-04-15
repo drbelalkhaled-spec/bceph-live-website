@@ -4891,6 +4891,37 @@ async function onSuccessfulAuth(user) {
   // Create global CloudSync instance
   window._cloudSync = new CloudSync(db, auth, user);
 
+  // Smart merge: compare updatedAt timestamps, keep whichever version is newer
+  function smartMerge(localDb, cloudPatients) {
+    const localMap = {};
+    localDb.forEach((r, i) => { localMap[r.id] = i; });
+    let added = 0, updated = 0;
+    cloudPatients.forEach(p => {
+      const cloudEntry = {
+        id: p.id,
+        meta: { name: p['pt-name'] || p.name || 'Restored', date: p['pt-date'] || p.date || '', record: p['pt-record'] || p.record || '' },
+        data: p,
+        savedAt:   p.savedAt || new Date().toISOString(),
+        updatedAt: p.updatedAt || Date.now()
+      };
+      if (localMap[p.id] === undefined) {
+        // New patient — add it
+        localDb.push(cloudEntry);
+        added++;
+      } else {
+        // Existing patient — keep whichever is newer
+        const localIdx = localMap[p.id];
+        const localTs  = localDb[localIdx].updatedAt || 0;
+        const cloudTs  = p.updatedAt || 0;
+        if (cloudTs > localTs) {
+          localDb[localIdx] = cloudEntry;
+          updated++;
+        }
+      }
+    });
+    return { merged: localDb, added, updated };
+  }
+
   // Wire restore & toggle into window so settings buttons work
   window.toggleCloudSync = (enabled) => {
     localStorage.setItem('cloud_sync_enabled', enabled ? '1' : '0');
@@ -4902,24 +4933,13 @@ async function onSuccessfulAuth(user) {
       const restored = await window._cloudSync.restoreFromCloud();
       const patients = restored.patients || [];
       if (patients.length > 0) {
-        const localDb  = window._getDB?.() || [];
-        const localMap = {};
-        localDb.forEach(r => { localMap[r.id] = true; });
-        let added = 0;
-        patients.forEach(p => {
-          if (!localMap[p.id]) {
-            localDb.push({
-              id: p.id,
-              meta: { name: p['pt-name'] || p.name || 'Restored', date: p['pt-date'] || p.date || '', record: p['pt-record'] || p.record || '' },
-              data: p,
-              savedAt:   p.savedAt || new Date().toISOString(),
-              updatedAt: p.updatedAt || Date.now()
-            });
-            added++;
-          }
-        });
-        window._saveDB?.(localDb);
-        window.showToast?.(`Restored ${added} new patient(s) from cloud`, '☁️', 3500);
+        const localDb = window._getDB?.() || [];
+        const { merged, added, updated } = smartMerge(localDb, patients);
+        window._saveDB?.(merged);
+        const parts = [];
+        if (added > 0) parts.push(`${added} new`);
+        if (updated > 0) parts.push(`${updated} updated`);
+        window.showToast?.(parts.length > 0 ? `Synced: ${parts.join(', ')} patient(s)` : 'Everything is up to date', '☁️', 3500);
       } else {
         window.showToast?.('No cloud records found for your account', 'ℹ️', 3000);
       }
@@ -4936,38 +4956,31 @@ async function onSuccessfulAuth(user) {
   // Hide auth overlay — show the app
   window._hideAuthOverlay?.();
 
-  // Auto-restore from cloud if local DB is empty, then retry pending syncs
+  // Push-on-save + smart pull-on-login:
+  // 1. First push any local data to cloud
+  // 2. Then pull cloud data and merge (adds new + updates newer)
   window._setSyncStatus?.('syncing');
-  const localDb = window._getDB?.() || [];
-  if (localDb.length === 0) {
-    // No local data — pull from cloud automatically
-    try {
-      const restored = await window._cloudSync.restoreFromCloud();
-      const patients = restored.patients || [];
-      if (patients.length > 0) {
-        const merged = [];
-        patients.forEach(p => {
-          merged.push({
-            id: p.id,
-            meta: { name: p['pt-name'] || p.name || 'Restored', date: p['pt-date'] || p.date || '', record: p['pt-record'] || p.record || '' },
-            data: p,
-            savedAt:   p.savedAt || new Date().toISOString(),
-            updatedAt: p.updatedAt || Date.now()
-          });
-        });
+  try {
+    // Push local → cloud
+    await window._cloudSync.retryPendingSync().catch(e => console.warn('Push sync error:', e));
+    // Pull cloud → local (smart merge)
+    const restored = await window._cloudSync.restoreFromCloud();
+    const patients = restored.patients || [];
+    if (patients.length > 0) {
+      const localDb = window._getDB?.() || [];
+      const { merged, added, updated } = smartMerge(localDb, patients);
+      if (added > 0 || updated > 0) {
         window._saveDB?.(merged);
-        window.showToast?.(`Restored ${patients.length} patient(s) from cloud`, '☁️', 3500);
+        const parts = [];
+        if (added > 0) parts.push(`${added} new`);
+        if (updated > 0) parts.push(`${updated} updated`);
+        window.showToast?.(`Cloud sync: ${parts.join(', ')} patient(s)`, '☁️', 3000);
       }
-      window._setSyncStatus?.('synced');
-    } catch(e) {
-      window._setSyncStatus?.('error');
-      console.warn('Auto cloud restore failed:', e);
     }
-  } else {
-    // Local data exists — push to cloud
-    window._cloudSync.retryPendingSync()
-      .then(() => window._setSyncStatus?.('synced'))
-      .catch(e => { console.warn('Retry sync error:', e); window._setSyncStatus?.('error'); });
+    window._setSyncStatus?.('synced');
+  } catch(e) {
+    console.warn('Login sync error:', e);
+    window._setSyncStatus?.('error');
   }
 }
 
