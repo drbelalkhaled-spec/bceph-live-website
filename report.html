@@ -4936,11 +4936,39 @@ async function onSuccessfulAuth(user) {
   // Hide auth overlay — show the app
   window._hideAuthOverlay?.();
 
-  // Retry any pending syncs
+  // Auto-restore from cloud if local DB is empty, then retry pending syncs
   window._setSyncStatus?.('syncing');
-  window._cloudSync.retryPendingSync()
-    .then(() => window._setSyncStatus?.('synced'))
-    .catch(e => { console.warn('Retry sync error:', e); window._setSyncStatus?.('error'); });
+  const localDb = window._getDB?.() || [];
+  if (localDb.length === 0) {
+    // No local data — pull from cloud automatically
+    try {
+      const restored = await window._cloudSync.restoreFromCloud();
+      const patients = restored.patients || [];
+      if (patients.length > 0) {
+        const merged = [];
+        patients.forEach(p => {
+          merged.push({
+            id: p.id,
+            meta: { name: p['pt-name'] || p.name || 'Restored', date: p['pt-date'] || p.date || '', record: p['pt-record'] || p.record || '' },
+            data: p,
+            savedAt:   p.savedAt || new Date().toISOString(),
+            updatedAt: p.updatedAt || Date.now()
+          });
+        });
+        window._saveDB?.(merged);
+        window.showToast?.(`Restored ${patients.length} patient(s) from cloud`, '☁️', 3500);
+      }
+      window._setSyncStatus?.('synced');
+    } catch(e) {
+      window._setSyncStatus?.('error');
+      console.warn('Auto cloud restore failed:', e);
+    }
+  } else {
+    // Local data exists — push to cloud
+    window._cloudSync.retryPendingSync()
+      .then(() => window._setSyncStatus?.('synced'))
+      .catch(e => { console.warn('Retry sync error:', e); window._setSyncStatus?.('error'); });
+  }
 }
 
 /* ── SIGN OUT ── */
