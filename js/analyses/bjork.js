@@ -1,0 +1,45 @@
+/* ── BJÖRK-JARABAK ── */
+const BJORK=[
+  {name:'Saddle Angle (N-S-Ar)',unit:'°',norm:123,sd:5,requires:['N','S','Ar'],calc:()=>angleAtVertex(L('N'),L('S'),L('Ar'))},
+  {name:'Articular Angle (S-Ar-Go)',unit:'°',norm:143,sd:6,requires:['S','Ar','Go'],calc:()=>angleAtVertex(L('S'),L('Ar'),L('Go'))},
+  {name:'Gonial Angle (Ar-Go-Me)',unit:'°',norm:130,sd:7,requires:['Ar','Go','Me'],calc:()=>angleAtVertex(L('Ar'),L('Go'),L('Me'))},
+  {name:'Upper Gonial (Ar-Go-N)',unit:'°',norm:52,sd:4,requires:['Ar','Go','N'],calc:()=>angleAtVertex(L('Ar'),L('Go'),L('N'))},
+  {name:'Lower Gonial (N-Go-Me)',unit:'°',norm:70,sd:6,requires:['N','Go','Me'],calc:()=>angleAtVertex(L('N'),L('Go'),L('Me'))},
+  {name:'Sum of Angles',unit:'°',norm:396,sd:6,requires:['N','S','Ar','Go','Me'],calc:()=>{
+    return angleAtVertex(L('N'),L('S'),L('Ar'))+angleAtVertex(L('S'),L('Ar'),L('Go'))+angleAtVertex(L('Ar'),L('Go'),L('Me'));
+  }},
+  {name:'Post Face Ht (S-Go)',unit:'mm',norm:90.5,sd:8.2,requires:['S','Go'],calc:()=>px2mm(dist(L('S'),L('Go')))},
+  {name:'Ant Face Ht (N-Me)',unit:'mm',norm:136.4,sd:6.8,requires:['N','Me'],calc:()=>px2mm(dist(L('N'),L('Me')))},
+  {name:'PFH/AFH Ratio',unit:'%',norm:63,sd:3,requires:['S','Go','N','Me'],calc:()=>{
+    const pfh=dist(L('S'),L('Go')), afh=dist(L('N'),L('Me'));
+    if(afh===0)return NaN; return(pfh/afh)*100;
+  }},
+  {name:'Ant. Cranial Base (S–N)',unit:'mm',norm:71.8,sd:2.8,requires:['S','N'],
+    calc:()=>px2mm(Math.hypot(L('S').x-L('N').x,L('S').y-L('N').y))},
+  {name:'Post. Cranial Base (S–Ar)',unit:'mm',norm:40.1,sd:3.4,requires:['S','Ar'],
+    calc:()=>px2mm(Math.hypot(L('S').x-L('Ar').x,L('S').y-L('Ar').y))},
+  {name:'Ramus Height (Ar–Go)',unit:'mm',norm:54.9,sd:4.5,requires:['Ar','Go'],
+    calc:()=>px2mm(Math.hypot(L('Ar').x-L('Go').x,L('Ar').y-L('Go').y))},
+  {name:'Mand. Body Length (Go–Gn)',unit:'mm',norm:78.7,sd:5.6,requires:['Go','Gn'],
+    calc:()=>px2mm(Math.hypot(L('Go').x-L('Gn').x,L('Go').y-L('Gn').y))},
+  {name:'Facial Depth (N–Go)',unit:'mm',norm:130.9,sd:6.3,requires:['N','Go'],
+    calc:()=>px2mm(Math.hypot(L('N').x-L('Go').x,L('N').y-L('Go').y))},
+  {name:'Facial Length (S–Gn)',unit:'mm',norm:139.5,sd:6,requires:['S','Gn'],
+    calc:()=>px2mm(Math.hypot(L('S').x-L('Gn').x,L('S').y-L('Gn').y))},
+  {name:'Body/Cranial Base Ratio',unit:'',norm:1.08,sd:0.1,requires:['Go','Gn','S','N'],
+    calc:()=>{const sn=Math.hypot(L('S').x-L('N').x,L('S').y-L('N').y);if(sn===0)return NaN;return Math.hypot(L('Go').x-L('Gn').x,L('Go').y-L('Gn').y)/sn;}},
+  {name:'SN–GoMe',unit:'°',norm:32.8,sd:4.3,requires:['S','N','Go','Me'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('Go'),L('Me'))},
+  {name:'Y-Axis to SN',unit:'°',norm:70.9,sd:3.4,requires:['S','N','Gn'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('S'),L('Gn'))},
+  {name:'Facial Plane (N–Pog)',unit:'°',norm:81.8,sd:1.2,requires:['N','Pg','Po','Or'],
+    calc:()=>angleBetweenLines(L('Po'),L('Or'),L('N'),L('Pg'))},
+  {name:'Facial Convexity',unit:'°',norm:1.3,sd:2.4,requires:['N','A','Pg'],
+    calc:()=>{const ang=angleAtVertex(L('N'),L('A'),L('Pg'));return 180-ang;}},
+  {name:'Lower Lip to E-Plane',unit:'mm',norm:-2,sd:2,requires:['Prn','sPg','Li'],
+    calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Li').x-L('Prn').x)*dy-(L('Li').y-L('Prn').y)*dx;return px2mm(cross/len);}},
+  {name:'U1 to SN',unit:'°',norm:109.3,sd:6,requires:['S','N','U1T','U1A'],
+    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('U1A'),L('U1T'))},
+  {name:'Occ Plane to Go-Me',unit:'°',norm:19.8,sd:4.1,requires:['Op1','Op2','Go','Me'],
+    calc:()=>{const op=getOcclusalPlane();if(!op)return NaN;return acuteAngleBetweenLines(op.A,op.B,L('Go'),L('Me'));}},
+];
