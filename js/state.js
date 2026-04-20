@@ -1,0 +1,16 @@
+const landmarks = {};
+let activeLandmark = 'S';
+let img = null, imgW = 0, imgH = 0, imgDataURL = null;
+let scale = 1, panX = 0, panY = 0;
+let showTracing = true, showLabels = true;
+let pixelsPerMm = 0;
+let dragging = null, isPanning = false;
+let panStart = {x:0, y:0}, lastPanOffset = {x:0, y:0};
+let calibMode = 0;
+let calibPts = [null, null];
+let calibMouseImg = null;
+let mouseDownPos = null, mouseDownBtn = -1, mouseMoved = false;
+const DRAG_THRESHOLD = 5;
+const cn = () => document.getElementById('ceph-canvas');
+const skippedLandmarks = new Set();
+const undoStack = [], redoStack = [];
