@@ -241,7 +241,7 @@ function buildReport(sel){
     cimg=tc.toDataURL('image/jpeg',0.85);
   }
 
-  const pi=patientInfo, piAge=pi.dob?computeAge(pi.dob):(pi.age||'');
+  const pi=patientInfo, piAge=pi.dob?computeAge(pi.dob,pi.xraydate):(pi.age||'');
   const hasPI=pi.name||pi.fileno||piAge;
   let piHTML='';
   if(hasPI){
