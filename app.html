@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -91,18 +91,19 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 
 /* ── WORKSPACE ── */
 #workspace{display:flex;flex:1;overflow:hidden}
+#left-sidebar{width:240px;flex-shrink:0;display:flex;flex-direction:column;overflow-y:auto;background:var(--white);border-right:1px solid var(--border);box-shadow:2px 0 4px rgba(0,0,0,.04)}
 
 /* ── CANVAS PANEL ── */
 #canvas-panel{flex:1;display:flex;flex-direction:column;background:var(--bg);position:relative;min-width:0}
-#canvas-toolbar{height:42px;flex-shrink:0;display:flex;align-items:center;gap:8px;padding:0 14px;background:var(--white);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+#canvas-toolbar{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--white);border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-wrap:wrap}
 .ct-btn{height:30px;padding:0 12px;border:1.5px solid var(--border-light);border-radius:var(--radius);background:transparent;color:var(--text-dim);font-family:var(--font);font-size:10px;font-weight:700;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:4px}
 .ct-btn:hover{background:var(--bg);border-color:var(--border-light);color:var(--text)}
 .ct-btn.active{background:var(--gold-dim);border-color:rgba(200,152,42,.4);color:var(--gold)}
 .ct-btn.skip-btn:hover{background:var(--red-dim);border-color:rgba(220,38,38,.3);color:var(--red)}
 .ct-sep{width:1px;height:20px;background:var(--border)}
-#landmark-selector{height:30px;padding:0 8px;border:1.5px solid var(--border-light);border-radius:var(--radius);background:var(--bg);color:var(--navy);font-family:var(--font);font-size:11px;font-weight:700;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8982a' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;max-width:220px}
+#landmark-selector{height:30px;padding:0 8px;border:1.5px solid var(--border-light);border-radius:var(--radius);background:var(--bg);color:var(--navy);font-family:var(--font);font-size:11px;font-weight:700;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8982a' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;width:100%}
 #landmark-selector option{background:var(--white);color:var(--text)}
-#lm-hint{font-size:10px;color:var(--text-dim);margin-left:4px;flex:1;min-width:0;white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#lm-hint{font-size:10px;color:var(--text-dim);margin-left:4px;width:100%;flex:none;white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 #zoom-display{font-size:10px;color:var(--text-dim);font-family:var(--font-mono)}
 #canvas-wrap{flex:1;overflow:hidden;position:relative;cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none}
 #ceph-canvas{display:block;touch-action:none}
@@ -110,7 +111,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 #no-image-msg .icon{font-size:48px;opacity:.25}
 #no-image-msg .title{font-size:16px;font-weight:700;color:var(--text-dim);font-family:var(--font-display)}
 #no-image-msg .sub{font-size:11px;color:var(--text-dim);opacity:.6;text-align:center;line-height:1.6}
-#landmark-bar{height:38px;flex-shrink:0;display:flex;align-items:center;gap:4px;padding:0 14px;overflow-x:auto;background:var(--white);border-top:1px solid var(--border);box-shadow:0 -1px 3px rgba(0,0,0,.04)}
+#landmark-bar{flex-shrink:0;display:flex;align-items:center;gap:4px;padding:10px 14px;background:var(--white);border-top:1px solid var(--border);box-shadow:0 -1px 3px rgba(0,0,0,.04);flex-wrap:wrap}
 .lm-pip{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;color:var(--text-dim);border:1.5px solid var(--border-light);background:transparent;cursor:pointer;transition:all .12s;font-family:var(--font-mono)}
 .lm-pip.placed{border-color:var(--green);color:var(--green);background:var(--green-dim)}
 .lm-pip.active{border-color:var(--gold);color:var(--gold);background:var(--gold-pale);transform:scale(1.15)}
@@ -221,7 +222,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 .legend-label{font-size:10px;color:var(--text-dim)}
 
 /* ── ENHANCE BAR ── */
-#img-enhance-bar{height:36px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto}
+#img-enhance-bar{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--white);border-bottom:1px solid var(--border);flex-wrap:wrap}
 .enh-label{font-size:9px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
 .enh-slider{-webkit-appearance:none;appearance:none;width:80px;height:3px;border-radius:2px;background:var(--border-light);outline:none;cursor:pointer;flex-shrink:0}
 .enh-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:13px;height:13px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--white);box-shadow:0 0 0 1px rgba(200,152,42,.4)}
@@ -231,7 +232,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 .tb-btn.disabled{opacity:.35;pointer-events:none}
 
 /* ── PATIENT BAR ── */
-#patient-bar{height:34px;flex-shrink:0;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto;box-shadow:var(--shadow)}
+#patient-bar{flex-shrink:0;display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--white);border-bottom:1px solid var(--border);flex-wrap:wrap;box-shadow:var(--shadow)}
 #patient-bar .pi-tag{font-size:10px;font-weight:600;color:var(--text-dim);white-space:nowrap;display:flex;align-items:center;gap:4px}
 #patient-bar .pi-tag .pi-val{color:var(--navy);font-family:var(--font-mono);font-weight:700}
 #patient-bar .pi-tag.empty .pi-val{color:var(--text-dim);font-style:italic;opacity:.5}
@@ -264,7 +265,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 .backup-btn:hover{background:var(--navy-light)}
 
 /* ── ANALYSIS FILTER BAR ── */
-#analysis-filter-bar{height:34px;flex-shrink:0;display:flex;align-items:center;gap:5px;padding:0 12px;background:var(--white);border-top:1px solid var(--border);overflow-x:auto}
+#analysis-filter-bar{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:10px 12px;background:var(--white);border-bottom:1px solid var(--border);flex-wrap:wrap}
 #analysis-filter-bar::-webkit-scrollbar{height:0}
 .af-label{font-size:9px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;margin-right:2px}
 .af-pill{height:22px;padding:0 9px;border:1.5px solid var(--border-light);border-radius:11px;background:transparent;color:var(--text-dim);font-family:var(--font);font-size:10px;font-weight:700;cursor:pointer;transition:all .12s;white-space:nowrap;display:flex;align-items:center;gap:4px}
@@ -447,16 +448,16 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
     <button class="tb-btn" id="sync-btn" onclick="manualSync()" style="display:none" title="Sync with cloud">☁️ Sync</button>
     <button class="tb-btn" id="logout-btn" onclick="logout()" style="display:none" title="Sign Out">🚪 Sign Out</button>
   </div>
-  <div id="patient-bar">
-    <div class="pi-tag" id="pit-name"><span>👤</span> <span class="pi-val" id="piv-name">No patient</span></div>
-    <div class="pi-tag" id="pit-fileno"><span>📁</span> <span class="pi-val" id="piv-fileno">—</span></div>
-    <div class="pi-tag" id="pit-age"><span>🎂</span> <span class="pi-val" id="piv-age">—</span></div>
-    <div class="pi-tag" id="pit-gender"><span>⚥</span> <span class="pi-val" id="piv-gender">—</span></div>
-    <div class="pi-tag" id="pit-xraydate"><span>📅</span> <span class="pi-val" id="piv-xraydate">—</span></div>
-    <div class="pi-tag" style="margin-left:auto"><span>✉️</span> <a id="contact-link" style="color:var(--text-dim);font-family:var(--font-mono);font-weight:700;font-size:10px;text-decoration:none"></a></div>
-  </div>
   <div id="workspace">
-    <div id="canvas-panel">
+    <div id="left-sidebar">
+      <div id="patient-bar">
+        <div class="pi-tag" id="pit-name"><span>👤</span> <span class="pi-val" id="piv-name">No patient</span></div>
+        <div class="pi-tag" id="pit-fileno"><span>📁</span> <span class="pi-val" id="piv-fileno">—</span></div>
+        <div class="pi-tag" id="pit-age"><span>🎂</span> <span class="pi-val" id="piv-age">—</span></div>
+        <div class="pi-tag" id="pit-gender"><span>⚥</span> <span class="pi-val" id="piv-gender">—</span></div>
+        <div class="pi-tag" id="pit-xraydate"><span>📅</span> <span class="pi-val" id="piv-xraydate">—</span></div>
+        <div class="pi-tag" style="margin-left:auto"><span>✉️</span> <a id="contact-link" style="color:var(--text-dim);font-family:var(--font-mono);font-weight:700;font-size:10px;text-decoration:none"></a></div>
+      </div>
       <div id="canvas-toolbar">
         <select id="landmark-selector" onchange="selectLandmark(this.value)"></select>
         <span id="lm-hint">Select a landmark, then click on the image</span>
@@ -485,6 +486,15 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
         <button class="ct-btn" id="enh-invert-btn" onclick="toggleInvert()">⬛ Invert</button>
         <button class="ct-btn" onclick="resetEnhancement()" style="margin-left:2px">↺ Reset</button>
       </div>
+      <div id="analysis-filter-bar">
+        <span class="af-label">Analyses:</span>
+        <button class="af-pill af-pill-all" id="af-all" onclick="setAllAnalyses(true)" title="Show all landmarks">All</button>
+        <button class="af-pill af-pill-all" onclick="setAllAnalyses(false)" title="Clear all — pick manually">None</button>
+        <div class="af-sep"></div>
+      </div>
+      <div id="landmark-bar"></div>
+    </div>
+    <div id="canvas-panel">
       <div id="canvas-wrap">
         <canvas id="ceph-canvas"></canvas>
         <div id="calib-hud">
@@ -497,13 +507,6 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
           <div class="sub">Click "Load Ceph" or drag &amp; drop<br>a lateral cephalogram to begin.<br><br><span style="font-size:10px;opacity:.5">Arrow keys nudge · Pinch to zoom · ⊘ Skip = mark landmark absent</span></div>
         </div>
       </div>
-      <div id="analysis-filter-bar">
-        <span class="af-label">Analyses:</span>
-        <button class="af-pill af-pill-all" id="af-all" onclick="setAllAnalyses(true)" title="Show all landmarks">All</button>
-        <button class="af-pill af-pill-all" onclick="setAllAnalyses(false)" title="Clear all — pick manually">None</button>
-        <div class="af-sep"></div>
-      </div>
-      <div id="landmark-bar"></div>
     </div>
     <div id="analysis-panel">
       <div id="analysis-tabs">
