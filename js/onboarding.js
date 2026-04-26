@@ -1,3 +1,80 @@
+/* ── ONE-OFF SPOTLIGHT (reuses tour styling) ── */
+function flashSpotlight(selector, opts){
+  const target = typeof selector === 'string' ? document.querySelector(selector) : selector;
+  if(!target) return;
+  const existing = document.getElementById('flash-spotlight-overlay');
+  if(existing) existing.remove();
+
+  const title = (opts && opts.title) || 'Action required';
+  const body  = (opts && opts.body)  || '';
+  const duration = (opts && opts.duration) || 4500;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'flash-spotlight-overlay';
+  Object.assign(overlay.style, {
+    position: 'fixed', inset: '0', zIndex: '5000', pointerEvents: 'auto'
+  });
+
+  const spot = document.createElement('div');
+  Object.assign(spot.style, {
+    position: 'fixed', borderRadius: '8px',
+    boxShadow: '0 0 0 9999px rgba(0,0,0,0.65)',
+    pointerEvents: 'none', zIndex: '5001',
+    transition: 'all 0.2s ease',
+    outline: '2px solid #fbbf24', outlineOffset: '2px',
+    animation: 'flashPulse 1s ease-in-out infinite alternate'
+  });
+  overlay.appendChild(spot);
+
+  if(!document.getElementById('flash-spotlight-style')){
+    const st = document.createElement('style');
+    st.id = 'flash-spotlight-style';
+    st.textContent = '@keyframes flashPulse{from{box-shadow:0 0 0 9999px rgba(0,0,0,0.65),0 0 0 0 rgba(251,191,36,.7)}to{box-shadow:0 0 0 9999px rgba(0,0,0,0.65),0 0 0 12px rgba(251,191,36,0)}}';
+    document.head.appendChild(st);
+  }
+
+  const card = document.createElement('div');
+  Object.assign(card.style, {
+    position: 'fixed', zIndex: '5002', background: '#fff',
+    borderRadius: '10px', padding: '14px 18px', maxWidth: '320px',
+    boxShadow: '0 8px 32px rgba(0,0,0,0.3)', fontFamily: 'var(--font)'
+  });
+  card.innerHTML =
+    '<div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px">' + title + '</div>' +
+    '<div style="font-size:12px;color:var(--text-dim);line-height:1.5">' + body + '</div>' +
+    '<div style="text-align:right;margin-top:10px"><button class="mbtn primary" id="flash-ok">Got it</button></div>';
+  overlay.appendChild(card);
+
+  function position(){
+    const r = target.getBoundingClientRect(), pad = 6;
+    spot.style.left = (r.left - pad) + 'px';
+    spot.style.top = (r.top - pad) + 'px';
+    spot.style.width = (r.width + pad*2) + 'px';
+    spot.style.height = (r.height + pad*2) + 'px';
+    const cardH = 130, vpH = window.innerHeight;
+    let top = r.bottom + 14;
+    if(top + cardH > vpH - 8) top = Math.max(8, r.top - cardH - 14);
+    let left = r.left;
+    left = Math.max(8, Math.min(left, window.innerWidth - 332));
+    card.style.top = top + 'px';
+    card.style.left = left + 'px';
+  }
+
+  function dismiss(){
+    overlay.remove();
+    window.removeEventListener('resize', position);
+    clearTimeout(timer);
+  }
+
+  overlay.addEventListener('click', (e) => { if(e.target === overlay) dismiss(); });
+  card.querySelector('#flash-ok').addEventListener('click', dismiss);
+
+  document.body.appendChild(overlay);
+  position();
+  window.addEventListener('resize', position);
+  const timer = setTimeout(dismiss, duration);
+}
+
 /* ── ONBOARDING TOUR ── */
 function startOnboarding() {
   const existing = document.getElementById('onboard-overlay');
