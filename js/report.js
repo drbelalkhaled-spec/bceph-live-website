@@ -126,6 +126,15 @@ const REPORT_INTERP = {
 
 /* ── REPORT ── */
 function generateReport(){
+  if(!(pixelsPerMm>0)){
+    toast('Calibrate first to generate a report','📏');
+    flashSpotlight('#calib-btn', {
+      title: '📏 Calibration required',
+      body: 'Click <b>Calibrate</b>, then click two points on a known distance (e.g. ruler markers on the X-ray) and enter the real-world mm. This unlocks accurate measurements and report generation.',
+      duration: 6000
+    });
+    return;
+  }
   const n=LM_IDS.filter(id=>has(id)).length;
   if(n<4){toast('Place at least S, N, A, B','⚠️');return;}
   // Sync checkboxes to currently active analysis filter
