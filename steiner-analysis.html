@@ -7,6 +7,7 @@
   <!-- Primary SEO -->
   <title>Steiner Analysis: Complete Cephalometric Guide — SNA, SNB, ANB | BCeph</title>
   <meta name="description" content="A complete guide to Steiner cephalometric analysis — SNA, SNB, ANB measurements, normative values, clinical interpretation, and how Steiner analysis guides orthodontic treatment planning. Run it free in BCeph.">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.bceph.com/steiner-analysis">
 
   <!-- Open Graph -->
@@ -20,6 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Steiner Analysis: Complete Cephalometric Guide">
   <meta name="twitter:description" content="SNA, SNB, ANB — a clinician-authored reference for Steiner cephalometric analysis measurements, norms, and treatment planning applications.">
+  <meta name="twitter:image" content="https://www.bceph.com/og-preview.png">
 
   <!-- Article Schema -->
   <script type="application/ld+json">
@@ -163,48 +165,15 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-    }
-    .nav-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      color: var(--gold);
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--text-subtle);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--navy); }
-    .nav-cta {
-      background: var(--navy);
-      color: #ffffff !important;
-      padding: 0.45rem 1.1rem;
-      border-radius: 6px;
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--navy-mid) !important; }
+    /* ── TOPNAV ── */
+    .topnav{position:fixed;top:0;left:0;width:100%;height:52px;z-index:1000;background:rgba(14,26,56,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-sizing:border-box;}
+    .topnav-logo{font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.5px;}
+    .topnav-logo em{color:var(--gold);font-style:italic;font-family:var(--font-display);}
+    .topnav-email{font-size:11px;font-weight:500;color:rgba(255,255,255,.35);text-decoration:none;font-family:var(--font-mono);transition:color .15s;}
+    .topnav-email:hover{color:rgba(255,255,255,.65);}
+    @media(max-width:600px){.topnav-email{display:none;}}
+    .topnav-btn{height:36px;padding:0 24px;border-radius:8px;background:var(--gold);border:none;color:#0e1a38;font-family:var(--font);font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+    .topnav-btn:hover{background:var(--gold-light);transform:translateY(-1px);}
 
     .breadcrumb {
       max-width: 960px;
@@ -533,17 +502,13 @@
 </head>
 <body>
 
-  <!-- ── NAV ── -->
-  <nav>
-    <div class="nav-inner">
-      <a href="https://www.bceph.com" class="nav-logo">BCeph</a>
-      <ul class="nav-links">
-        <li><a href="https://www.bceph.com/#features">Features</a></li>
-        <li><a href="https://www.bceph.com/#analyses">Analyses</a></li>
-        <li><a href="https://www.bceph.com/cephalometric-analysis">Ceph Guide</a></li>
-        <li><a href="https://www.bceph.com/blog">Blog</a></li>
-        <li><a href="https://www.bceph.com/app.html" class="nav-cta">Launch App →</a></li>
-      </ul>
+  <!-- ── TOP NAV ── -->
+  <nav class="topnav">
+    <span class="topnav-logo"><em>B</em>Ceph</span>
+    <a id="nav-email" href="#" class="topnav-email"></a>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <a href="app.html" class="topnav-btn">Launch BCeph Trace &#8594;</a>
+      <a href="https://bceph.com/report" class="topnav-btn" style="background:#6366f1;color:#fff;">Launch BCeph Report &#8594;</a>
     </div>
   </nav>
 

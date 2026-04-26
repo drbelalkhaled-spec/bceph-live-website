@@ -1,3 +1,3 @@
-User-agent: *
 Allow: /
+Disallow: /report.html
 Sitemap: https://www.bceph.com/sitemap.xml
