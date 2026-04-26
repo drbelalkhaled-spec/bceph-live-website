@@ -10,7 +10,7 @@
 <meta name="keywords" content="cephalometric analysis tool, online ceph tracing, free orthodontic software, SNA SNB ANB calculator, Steiner analysis, lateral cephalogram, AI orthodontics, ceph software">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Bayan Healthcare Analytics">
-<link rel="canonical" href="https://www.bceph.com/app.html">
+<link rel="canonical" href="https://www.bceph.com/app">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -74,6 +74,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 .tb-btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy-dark);font-weight:700}
 .tb-btn.gold:hover{background:var(--gold-light);border-color:var(--gold-light)}
 #calib-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy-dark);animation:calibPulse 1s infinite alternate}
+#ruler-btn.active{background:#22c55e;border-color:#22c55e;color:#fff;animation:calibPulse 1s infinite alternate}
 @keyframes calibPulse{from{opacity:1}to{opacity:.6}}
 #calib-hud{
   position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:10;
@@ -85,6 +86,18 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
 #calib-hud.visible{display:flex}
 #calib-hud .hud-label{color:rgba(255,255,255,.5);font-family:var(--font);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
 #calib-hud .hud-val{color:var(--gold-light);font-weight:600;min-width:60px}
+#ruler-hud{
+  position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:10;
+  background:rgba(18,32,74,.96);border:1px solid #22c55e;border-radius:var(--radius-lg);
+  padding:6px 10px 6px 16px;display:none;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:12px;color:#86efac;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);white-space:nowrap;
+}
+#ruler-hud.visible{display:flex}
+#ruler-hud .hud-label{color:rgba(255,255,255,.55);font-family:var(--font);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+#ruler-hud .hud-val{color:#86efac;font-weight:600;min-width:80px}
+#ruler-hud .hud-btn{height:22px;padding:0 8px;border:1px solid rgba(255,255,255,.2);border-radius:6px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.85);font-family:var(--font);font-size:10px;font-weight:700;cursor:pointer}
+#ruler-hud .hud-btn:hover{background:rgba(255,255,255,.15)}
 .tb-badge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:12px;background:rgba(200,152,42,.2);color:var(--gold-light);border:1px solid rgba(200,152,42,.25);font-family:var(--font-mono)}
 #calib-status{font-size:10px;color:rgba(255,255,255,.4);font-family:var(--font-mono)}
 #calib-status.set{color:#4ade80}
@@ -423,6 +436,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
       <button class="tb-btn gold" onclick="document.getElementById('file-input').click()">Load Ceph</button>
       <button class="tb-btn" id="calib-btn" onclick="startCalibration()">📏 Calibrate</button>
       <span id="calib-status">Not calibrated</span>
+      <button class="tb-btn" id="ruler-btn" onclick="startRuler()" title="Free measurement ruler">📐 Ruler</button>
     </div>
     <div class="tb-sep"></div>
     <div class="tb-group">
@@ -500,6 +514,12 @@ html,body{height:100%;overflow:hidden;font-family:var(--font);font-size:13px;col
         <div id="calib-hud">
           <span class="hud-label" id="calib-hud-label">Click first point on ruler</span>
           <span class="hud-val" id="calib-hud-dist"></span>
+        </div>
+        <div id="ruler-hud">
+          <span class="hud-label" id="ruler-hud-label">📐 Click first point</span>
+          <span class="hud-val" id="ruler-hud-dist"></span>
+          <button class="hud-btn" onclick="clearRulerMeasurements()" title="Clear all measurements">Clear</button>
+          <button class="hud-btn" onclick="exitRuler()" title="Exit ruler (Esc)">✕</button>
         </div>
         <div id="no-image-msg">
           <div class="icon">🩻</div>
@@ -1036,6 +1056,7 @@ var lengths=[q.top.endX-q.top.startX,q.bottom.endX-q.bottom.startX,(q.bottom.y-q
 <script src="js/analysisfilter.js"></script>
 <script src="js/canvas.js"></script>
 <script src="js/calibration.js"></script>
+<script src="js/ruler.js"></script>
 <script src="js/analyses/eastman.js"></script>
 <script src="js/analyses/steiner.js"></script>
 <script src="js/analyses/downs.js"></script>
