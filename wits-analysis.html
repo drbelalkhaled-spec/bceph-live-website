@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wits Appraisal: AO-BO Cephalometric Measurement, Norms & Landmarks | BCeph</title>
 <meta name="description" content="Complete guide to the Wits appraisal: AO-BO measurement, clinical norms by sex, landmarks, and how it complements ANB angle. Free browser-based Wits analysis — no install required.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.bceph.com/wits-analysis">
 <meta property="og:title" content="Wits Appraisal — AO-BO Cephalometric Measurement Guide">
 <meta property="og:description" content="The Wits appraisal measures AO and BO perpendiculars to the occlusal plane, bypassing cranial base variation. Full norms, landmarks, and free browser tool.">
@@ -15,6 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Wits Appraisal — AO-BO Cephalometric Measurement Guide">
 <meta name="twitter:description" content="The Wits appraisal measures AO and BO perpendiculars to the occlusal plane, bypassing cranial base variation. Full norms, landmarks, and free browser tool.">
+<meta name="twitter:image" content="https://www.bceph.com/og-preview.png">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,15 +116,15 @@
   body { font-family: var(--font-body); background: var(--navy); color: var(--text-primary); line-height: 1.7; font-size: 15px; -webkit-font-smoothing: antialiased; }
   a { color: var(--gold); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  nav { position: sticky; top: 0; z-index: 100; background: rgba(14,26,56,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; }
-  .nav-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: var(--font-display); font-size: 20px; color: var(--text-primary); }
-  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
-  .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
-  .nav-cta { background: var(--gold); color: var(--navy-deep) !important; padding: 7px 18px; border-radius: 6px; font-weight: 700 !important; font-size: 12px !important; }
-  .nav-cta:hover { background: #e0ad35; }
-  @media (max-width: 640px) { nav { display: none; } }
+  /* ── TOPNAV ── */
+  .topnav{position:fixed;top:0;left:0;width:100%;height:52px;z-index:1000;background:rgba(14,26,56,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-sizing:border-box;}
+  .topnav-logo{font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.5px;}
+  .topnav-logo em{color:var(--gold);font-style:italic;font-family:var(--font-display);}
+  .topnav-email{font-size:11px;font-weight:500;color:rgba(255,255,255,.35);text-decoration:none;font-family:var(--font-mono);transition:color .15s;}
+  .topnav-email:hover{color:rgba(255,255,255,.65);}
+  @media(max-width:600px){.topnav-email{display:none;}}
+  .topnav-btn{height:36px;padding:0 24px;border-radius:8px;background:var(--gold);border:none;color:#0e1a38;font-family:var(--font);font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+  .topnav-btn:hover{background:var(--gold-light);transform:translateY(-1px);}
   .breadcrumb { max-width: 860px; margin: 0 auto; padding: 24px 32px 0; font-size: 12px; color: var(--text-muted); }
   .breadcrumb a { color: var(--text-muted); } .breadcrumb a:hover { color: var(--gold); }
   .breadcrumb span { margin: 0 6px; opacity: 0.4; }
@@ -177,15 +179,13 @@
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="https://www.bceph.com" class="nav-logo">BCeph</a>
-    <ul class="nav-links">
-      <li><a href="https://www.bceph.com/#features">Features</a></li>
-      <li><a href="https://www.bceph.com/#analyses">Analyses</a></li>
-      <li><a href="https://www.bceph.com/cephalometric-analysis">Ceph Guide</a></li>
-      <li><a href="https://www.bceph.com/app.html" class="nav-cta">Launch App →</a></li>
-    </ul>
+<!-- ── TOP NAV ── -->
+<nav class="topnav">
+  <span class="topnav-logo"><em>B</em>Ceph</span>
+  <a id="nav-email" href="#" class="topnav-email"></a>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="app.html" class="topnav-btn">Launch BCeph Trace &#8594;</a>
+    <a href="https://bceph.com/report" class="topnav-btn" style="background:#6366f1;color:#fff;">Launch BCeph Report &#8594;</a>
   </div>
 </nav>
 
