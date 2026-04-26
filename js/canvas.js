@@ -14,6 +14,7 @@ function render(){
   if(showTracing) drawTracing(x);
   drawLandmarks(x);
   drawCalibPoints(x);
+  drawRulerPoints(x);
   x.restore();
 }
 
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(e.button===1||(e.button===0&&(e.ctrlKey||e.metaKey))){ clearLongPress(); isPanning=true; panStart={x:e.clientX,y:e.clientY}; lastPanOffset={x:panX,y:panY}; c.style.cursor='grabbing'; mouseDownPos=null; return; }
 
     /* Drag existing landmark */
-    if(e.button===0&&calibMode===0){ const ip=canvasToImage(e.clientX,e.clientY); const hit=findLandmarkAt(ip,10); if(hit){ clearLongPress(); dragging=hit; activeLandmark=hit; updateLandmarkUI(); c.style.cursor='move'; mouseDownPos=null; pushUndoState(); return; } }
+    if(e.button===0&&calibMode===0&&rulerMode===0){ const ip=canvasToImage(e.clientX,e.clientY); const hit=findLandmarkAt(ip,10); if(hit){ clearLongPress(); dragging=hit; activeLandmark=hit; updateLandmarkUI(); c.style.cursor='move'; mouseDownPos=null; pushUndoState(); return; } }
 
     panStart={x:e.clientX,y:e.clientY}; lastPanOffset={x:panX,y:panY};
   });
@@ -212,7 +213,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       calibMouseImg=canvasToImage(e.clientX,e.clientY); render();
       if(calibMode===2&&calibPts[0]&&calibMouseImg) document.getElementById('calib-hud-dist').textContent=dist(calibPts[0],calibMouseImg).toFixed(0)+' px';
     }
-    if(img&&e.pointerType!=='touch'){ c.style.cursor=(calibMode>0)?'crosshair':(findLandmarkAt(canvasToImage(e.clientX,e.clientY),10)?'move':'crosshair'); }
+    if(rulerMode>0&&img){
+      rulerMouseImg=canvasToImage(e.clientX,e.clientY); render(); updateRulerHUD();
+    }
+    if(img&&e.pointerType!=='touch'){ c.style.cursor=(calibMode>0||rulerMode>0)?'crosshair':(findLandmarkAt(canvasToImage(e.clientX,e.clientY),10)?'move':'crosshair'); }
   });
 
   /* ── POINTER UP ── */
@@ -232,6 +236,11 @@ document.addEventListener('DOMContentLoaded',()=>{
       if(calibMode>0){
         if(calibMode===1){ calibPts[0]=ip; calibMode=2; render(); updateCalibHUD(); toast('Now click the SECOND point on the ruler','📏'); }
         else if(calibMode===2){ calibPts[1]=ip; calibMode=0; calibMouseImg=null; render(); finishCalibClicks(); }
+        mouseDownPos=null; mouseDownBtn=-1; return;
+      }
+      if(rulerMode>0){
+        if(rulerMode===1){ rulerPts[0]=ip; rulerMode=2; updateRulerHUD(); render(); }
+        else if(rulerMode===2){ rulerPts[1]=ip; finishRulerClick(); }
         mouseDownPos=null; mouseDownBtn=-1; return;
       }
       if(activeLandmark){ pushUndoState(); landmarks[activeLandmark]={x:ip.x,y:ip.y}; updateAllUI(); render(); advanceToNext(); }
@@ -258,6 +267,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let arrowNudgeActive=false;
   document.addEventListener('keydown', e=>{
     if(e.key==='Escape'&&calibMode>0){ cancelCalibration(); toast('Calibration cancelled','❌'); }
+    if(e.key==='Escape'&&rulerMode>0){ exitRuler(); toast('Ruler closed','📐'); }
     if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&e.key==='z'){ e.preventDefault(); undoLandmark(); }
     if((e.ctrlKey||e.metaKey)&&(e.key==='y'||(e.shiftKey&&e.key==='Z'))){ e.preventDefault(); redoLandmark(); }
 
