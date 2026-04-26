@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Holdaway Soft Tissue Analysis — H Angle, Lip Position & Norms Explained | BCeph</title>
 <meta name="description" content="Complete guide to Holdaway soft tissue cephalometric analysis: H angle norms, upper and lower lip positions, nose prominence, skeletal convexity, and how to run it free in BCeph.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.bceph.com/holdaway-analysis">
 <meta property="og:title" content="Holdaway Analysis: H Angle, Soft Tissue Norms & Clinical Guide">
 <meta property="og:description" content="Everything you need to know about Holdaway soft tissue cephalometric analysis — H angle, lip-to-H-line measurements, nose prominence, and skeletal convexity norms for orthodontists.">
@@ -13,6 +14,7 @@
 <meta property="og:image" content="https://www.bceph.com/og-preview.png">
 <meta property="og:site_name" content="BCeph">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.bceph.com/og-preview.png">
 <link rel="icon" href="/favicon.ico" sizes="any">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,54 +129,15 @@
   a:hover { color: var(--gold); }
   img { max-width: 100%; display: block; }
 
-  /* NAV */
-  .site-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 0 32px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: var(--font-body);
-    font-weight: 800;
-    font-size: 17px;
-    color: var(--navy-deep);
-    letter-spacing: -0.3px;
-  }
-  .nav-logo .g { color: var(--gold); }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    list-style: none;
-    font-size: 13px;
-    font-weight: 500;
-  }
-  .nav-links a { color: var(--text-body); }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-cta {
-    background: var(--gold);
-    color: var(--navy-deep) !important;
-    font-weight: 700 !important;
-    padding: 8px 18px;
-    border-radius: 7px;
-    font-size: 13px !important;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: #c8941f !important; color: var(--navy-deep) !important; }
-  @media (max-width: 640px) { .nav-links { display: none; } }
+  /* ── TOPNAV ── */
+  .topnav{position:fixed;top:0;left:0;width:100%;height:52px;z-index:1000;background:rgba(14,26,56,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-sizing:border-box;}
+  .topnav-logo{font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.5px;}
+  .topnav-logo em{color:var(--gold);font-style:italic;font-family:var(--font-display);}
+  .topnav-email{font-size:11px;font-weight:500;color:rgba(255,255,255,.35);text-decoration:none;font-family:var(--font-mono);transition:color .15s;}
+  .topnav-email:hover{color:rgba(255,255,255,.65);}
+  @media(max-width:600px){.topnav-email{display:none;}}
+  .topnav-btn{height:36px;padding:0 24px;border-radius:8px;background:var(--gold);border:none;color:#0e1a38;font-family:var(--font);font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+  .topnav-btn:hover{background:var(--gold-light);transform:translateY(-1px);}
 
   /* BREADCRUMB */
   .breadcrumb {
@@ -478,16 +441,13 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo"><span class="g">B</span>Ceph</a>
-    <ul class="nav-links">
-      <li><a href="/app.html">Features</a></li>
-      <li><a href="/cephalometric-analysis">Analyses</a></li>
-      <li><a href="/cephalometric-analysis">Ceph Guide</a></li>
-      <li><a href="/app.html" class="nav-cta">Launch App →</a></li>
-    </ul>
+<!-- ── TOP NAV ── -->
+<nav class="topnav">
+  <span class="topnav-logo"><em>B</em>Ceph</span>
+  <a id="nav-email" href="#" class="topnav-email"></a>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="app.html" class="topnav-btn">Launch BCeph Trace &#8594;</a>
+    <a href="https://bceph.com/report" class="topnav-btn" style="background:#6366f1;color:#fff;">Launch BCeph Report &#8594;</a>
   </div>
 </nav>
 
