@@ -11,4 +11,5 @@ const ANALYSES = [
   {key:'holdaway', label:'Holdaway Soft Tissue',      sub:'H-angle, nose, lip, ST convexity — needs Sn, Me\'', data:HOLDAWAY},
   {key:'eline',    label:'E-Line Analysis',           sub:'Lip positions to E-line (Prn–sPg), nasolabial angle',  data:ELINE},
   {key:'kim',      label:"Kim's Analysis",            sub:'ODI, APDI, Combination Factor, Extraction Index — requires calibration for EI', data:KIM},
+  {key:'abo',      label:'ABO Analysis',              sub:'SNA, SNB, ANB, SN-MP, U1-SN, IMPA, interincisal, lower lip to E-plane',  data:ABO},
 ];
