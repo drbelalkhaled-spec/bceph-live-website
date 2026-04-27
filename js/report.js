@@ -68,6 +68,9 @@ const REPORT_INTERP = {
   // E-Line
   'Upper Lip to E-Line':           {lo:'Upper lip retrusion to E-line.', hi:'Upper lip protrusion to E-line.'},
   'Lower Lip to E-Line':           {lo:'Lower lip retrusion to E-line.', hi:'Lower lip protrusion to E-line.'},
+  // ABO
+  'SN-MP':                         {lo:'Hypodivergent (low angle) growth pattern.', hi:'Hyperdivergent (high angle) growth pattern.'},
+  'Lower Lip to E-Plane (ABO)':    {lo:'Retruded lower lip relative to E-line.', hi:'Protruded lower lip relative to E-line.'},
   // Kim
   'ODI':                           {lo:'Skeletal open bite tendency.', hi:'Skeletal deep bite tendency.'},
   'APDI':                          {lo:'Class II (distal) skeletal pattern.', hi:'Class III (mesial) skeletal pattern.'},
