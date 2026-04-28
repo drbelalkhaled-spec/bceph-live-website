@@ -13,10 +13,22 @@ const ABO=[
   {name:'SN-MP',unit:'°',norm:32,sd:5,requires:['S','N','Go','Me'],
     calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('Go'),L('Me'))},
   // ── Dental (3) ──
+  // U1 to SN: clinical convention is the OBTUSE angle (typ. 95°–115°) measured
+  // posteriorly from the U1 long axis to the SN line. acuteAngleBetweenLines
+  // would force the result into [0°,90°] (returning the supplementary acute
+  // ~72°). Use signed-dot angleBetweenLines with U1 endpoints reversed so v2
+  // runs tip→apex (up-and-back), opposite-facing v1 (S→N forward) → obtuse.
   {name:'U1 to SN',unit:'°',norm:102,sd:2,requires:['S','N','U1A','U1T'],
-    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('U1A'),L('U1T'))},
+    calc:()=>angleBetweenLines(L('S'),L('N'),L('U1T'),L('U1A'))},
+  // IMPA: angle between L1 long axis and mandibular plane, measured on the
+  // lingual side. Norm 90°±5°: proclined incisors → >90°, retroclined → <90°.
+  // acuteAngleBetweenLines clamps to [0°,90°], silently returning the
+  // supplementary value for proclined patients (e.g. true 100° → reported 80°).
+  // Use signed-dot angleBetweenLines with L1 endpoints reversed so v2 runs
+  // tip→apex (back-down), opposing v1 (Go→Me forward-down) for proclined L1
+  // → naturally obtuse. Matches Tweed's IMPA exactly for proclined cases.
   {name:'IMPA',unit:'°',norm:90,sd:5,requires:['Go','Me','L1A','L1T'],
-    calc:()=>acuteAngleBetweenLines(L('Go'),L('Me'),L('L1A'),L('L1T'))},
+    calc:()=>angleBetweenLines(L('Go'),L('Me'),L('L1T'),L('L1A'))},
   {name:'Interincisal',unit:'°',norm:130,sd:6,requires:['U1A','U1T','L1A','L1T'],
     calc:()=>angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'))},
   // ── Soft Tissue & Aesthetics (1) ──
