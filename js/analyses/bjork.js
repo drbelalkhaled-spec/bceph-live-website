@@ -38,8 +38,13 @@ const BJORK=[
     calc:()=>{const ang=angleAtVertex(L('N'),L('A'),L('Pg'));return 180-ang;}},
   {name:'Lower Lip to E-Plane',unit:'mm',norm:-2,sd:2,requires:['Prn','sPg','Li'],
     calc:()=>{const dx=L('sPg').x-L('Prn').x,dy=L('sPg').y-L('Prn').y,len=Math.sqrt(dx*dx+dy*dy);if(len===0)return NaN;const cross=(L('Li').x-L('Prn').x)*dy-(L('Li').y-L('Prn').y)*dx;return px2mm(cross/len);}},
+  // U1 to SN: clinical convention is the OBTUSE angle (typ. 95°–115°) measured
+  // posteriorly from the U1 long axis to the SN line. acuteAngleBetweenLines
+  // would force the result into [0°,90°] (returning the supplementary acute
+  // ~70°). Use signed-dot angleBetweenLines with U1 endpoints reversed so v2
+  // runs tip→apex (up-and-back), opposite-facing v1 (S→N forward) → obtuse.
   {name:'U1 to SN',unit:'°',norm:109.3,sd:6,requires:['S','N','U1T','U1A'],
-    calc:()=>acuteAngleBetweenLines(L('S'),L('N'),L('U1A'),L('U1T'))},
+    calc:()=>angleBetweenLines(L('S'),L('N'),L('U1T'),L('U1A'))},
   {name:'Occ Plane to Go-Me',unit:'°',norm:19.8,sd:4.1,requires:['Op1','Op2','Go','Me'],
     calc:()=>{const op=getOcclusalPlane();if(!op)return NaN;return acuteAngleBetweenLines(op.A,op.B,L('Go'),L('Me'));}},
 ];
