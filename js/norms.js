@@ -6,7 +6,7 @@ const NORM_SETS = {
     'FMA':{norm:23,sd:3},'MMPA':{norm:26,sd:4},'FMIA':{norm:67,sd:3},'IMPA':{norm:90,sd:3},
     'Post Face Ht (S-Go)':{norm:81,sd:6},'Ant Face Ht (N-Me)':{norm:122,sd:7},'PFH/AFH Ratio':{norm:64,sd:3},
     'Convexity A to N-Pg':{norm:1,sd:2},
-    'Wits Appraisal (AO–BO)':{norm:1,sd:2},
+    'Wits Appraisal (AO–BO)':{norm:-1,sd:2},
   }},
   adult_f:    { label:'Adult Female',     ov:{
     'SNA':{norm:80,sd:3},'SNB':{norm:78,sd:3},'ANB':{norm:2,sd:2},'GoGn–SN':{norm:34,sd:5},
