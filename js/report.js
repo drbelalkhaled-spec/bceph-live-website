@@ -114,7 +114,6 @@ const REPORT_INTERP = {
   'Occ Plane to Go-Me':            {lo:'Flat occlusal plane relative to mandibular plane.', hi:'Steep occlusal plane relative to mandibular plane.'},
   // Ricketts additions
   'Facial Taper':                  {lo:'Short symphysis — narrow face.', hi:'Long symphysis — wide face.'},
-  'Mandibular Arc':                {lo:'Retrognathic mandibular shape.', hi:'Prognathic mandibular shape.'},
   'Palatal Plane Angle':           {lo:'Counter-clockwise rotated maxilla.', hi:'Clockwise rotated maxilla.'},
   'Denture Height (LAFH)':         {lo:'Decreased lower facial height.', hi:'Increased lower facial height — open bite tendency.'},
   'Upper Molar to PtV':            {lo:'Mesially positioned upper molar.', hi:'Distally positioned upper molar.'},
