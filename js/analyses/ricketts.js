@@ -27,8 +27,6 @@ const RICKETTS=[
     calc:()=>angleBetweenLines(L('U1A'),L('U1T'),L('L1A'),L('L1T'))},
   {name:'Facial Taper',unit:'°',norm:68,sd:3,requires:['N','Gn','Go'],
     calc:()=>angleAtVertex(L('N'),L('Gn'),L('Go'))},
-  {name:'Mandibular Arc',unit:'°',norm:26,sd:2,requires:['Co','Go','Me'],
-    calc:()=>angleAtVertex(L('Co'),L('Go'),L('Me'))},
   {name:'Palatal Plane Angle',unit:'°',norm:0,sd:5,requires:['ANS','PNS','Po','Or'],
     calc:()=>{const a=acuteAngleBetweenLines(L('ANS'),L('PNS'),L('Po'),L('Or'));const fhx=L('Or').x-L('Po').x,fhy=L('Or').y-L('Po').y;const palx=L('PNS').x-L('ANS').x,paly=L('PNS').y-L('ANS').y;const cross=fhx*paly-fhy*palx;return cross>0?a:-a;}},
   {name:'Denture Height (LAFH)',unit:'mm',norm:47,sd:4,requires:['ANS','Me'],
